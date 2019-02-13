@@ -4,22 +4,28 @@ import java.util.Scanner;
 
 public class Application {
 
-	Hipermercado hipermercado;
-	static Validador validador;
+	
 	
 	public static void main(String[] args) {
+		
+		Hipermercado hipermercado;
+		Validador validador;
 	
+		/*
 		System.out.print("Escolha uma opção:");
 		Scanner sc = new Scanner(System.in);
 		int choice = sc.nextInt();
 		sc.close();
-		System.out.println("");
+		System.out.println("");*/
+		
+		int choice=1;
 		
 		switch(choice){
 			case 1:
 				 System.out.println("Escolheu a opção 1");
+				 System.out.println(" ");
 				 validador = new Validador();	
-				 validador.loadFile();
+				 validador.carregarFicheiro();
 				 break;
 				 
 			case 2:
