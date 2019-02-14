@@ -1,16 +1,10 @@
 package com.luis;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Validador {
 	
-	String strCurrentLine;
 	List<String> listaClientes = new ArrayList<String>();
 	List<String> listaPrecos = new ArrayList<String>();
 	List<String> listaQuantidade = new ArrayList<String>();
@@ -19,44 +13,38 @@ public class Validador {
 	List<String> listaMes = new ArrayList<String>();
 	int fields = 6;
 	
+	List<Cclientes> listaClientela = new ArrayList<Cclientes>();
+	List<Compras> listaClientela2 = new ArrayList<Compras>();
+	
 	public Validador(){
 		super();
 	}
 	
-	public void carregarFicheiro(){
-		try {
-			BufferedReader objReader = new BufferedReader(new FileReader("Compras.txt"));
-			while ((strCurrentLine = objReader.readLine()) != null) {
-				String[] lineSplitter = strCurrentLine.split(" ");
+	public void validacao(String lineSplitter[]){
+		
+		if (lineSplitter.length == fields) {
+			listaClientes.add(lineSplitter[0]);
+			listaPrecos.add(lineSplitter[1]);
+			listaQuantidade.add(lineSplitter[2]);
+			listaTipo.add(lineSplitter[3]);
+			listaProduto.add(lineSplitter[4]);
+			listaMes.add(lineSplitter[5]);
+			
+			validarClientes();
+			validarPreco();
+			validarQuantidade();
+			validarPN();
+			validarProdutos();
+			validarMes();
+			arraylist();
+			arraylist2();
 
-				if (lineSplitter.length == fields) {
-					listaClientes.add(lineSplitter[0]);
-					listaPrecos.add(lineSplitter[1]);
-					listaQuantidade.add(lineSplitter[2]);
-					listaTipo.add(lineSplitter[3]);
-					listaProduto.add(lineSplitter[4]);
-					listaMes.add(lineSplitter[5]);
-
-				} else {
-					System.out.println("O campo lido é inválido");
-				}
-				// System.out.println(strCurrentLine);
-			}
-			objReader.close();
-			validacao();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} else {
+			System.out.println("O campo lido é inválido");
+			System.out.println(" "); 
 		}
 	}
-	
-	public void validacao(){
-		validarClientes();
-		validarPreco();
-		validarQuantidade();
-		validarPN();
-		validarProdutos();
-		validarMes();
-	}
+
 	
 	public void validarClientes() {
 		
@@ -71,6 +59,15 @@ public class Validador {
 				if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
 					System.out.println("O id do cliente "+clienteTemp+" é válido");
 					System.out.println(" ");
+					
+					Cclientes cclientes = new Cclientes();
+					cclientes.setIdClientes(clienteTemp);
+			
+					Compras compras = new Compras();
+					compras.setCliente(cclientes);
+					
+					listaClientela2.add(compras);
+					
 				}else{
 					System.out.println("O id do cliente "+clienteTemp+" é inválido");
 					System.out.println(" "); 
@@ -90,6 +87,7 @@ public class Validador {
 			if(preco>0){
 				System.out.println("O preço "+preco+" é válido!!!");
 				System.out.println(" "); 
+					
 			}	
 			else{
 				System.out.println("O preço "+preco+" é inválido!!!");
@@ -106,12 +104,19 @@ public class Validador {
 			if(quantidade>0){
 				System.out.println("A quantidade "+quantidade+" é válida!!!");
 				System.out.println(" "); 
+				
+				Compras compras = new Compras();
+				compras.setQuantidade(quantidade);
+				
+				listaClientela2.add(compras);
+				
 			}	
 			else{
 				System.out.println("A quantidade "+quantidade+" é inválida!!!");
 				System.out.println(" "); 
 			}	
 		}	
+		
 	}
 	
 	private void validarPN() {
@@ -142,6 +147,16 @@ public class Validador {
 				if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
 					System.out.println("O id do produto "+ produtoTemp + "é válido!");
 					System.out.println(" "); 
+					
+					
+					Cprodutos cprodutos = new Cprodutos();
+					cprodutos.setIdProdutos(produtoTemp);
+			
+					Compras compras = new Compras();
+					compras.setCprodutos(cprodutos);
+					
+					listaClientela2.add(compras);
+				
 				}else{
 					System.out.println("O id do produto "+ produtoTemp + "é inválido!");
 					System.out.println(" "); 
@@ -161,11 +176,31 @@ public class Validador {
 			if(mes>0 && mes<=12){
 				System.out.println("O Mês "+mes+" é válido!!!");
 				System.out.println(" "); 
+				
+				Compras compras = new Compras();
+				compras.setMes(mes);
+				
 			}	
 			else{
 				System.out.println("O Mês "+mes+" é inválido!!!");
 				System.out.println(" "); 
 			}
+		}
+	}
+	
+	public void arraylist(){
+		
+		for(int i=0; i<listaClientela.size(); i++){
+			System.out.println(listaClientela.get(i).idClientes);
+			
+		}	
+	}
+	
+	public void arraylist2() {
+	
+		for(int i=0; i<listaClientela2.size(); i++){
+			System.out.println("indice:"+i+" "+listaClientela2.get(i).toString());
+			
 		}
 	}
 }
