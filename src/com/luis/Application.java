@@ -8,10 +8,8 @@ import java.util.Scanner;
 public class Application {
 
 	
-	
 	public static void main(String[] args) {
 		
-		Hipermercado hipermercado = new Hipermercado();
 		Validador validador;
 		
 		/*
@@ -35,7 +33,10 @@ public class Application {
 					while ((strCurrentLine = objReader.readLine()) != null) {
 						String[] lineSplitter = strCurrentLine.split(" ");
 						validador = new Validador();
-						validador.validacao(lineSplitter);
+						
+						Compras compras=validador.validacao(lineSplitter);
+						Hipermercado hipermercado = new Hipermercado();
+						hipermercado.add(compras);
 	
 						// System.out.println(strCurrentLine);
 					}

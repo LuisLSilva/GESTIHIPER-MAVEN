@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Validador {
-	
+	Compras compras;
 	List<String> listaClientes = new ArrayList<String>();
 	List<String> listaPrecos = new ArrayList<String>();
 	List<String> listaQuantidade = new ArrayList<String>();
@@ -20,9 +20,11 @@ public class Validador {
 		super();
 	}
 	
-	public void validacao(String lineSplitter[]){
+	public Compras validacao(String lineSplitter[]){
 		
 		if (lineSplitter.length == fields) {
+			
+			compras = new Compras();
 			listaClientes.add(lineSplitter[0]);
 			listaPrecos.add(lineSplitter[1]);
 			listaQuantidade.add(lineSplitter[2]);
@@ -38,11 +40,14 @@ public class Validador {
 			validarMes();
 			arraylist();
 			arraylist2();
+			
 
 		} else {
 			System.out.println("O campo lido é inválido");
 			System.out.println(" "); 
 		}
+		
+		return compras;
 	}
 
 	
@@ -63,7 +68,7 @@ public class Validador {
 					Cclientes cclientes = new Cclientes();
 					cclientes.setIdClientes(clienteTemp);
 			
-					Compras compras = new Compras();
+					
 					compras.setCliente(cclientes);
 					
 					listaClientela2.add(compras);
@@ -105,11 +110,9 @@ public class Validador {
 				System.out.println("A quantidade "+quantidade+" é válida!!!");
 				System.out.println(" "); 
 				
-				Compras compras = new Compras();
+			
 				compras.setQuantidade(quantidade);
-				
-				listaClientela2.add(compras);
-				
+			
 			}	
 			else{
 				System.out.println("A quantidade "+quantidade+" é inválida!!!");
@@ -152,10 +155,9 @@ public class Validador {
 					Cprodutos cprodutos = new Cprodutos();
 					cprodutos.setIdProdutos(produtoTemp);
 			
-					Compras compras = new Compras();
 					compras.setCprodutos(cprodutos);
 					
-					listaClientela2.add(compras);
+					
 				
 				}else{
 					System.out.println("O id do produto "+ produtoTemp + "é inválido!");
@@ -177,7 +179,6 @@ public class Validador {
 				System.out.println("O Mês "+mes+" é válido!!!");
 				System.out.println(" "); 
 				
-				Compras compras = new Compras();
 				compras.setMes(mes);
 				
 			}	

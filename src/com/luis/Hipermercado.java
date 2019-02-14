@@ -45,6 +45,10 @@ public class Hipermercado {
 		return "Hipermercado [cclientes=" + cclientes + "]";
 	}
 
-
+    public void add(Compras compras) {
+    	Cclientes cclientes=compras.getCliente();
+    	Cprodutos cprodutos=compras.getCprodutos();
+    
+    }
 	
 }
