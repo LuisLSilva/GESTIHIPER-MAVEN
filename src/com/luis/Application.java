@@ -3,6 +3,8 @@ package com.luis;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -10,7 +12,11 @@ public class Application {
 	
 	public static void main(String[] args) {
 		
-		Validador validador;
+		Validador validador = new Validador();
+		Hipermercado hipermercado = new Hipermercado();
+		
+		List<Hipermercado> arraylist = new ArrayList<Hipermercado>();
+		
 		
 		/*
 		System.out.print("Escolha uma opção:");
@@ -20,7 +26,7 @@ public class Application {
 		System.out.println("");*/
 		
 		String strCurrentLine;
-		int choice=1;
+		int choice=3;
 		
 		switch (choice) {
 		
@@ -29,19 +35,19 @@ public class Application {
 				System.out.println(" ");
 	
 				try {
-					BufferedReader objReader = new BufferedReader(new FileReader("Compras.txt"));
+					BufferedReader objReader = new BufferedReader(new FileReader("FichClientes.txt"));
 					while ((strCurrentLine = objReader.readLine()) != null) {
-						String[] lineSplitter = strCurrentLine.split(" ");
-						validador = new Validador();
 						
-						Compras compras=validador.validacao(lineSplitter);
-						Hipermercado hipermercado = new Hipermercado();
-						hipermercado.add(compras);
-	
-						// System.out.println(strCurrentLine);
+						
+						
+						
 					}
 					objReader.close();
-	
+					
+					
+					
+					
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -50,12 +56,43 @@ public class Application {
 	
 			case 2:
 				System.out.println("Escolheu a opção 2");
-				break;
+				
 	
+				
+				
+				
+				
+				
+				break;
 			case 3:
 				System.out.println("Escolheu a opção 3");
-				break;
+				
+				try {
+					BufferedReader objReader = new BufferedReader(new FileReader("Compras.txt"));
+					while ((strCurrentLine = objReader.readLine()) != null) {
+						String[] lineSplitter = strCurrentLine.split(" ");
 	
+						// validador = new Validador();
+	
+						Compra compra = validador.validacao(lineSplitter);
+	
+						hipermercado.addCompra(compra);
+						arraylist.add(hipermercado);
+	
+						// System.out.println(strCurrentLine);
+					}
+					objReader.close();
+					
+					for(int i=0; i<arraylist.size(); i++){
+						System.out.println(arraylist.get(i).toString());
+								
+					}
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				break;
 			default:
 				System.out.println("Não escolheu opção nenhuma");
 			}

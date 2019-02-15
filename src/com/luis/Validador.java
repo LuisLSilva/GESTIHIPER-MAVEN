@@ -4,204 +4,222 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Validador {
-	Compras compras;
-	List<String> listaClientes = new ArrayList<String>();
-	List<String> listaPrecos = new ArrayList<String>();
-	List<String> listaQuantidade = new ArrayList<String>();
-	List<String> listaTipo = new ArrayList<String>();
-	List<String> listaProduto = new ArrayList<String>();
-	List<String> listaMes = new ArrayList<String>();
-	int fields = 6;
+	private Compra compra;
+	private static int fields = 6;
 	
-	List<Cclientes> listaClientela = new ArrayList<Cclientes>();
-	List<Compras> listaClientela2 = new ArrayList<Compras>();
+	
+	List<Compra> listaClientela2 = new ArrayList<Compra>();
 	
 	public Validador(){
 		super();
 	}
 	
-	public Compras validacao(String lineSplitter[]){
+	public Compra validacao(String lineSplitter[]){
 		
 		if (lineSplitter.length == fields) {
 			
-			compras = new Compras();
-			listaClientes.add(lineSplitter[0]);
-			listaPrecos.add(lineSplitter[1]);
-			listaQuantidade.add(lineSplitter[2]);
-			listaTipo.add(lineSplitter[3]);
-			listaProduto.add(lineSplitter[4]);
-			listaMes.add(lineSplitter[5]);
+			compra = new Compra();
 			
-			validarClientes();
-			validarPreco();
-			validarQuantidade();
-			validarPN();
-			validarProdutos();
-			validarMes();
-			arraylist();
-			arraylist2();
+			String valCliente = ValidarCliente(lineSplitter[0]);
+			double valPreco = ValidarPreco(lineSplitter[1]);
+			int valQuantidade = ValidarQuantidade(lineSplitter[2]);
+			String valPromo = ValidarPromo(lineSplitter[3]);
+			String valProduto = ValidarProduto(lineSplitter[4]);
+			int valMes = ValidarMes(lineSplitter[5]);
+		
+			SetCliente(valCliente);
+			SetPreco(valPreco);
+			SetQuantidade(valQuantidade);
+			SetPromo(valPromo);
+			SetProduto(valProduto);
+			SetMes(valMes);
+		
+		    arraylist();
+		    
+		    return compra;
 			
-
 		} else {
 			System.out.println("O campo lido é inválido");
 			System.out.println(" "); 
+			return null;
 		}
-		
-		return compras;
-	}
+	}	
 
-	
-	public void validarClientes() {
-		
-		for(int i=0; i<listaClientes.size(); i++){
-			String clienteTemp =(listaClientes.get(i));
-			
-			if(clienteTemp.length()==6){
-			
-				String sub1 = clienteTemp.substring(0, 2);
-				String sub2 = clienteTemp.substring(2);
-		
-				if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-					System.out.println("O id do cliente "+clienteTemp+" é válido");
-					System.out.println(" ");
-					
-					Cclientes cclientes = new Cclientes();
-					cclientes.setIdClientes(clienteTemp);
-			
-					
-					compras.setCliente(cclientes);
-					
-					listaClientela2.add(compras);
-					
-				}else{
-					System.out.println("O id do cliente "+clienteTemp+" é inválido");
-					System.out.println(" "); 
-				}
-			}else{
-				System.out.println("O id do cliente "+clienteTemp+" é inválido");
+
+	public String ValidarCliente(String string) {
+
+		if (string.length() == 6) {
+
+			String sub1 = string.substring(0, 2);
+			String sub2 = string.substring(2);
+
+			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
+				System.out.println("O id do cliente " + string + " é válido");
 				System.out.println(" ");
-			}	
-		}
-	}
-	
-	public void validarPreco() {
-		
-		for(int i=0; i<listaPrecos.size(); i++){
-			double preco = Double.valueOf(listaPrecos.get(i));
-			
-			if(preco>0){
-				System.out.println("O preço "+preco+" é válido!!!");
-				System.out.println(" "); 
-					
-			}	
-			else{
-				System.out.println("O preço "+preco+" é inválido!!!");
-				System.out.println(" "); 
-			}	
-		}
-	}
-	
-	public void validarQuantidade() {
-		
-		for(int i=0; i<listaQuantidade.size(); i++){
-			int quantidade = Integer.valueOf(listaQuantidade.get(i));
-			
-			if(quantidade>0){
-				System.out.println("A quantidade "+quantidade+" é válida!!!");
-				System.out.println(" "); 
+
+				return string;
 				
-			
-				compras.setQuantidade(quantidade);
-			
-			}	
-			else{
-				System.out.println("A quantidade "+quantidade+" é inválida!!!");
-				System.out.println(" "); 
-			}	
-		}	
-		
-	}
-	
-	private void validarPN() {
-		
-		for(int i=0; i<listaTipo.size(); i++){
-			String tipoTemp =(listaTipo.get(i));
-			
-			if(tipoTemp.length()==1 && (tipoTemp.equals("N") || tipoTemp.equals("P"))){
-				System.out.println("O tipo do produto "+ tipoTemp + " é válido!");
-				System.out.println(" "); 
-			}else{
-				System.out.println("O tipo do produto "+ tipoTemp + " é inválido!");
-				System.out.println(" "); 
-			}	
-		}
-	}
-	
-	public void validarProdutos() {
-		
-		for(int i=0; i<listaProduto.size(); i++){
-			String produtoTemp =(listaProduto.get(i));
-		
-			if(produtoTemp.length()==5){
-			
-				String sub1 = produtoTemp.substring(0, 2);
-				String sub2 = produtoTemp.substring(2);
-		
-				if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-					System.out.println("O id do produto "+ produtoTemp + "é válido!");
-					System.out.println(" "); 
-					
-					
-					Cprodutos cprodutos = new Cprodutos();
-					cprodutos.setIdProdutos(produtoTemp);
-			
-					compras.setCprodutos(cprodutos);
-					
-					
+			} else {
+				System.out.println("O id do cliente " + string + " é inválido");
+				System.out.println(" ");
 				
-				}else{
-					System.out.println("O id do produto "+ produtoTemp + "é inválido!");
-					System.out.println(" "); 
-				}
-			}else{
-				System.out.println("O id do produto "+ produtoTemp + "é inválido!");
-				System.out.println(" "); 
+				return null;
 			}
+		} else {
+			System.out.println("O id do cliente " + string + " é inválido");
+			System.out.println(" ");
+			
+			return null;
+		}
+	}
+	
+	public double ValidarPreco(String string) {
+
+		double preco = Double.valueOf(string);
+		
+		if (preco>0) {
+			System.out.println("O preço " + preco + " é válido!!!");
+			System.out.println(" ");
+			
+			return preco;
+
+		} else {
+			System.out.println("O preço " + preco + " é inválido!!!");
+			System.out.println(" ");
+			
+			return 0;
+		}
+	}
+	
+	public int ValidarQuantidade(String string) {
+		
+		int quantidade = Integer.valueOf(string);
+		
+		if(quantidade>0){
+			System.out.println("A quantidade "+quantidade+" é válida!!!");
+			System.out.println(" "); 
+			
+			return quantidade;	
+		}	
+		else{
+			System.out.println("A quantidade "+quantidade+" é inválida!!!");
+			System.out.println(" "); 
+			
+			return 0;
+		}	
+	}
+	
+	private String ValidarPromo(String string) {
+
+		if(string.length()==1 && (string.equals("N") || string.equals("P"))){
+			System.out.println("O tipo do produto "+ string + " é válido!");
+			System.out.println(" ");
+			
+			return string;
+			
+		}else{
+			System.out.println("O tipo do produto "+ string + " é inválido!");
+			System.out.println(" "); 
+			
+			return null;
+		}		
+	}
+
+	public String ValidarProduto(String string) {
+
+		if(string.length()==5){
+			
+			String sub1 = string.substring(0, 2);
+			String sub2 = string.substring(2);
+	
+			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
+				System.out.println("O id do produto "+ string + "é válido!");
+				System.out.println(" "); 
+				
+				return string;
+				
+			}else{
+				System.out.println("O id do produto "+ string + "é inválido!");
+				System.out.println(" "); 
+				
+				return null;
+			}
+		}else{
+				
+			System.out.println("O id do produto "+ string + "é inválido!");
+			System.out.println(" "); 
+			
+			return null;
+		}
+	}
+	
+	private int ValidarMes(String string) {
+
+		int mes = Integer.valueOf(string);
+
+		if (mes > 0 && mes <= 12) {
+			System.out.println("O Mês " + mes + " é válido!!!");
+			System.out.println(" ");
+
+			return mes;
+		} else {
+			System.out.println("O Mês " + mes + " é inválido!!!");
+			System.out.println(" ");
+
+			return 0;
+		}
+	}
+	
+	public void SetCliente(String valCliente) {
+
+		if (valCliente != null) {
+			compra.setClientes(new Ccliente(valCliente));
+			listaClientela2.add(compra);
+		}
+	}
+	
+	public void SetPreco(double valPreco) {
+
+		if (valPreco != 0) {
+			compra.setCprodutos(new Cproduto(valPreco));
+		}
+
+	}
+	
+	public void SetQuantidade(int valQuantidade) {
+
+		if (valQuantidade != 0) {
+			compra.setQuantidade(valQuantidade);
+		}
+	}
+	
+	public void SetPromo(String valPromo) {
+		
+		if (valPromo != null) {
+			compra.setPromo(valPromo);
 		}
 	}
 
-	public void validarMes() {
-		
-		for(int i=0; i<listaMes.size(); i++){
-			int mes = Integer.valueOf(listaMes.get(i));
-		
-			if(mes>0 && mes<=12){
-				System.out.println("O Mês "+mes+" é válido!!!");
-				System.out.println(" "); 
-				
-				compras.setMes(mes);
-				
-			}	
-			else{
-				System.out.println("O Mês "+mes+" é inválido!!!");
-				System.out.println(" "); 
-			}
+	public void SetProduto(String valProduto) {
+
+		if (valProduto != null) {
+			compra.setCprodutos(new Cproduto(valProduto));
 		}
 	}
 	
-	public void arraylist(){
+	public void SetMes(int valMes) {
 		
-		for(int i=0; i<listaClientela.size(); i++){
-			System.out.println(listaClientela.get(i).idClientes);
-			
-		}	
-	}
+		if(valMes!=0){
+			compra.setMes(valMes);
+		}
 	
-	public void arraylist2() {
+	}
+
+	public void arraylist() {
 	
 		for(int i=0; i<listaClientela2.size(); i++){
 			System.out.println("indice:"+i+" "+listaClientela2.get(i).toString());
-			
+			System.out.println(" "); 	
 		}
 	}
 }

@@ -1,14 +1,24 @@
 package com.luis;
 
-public class Cprodutos {
-	String idProdutos;
-	double preco;
+public class Cproduto {
+	private String idProdutos;
+	private double preco;
 	
-	public Cprodutos() {
+	public Cproduto() {
 		super();
 	}
 	
-	public Cprodutos(String idProdutos, int preco) {
+	public Cproduto(String idProdutos) {
+		super();
+		this.idProdutos = idProdutos;
+	}
+	
+	public Cproduto(double preco) {
+		super();
+		this.preco = preco;
+	}
+
+	public Cproduto(String idProdutos, int preco) {
 		super();
 		this.idProdutos = idProdutos;
 		this.preco = preco;

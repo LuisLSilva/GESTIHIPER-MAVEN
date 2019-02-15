@@ -1,34 +1,27 @@
 package com.luis;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hipermercado {
-	Cclientes cclientes;
-	Cprodutos cprodutos;
-	Contabilidade contabilidade;
+	private Ccliente cclientes;
+	private Cproduto cprodutos;
+	private Contabilidade contabilidade;
+	private List<Compra> listCompra = new ArrayList<Compra>();
 	
-	
-	public Hipermercado() {
-		super();
-	}
-
-	public Hipermercado(Cclientes cclientes, Cprodutos cprodutos, Contabilidade contabilidade) {
-		super();
-		this.cclientes = cclientes;
-		this.cprodutos = cprodutos;
-		this.contabilidade = contabilidade;
-	}
-
-	public Cclientes getCclientes() {
+	public Ccliente getCclientes() {
 		return cclientes;
 	}
 	
-	public void setCclientes(Cclientes cclientes) {
+	public void setCclientes(Ccliente cclientes) {
 		this.cclientes = cclientes;
 	}
-	public Cprodutos getCprodutos() {
+	
+	public Cproduto getCprodutos() {
 		return cprodutos;
 	}
 	
-	public void setCprodutos(Cprodutos cprodutos) {
+	public void setCprodutos(Cproduto cprodutos) {
 		this.cprodutos = cprodutos;
 	}
 	
@@ -39,16 +32,28 @@ public class Hipermercado {
 	public void setContabilidade(Contabilidade contabilidade) {
 		this.contabilidade = contabilidade;
 	}
+	
+	public List<Compra> getListCompra() {
+		return listCompra;
+	}
+
+	public void setListCompra(List<Compra> listCompra) {
+		this.listCompra = listCompra;
+	}
+
+	public void addCompra(Compra compra){
+		listCompra.add(compra);
+	}
 
 	@Override
 	public String toString() {
-		return "Hipermercado [cclientes=" + cclientes + "]";
+		return "Hipermercado [cclientes=" + cclientes + ", cprodutos=" + cprodutos + ", contabilidade=" + contabilidade
+				+ ", listCompra=" + listCompra + "]";
 	}
-
-    public void add(Compras compras) {
-    	Cclientes cclientes=compras.getCliente();
-    	Cprodutos cprodutos=compras.getCprodutos();
-    
-    }
+	
+	
+	
+	
+	
 	
 }

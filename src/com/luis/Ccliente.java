@@ -1,14 +1,14 @@
 package com.luis;
 
-public class Cclientes {
-	String idClientes;
+public class Ccliente {
+	private String idClientes;
 	
 	
-	public Cclientes() {
+	public Ccliente() {
 		super();
 	}
 	
-	public Cclientes(String idClientes) {
+	public Ccliente(String idClientes) {
 		super();
 		this.idClientes = idClientes;
 	}
