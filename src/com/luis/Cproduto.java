@@ -1,16 +1,16 @@
 package com.luis;
 
 public class Cproduto {
-	private String idProdutos;
+	private String idProduto;
 	private double preco;
 	
 	public Cproduto() {
 		super();
 	}
 	
-	public Cproduto(String idProdutos) {
+	public Cproduto(String idProduto) {
 		super();
-		this.idProdutos = idProdutos;
+		this.idProduto = idProduto;
 	}
 	
 	public Cproduto(double preco) {
@@ -18,17 +18,17 @@ public class Cproduto {
 		this.preco = preco;
 	}
 
-	public Cproduto(String idProdutos, int preco) {
+	public Cproduto(String idProduto, int preco) {
 		super();
-		this.idProdutos = idProdutos;
+		this.idProduto = idProduto;
 		this.preco = preco;
 	}
 	
-	public String getIdProdutos() {
-		return idProdutos;
+	public String getIdProduto() {
+		return idProduto;
 	}
-	public void setIdProdutos(String idProdutos) {
-		this.idProdutos = idProdutos;
+	public void setIdProduto(String idProduto) {
+		this.idProduto = idProduto;
 	}
 	public double getPreco() {
 		return preco;
@@ -39,7 +39,7 @@ public class Cproduto {
 	
 	@Override
 	public String toString() {
-		return "Cprodutos [idProdutos=" + idProdutos + ", preco=" + preco + "]";
+		return "Cprodutos [idProduto=" + idProduto + ", preco=" + preco + "]";
 	}
 
 

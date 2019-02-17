@@ -1,26 +1,26 @@
 package com.luis;
 
 public class Compra {
-	private Ccliente clientes;
-	private Cproduto cprodutos;
+	private Ccliente cliente;
+	private Cproduto cproduto;
 	private int quantidade;
 	private int mes;
 	private String promo;
 	
-	public Ccliente getClientes() {
-		return clientes;
+	public Ccliente getCliente() {
+		return cliente;
 	}
 	
-	public void setClientes(Ccliente clientes) {
-		this.clientes = clientes;
+	public void setCliente(Ccliente cliente) {
+		this.cliente = cliente;
 	}
 	
-	public Cproduto getCprodutos() {
-		return cprodutos;
+	public Cproduto getCproduto() {
+		return cproduto;
 	}
 	
-	public void setCprodutos(Cproduto cprodutos) {
-		this.cprodutos = cprodutos;
+	public void setCproduto(Cproduto cproduto) {
+		this.cproduto = cproduto;
 	}
 	
 	public int getQuantidade() {
@@ -49,7 +49,7 @@ public class Compra {
 	
 	@Override
 	public String toString() {
-		return "Compra [clientes=" + clientes + ", cprodutos=" + cprodutos + ", quantidade=" + quantidade + ", mes="
+		return "Compra [cliente=" + cliente + ", cprodutos=" + cproduto + ", quantidade=" + quantidade + ", mes="
 				+ mes + ", promo=" + promo + "]";
 	}
 	

@@ -1,35 +1,33 @@
 package com.luis;
 
 public class Contabilidade {
-	private Cproduto produtos;
-	private int vendasMensais;
+	private Cproduto produto;
+	private int vendaMensal;
 	
 
 	public Contabilidade() {
 		super();
 	}
 
-	public Contabilidade(Cproduto produtos, int vendasMensais) {
+	public Contabilidade(Cproduto produto, int vendaMensal) {
 		super();
-		this.produtos = produtos;
-		this.vendasMensais = vendasMensais;
+		this.produto = produto;
+		this.vendaMensal = vendaMensal;
 	}
 	
-	public Cproduto getProdutos() {
-		return produtos;
+	public Cproduto getProduto() {
+		return produto;
 	}
 	
-	public void setProdutos(Cproduto produtos) {
-		this.produtos = produtos;
+	public void setProduto(Cproduto produto) {
+		this.produto = produto;
 	}
 	
-	public int getVendasMensais() {
-		return vendasMensais;
+	public int getVendaMensal() {
+		return vendaMensal;
 	}
 	
-	public void setVendasMensais(int vendasMensais) {
-		this.vendasMensais = vendasMensais;
+	public void setVendaMensal(int vendaMensal) {
+		this.vendaMensal = vendaMensal;
 	}
-
-
 }

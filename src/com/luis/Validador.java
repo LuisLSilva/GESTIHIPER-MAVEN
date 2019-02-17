@@ -20,11 +20,11 @@ public class Validador {
 			
 			compra = new Compra();
 			
-			String valCliente = ValidarCliente(lineSplitter[0]);
+			String valCliente = ValidarCliente(lineSplitter[4]);
 			double valPreco = ValidarPreco(lineSplitter[1]);
 			int valQuantidade = ValidarQuantidade(lineSplitter[2]);
 			String valPromo = ValidarPromo(lineSplitter[3]);
-			String valProduto = ValidarProduto(lineSplitter[4]);
+			String valProduto = ValidarProduto(lineSplitter[0]);
 			int valMes = ValidarMes(lineSplitter[5]);
 		
 			SetCliente(valCliente);
@@ -34,7 +34,7 @@ public class Validador {
 			SetProduto(valProduto);
 			SetMes(valMes);
 		
-		    arraylist();
+			//arraylist();
 		    
 		    return compra;
 			
@@ -48,27 +48,28 @@ public class Validador {
 
 	public String ValidarCliente(String string) {
 
-		if (string.length() == 6) {
+		if (string.length() == 5) {
 
 			String sub1 = string.substring(0, 2);
 			String sub2 = string.substring(2);
 
 			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-				System.out.println("O id do cliente " + string + " é válido");
+				System.out.println("O id do produto " + string + "é válido!");
 				System.out.println(" ");
 
 				return string;
-				
+
 			} else {
-				System.out.println("O id do cliente " + string + " é inválido");
+				System.out.println("O id do produto " + string + "é inválido!");
 				System.out.println(" ");
-				
+
 				return null;
 			}
 		} else {
-			System.out.println("O id do cliente " + string + " é inválido");
+
+			System.out.println("O id do produto " + string + " é inválido!");
 			System.out.println(" ");
-			
+
 			return null;
 		}
 	}
@@ -109,7 +110,7 @@ public class Validador {
 		}	
 	}
 	
-	private String ValidarPromo(String string) {
+	public String ValidarPromo(String string) {
 
 		if(string.length()==1 && (string.equals("N") || string.equals("P"))){
 			System.out.println("O tipo do produto "+ string + " é válido!");
@@ -127,33 +128,32 @@ public class Validador {
 
 	public String ValidarProduto(String string) {
 
-		if(string.length()==5){
-			
+		if (string.length() == 6) {
+
 			String sub1 = string.substring(0, 2);
 			String sub2 = string.substring(2);
-	
+
 			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-				System.out.println("O id do produto "+ string + "é válido!");
-				System.out.println(" "); 
-				
+				System.out.println("O id do cliente " + string + " é válido");
+				System.out.println(" ");
+
 				return string;
 				
-			}else{
-				System.out.println("O id do produto "+ string + "é inválido!");
-				System.out.println(" "); 
+			} else {
+				System.out.println("O id do cliente " + string + " é inválido");
+				System.out.println(" ");
 				
 				return null;
 			}
-		}else{
-				
-			System.out.println("O id do produto "+ string + "é inválido!");
-			System.out.println(" "); 
+		} else {
+			System.out.println("O id do cliente " + string + " é inválido");
+			System.out.println(" ");
 			
 			return null;
 		}
 	}
 	
-	private int ValidarMes(String string) {
+	public int ValidarMes(String string) {
 
 		int mes = Integer.valueOf(string);
 
@@ -173,22 +173,22 @@ public class Validador {
 	public void SetCliente(String valCliente) {
 
 		if (valCliente != null) {
-			compra.setClientes(new Ccliente(valCliente));
+			compra.setCliente(new Ccliente(valCliente));
 			listaClientela2.add(compra);
 		}
 	}
 	
 	public void SetPreco(double valPreco) {
 
-		if (valPreco != 0) {
-			compra.setCprodutos(new Cproduto(valPreco));
+		if (valPreco > 0) {
+			compra.setCproduto(new Cproduto(valPreco));
 		}
 
 	}
 	
 	public void SetQuantidade(int valQuantidade) {
 
-		if (valQuantidade != 0) {
+		if (valQuantidade > 0) {
 			compra.setQuantidade(valQuantidade);
 		}
 	}
@@ -203,7 +203,7 @@ public class Validador {
 	public void SetProduto(String valProduto) {
 
 		if (valProduto != null) {
-			compra.setCprodutos(new Cproduto(valProduto));
+			compra.setCproduto(new Cproduto(valProduto));
 		}
 	}
 	
@@ -222,10 +222,73 @@ public class Validador {
 			System.out.println(" "); 	
 		}
 	}
+
+	
+	public Ccliente validacaoCliente(String strCurrentLine){
+		
+		Ccliente ccliente = new Ccliente();
+
+		if (strCurrentLine.length() == 5) {
+
+			String sub1 = strCurrentLine.substring(0, 2);
+			String sub2 = strCurrentLine.substring(2);
+
+			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
+				System.out.println("O id do cliente " + strCurrentLine + "é válido!");
+				System.out.println(" ");
+
+				ccliente.setIdCliente(strCurrentLine);
+
+				return ccliente;
+
+			} else {
+				System.out.println("O id do cliente " + strCurrentLine + "é inválido!");
+				System.out.println(" ");
+
+				return null;
+			}
+		} else {
+
+			System.out.println("O id do cliente " + strCurrentLine + "é inválido!");
+			System.out.println(" ");
+
+			return null;
+		}
+
+	}
+	
+	
+	public Cproduto validacaoProduto(String strCurrentLine){
+		
+		Cproduto cproduto = new Cproduto();
+		
+		if (strCurrentLine.length() == 6) {
+
+			String sub1 = strCurrentLine.substring(0, 2);
+			String sub2 = strCurrentLine.substring(2);
+
+			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
+				System.out.println("O id do cliente " + strCurrentLine + " é válido");
+				System.out.println(" ");
+				
+				cproduto.setIdProduto(strCurrentLine);
+
+				return cproduto;
+				
+			} else {
+				System.out.println("O id do cliente " + strCurrentLine + " é inválido");
+				System.out.println(" ");
+				
+				return null;
+			}
+		} else {
+			System.out.println("O id do cliente " + strCurrentLine + " é inválido");
+			System.out.println(" ");
+			
+			return null;
+		}
+	}
 }
-	
-	
-	
 	
 	
 	

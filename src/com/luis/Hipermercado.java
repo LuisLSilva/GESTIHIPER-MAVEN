@@ -4,35 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hipermercado {
-	private Ccliente cclientes;
-	private Cproduto cprodutos;
-	private Contabilidade contabilidade;
+	private List<Ccliente> listCcliente = new ArrayList<Ccliente>();
+	private List<Cproduto> listCproduto = new ArrayList<Cproduto>();
 	private List<Compra> listCompra = new ArrayList<Compra>();
+	private Contabilidade contabilidade;
 	
-	public Ccliente getCclientes() {
-		return cclientes;
+	
+	public List<Ccliente> getListCcliente() {
+		return listCcliente;
 	}
-	
-	public void setCclientes(Ccliente cclientes) {
-		this.cclientes = cclientes;
+
+	public void setListCcliente(List<Ccliente> listCcliente) {
+		this.listCcliente = listCcliente;
 	}
-	
-	public Cproduto getCprodutos() {
-		return cprodutos;
+
+	public List<Cproduto> getListCproduto() {
+		return listCproduto;
 	}
-	
-	public void setCprodutos(Cproduto cprodutos) {
-		this.cprodutos = cprodutos;
+
+	public void setListCproduto(List<Cproduto> listCproduto) {
+		this.listCproduto = listCproduto;
 	}
-	
-	public Contabilidade getContabilidade() {
-		return contabilidade;
-	}
-	
-	public void setContabilidade(Contabilidade contabilidade) {
-		this.contabilidade = contabilidade;
-	}
-	
+
 	public List<Compra> getListCompra() {
 		return listCompra;
 	}
@@ -41,16 +34,36 @@ public class Hipermercado {
 		this.listCompra = listCompra;
 	}
 
+	public Contabilidade getContabilidade() {
+		return contabilidade;
+	}
+	
+	public void setContabilidade(Contabilidade contabilidade) {
+		this.contabilidade = contabilidade;
+	}
+	
+	
+	public void addCcliente(Ccliente ccliente) {
+		listCcliente.add(ccliente);
+	}
+	
+	public void addCproduto(Cproduto cproduto) {
+		listCproduto.add(cproduto);
+		
+	}
+	
 	public void addCompra(Compra compra){
 		listCompra.add(compra);
 	}
 
 	@Override
 	public String toString() {
-		return "Hipermercado [cclientes=" + cclientes + ", cprodutos=" + cprodutos + ", contabilidade=" + contabilidade
-				+ ", listCompra=" + listCompra + "]";
+		return "Hipermercado [listCcliente=" + listCcliente + ", listCproduto=" + listCproduto + ", listCompra="
+				+ listCompra + ", contabilidade=" + contabilidade + "]";
 	}
 	
+	
+
 	
 	
 	

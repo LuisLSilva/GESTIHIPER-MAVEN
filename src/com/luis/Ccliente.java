@@ -1,29 +1,29 @@
 package com.luis;
 
 public class Ccliente {
-	private String idClientes;
+	private String idCliente;
 	
 	
 	public Ccliente() {
 		super();
 	}
 	
-	public Ccliente(String idClientes) {
+	public Ccliente(String idCliente) {
 		super();
-		this.idClientes = idClientes;
+		this.idCliente = idCliente;
 	}
 
-	public String getIdClientes() {
-		return idClientes;
+	public String getIdCliente() {
+		return idCliente;
 	}
 
-	public void setIdClientes(String idClientes) {
-		this.idClientes = idClientes;
+	public void setIdCliente(String idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	@Override
 	public String toString() {
-		return "Cclientes [idClientes=" + idClientes + "]";
+		return "Cclientes [idClientes=" + idCliente + "]";
 	}
 
 }
