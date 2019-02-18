@@ -1,6 +1,7 @@
 package com.luis;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Hipermercado {
@@ -9,6 +10,7 @@ public class Hipermercado {
 	private List<Compra> listCompra = new ArrayList<Compra>();
 	private Contabilidade contabilidade;
 	
+	private HashMap<String, Compra> catalogoProduto = new HashMap<>();
 	
 	public List<Ccliente> getListCcliente() {
 		return listCcliente;
@@ -55,12 +57,19 @@ public class Hipermercado {
 	public void addCompra(Compra compra){
 		listCompra.add(compra);
 	}
+	
+	public void hashMapCatalog(String key, Compra value){
+		catalogoProduto.put(key, value);
+	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "Hipermercado [listCcliente=" + listCcliente + ", listCproduto=" + listCproduto + ", listCompra="
 				+ listCompra + ", contabilidade=" + contabilidade + "]";
 	}
+
 	
 	
 

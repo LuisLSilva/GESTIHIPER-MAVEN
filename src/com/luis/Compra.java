@@ -1,26 +1,28 @@
 package com.luis;
 
 public class Compra {
-	private Ccliente cliente;
-	private Cproduto cproduto;
+	private String idProduto;
+	private double preco;
 	private int quantidade;
-	private int mes;
 	private String promo;
+	private String idCliente;
+	private int mes;
 	
-	public Ccliente getCliente() {
-		return cliente;
+	
+	public String getIdProduto() {
+		return idProduto;
 	}
 	
-	public void setCliente(Ccliente cliente) {
-		this.cliente = cliente;
+	public void setIdProduto(String idProduto) {
+		this.idProduto = idProduto;
 	}
 	
-	public Cproduto getCproduto() {
-		return cproduto;
+	public double getPreco() {
+		return preco;
 	}
 	
-	public void setCproduto(Cproduto cproduto) {
-		this.cproduto = cproduto;
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 	
 	public int getQuantidade() {
@@ -31,14 +33,6 @@ public class Compra {
 		this.quantidade = quantidade;
 	}
 	
-	public int getMes() {
-		return mes;
-	}
-	
-	public void setMes(int mes) {
-		this.mes = mes;
-	}
-	
 	public String getPromo() {
 		return promo;
 	}
@@ -47,12 +41,27 @@ public class Compra {
 		this.promo = promo;
 	}
 	
-	@Override
-	public String toString() {
-		return "Compra [cliente=" + cliente + ", cprodutos=" + cproduto + ", quantidade=" + quantidade + ", mes="
-				+ mes + ", promo=" + promo + "]";
+	public String getIdCliente() {
+		return idCliente;
 	}
 	
+	public void setIdCliente(String idCliente) {
+		this.idCliente = idCliente;
+	}
+	
+	public int getMes() {
+		return mes;
+	}
+	
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
+
+	@Override
+	public String toString() {
+		return "Compra [idProduto=" + idProduto + ", preco=" + preco + ", quantidade=" + quantidade + ", promo=" + promo
+				+ ", idCliente=" + idCliente + ", mes=" + mes + "]";
+	}
 	
 	
 	
