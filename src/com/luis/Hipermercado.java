@@ -10,7 +10,7 @@ public class Hipermercado {
 	private List<Compra> listCompra = new ArrayList<Compra>();
 	private Contabilidade contabilidade;
 	
-	private HashMap<String, Compra> catalogoProduto = new HashMap<>();
+	private HashMap<String, Cproduto> catalogoProduto = new HashMap<>();
 	
 	public List<Ccliente> getListCcliente() {
 		return listCcliente;
@@ -58,7 +58,7 @@ public class Hipermercado {
 		listCompra.add(compra);
 	}
 	
-	public void hashMapCatalog(String key, Compra value){
+	public void hashMapCatalog(String key, Cproduto value){
 		catalogoProduto.put(key, value);
 	}
 	

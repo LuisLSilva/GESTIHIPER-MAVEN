@@ -80,21 +80,14 @@ public class Validador {
 			String sub2 = string.substring(2);
 
 			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-				System.out.println("O id do cliente " + string + "é válido!");
-				System.out.println(" ");
-
+			
 				return string;
 
 			} else {
-				System.out.println("O id do cliente " + string + "é inválido!");
-				System.out.println(" ");
-
+		
 				return null;
 			}
 		} else {
-
-			System.out.println("O id do cliente " + string + " é inválido!");
-			System.out.println(" ");
 
 			return null;
 		}
@@ -105,14 +98,10 @@ public class Validador {
 		double preco = Double.valueOf(string);
 		
 		if (preco>0) {
-			System.out.println("O preço " + preco + " é válido!!!");
-			System.out.println(" ");
 			
 			return preco;
 
 		} else {
-			System.out.println("O preço " + preco + " é inválido!!!");
-			System.out.println(" ");
 			
 			return 0;
 		}
@@ -123,15 +112,11 @@ public class Validador {
 		int quantidade = Integer.valueOf(string);
 		
 		if(quantidade>0){
-			System.out.println("A quantidade "+quantidade+" é válida!!!");
-			System.out.println(" "); 
 			
 			return quantidade;	
 		}	
 		else{
-			System.out.println("A quantidade "+quantidade+" é inválida!!!");
-			System.out.println(" "); 
-			
+	 		
 			return 0;
 		}	
 	}
@@ -139,14 +124,10 @@ public class Validador {
 	public String ValidarPromo(String string) {
 
 		if(string.length()==1 && (string.equals("N") || string.equals("P"))){
-			System.out.println("O tipo do produto "+ string + " é válido!");
-			System.out.println(" ");
-			
-			return string;
+		
+			return string;                            
 			
 		}else{
-			System.out.println("O tipo do produto "+ string + " é inválido!");
-			System.out.println(" "); 
 			
 			return null;
 		}		
@@ -163,16 +144,14 @@ public class Validador {
 			String sub2 = produto.substring(2);
 
 			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-				System.out.println("O id do produto " + produto + " é válido \n");
-
+				
 				return produto;
 				
 			} else {
-				System.out.println("O id do produto " + produto + " é inválido \n");				
+			
 				return null;
 			}
 		} else {
-			System.out.println("O id do produto " + produto + " é inválido \n");
 			
 			return null;
 		}
@@ -183,14 +162,10 @@ public class Validador {
 		int mes = Integer.valueOf(string);
 
 		if (mes > 0 && mes <= 12) {
-			System.out.println("O Mês " + mes + " é válido!!!");
-			System.out.println(" ");
-
+			
 			return mes;
 		} else {
-			System.out.println("O Mês " + mes + " é inválido!!!");
-			System.out.println(" ");
-
+		
 			return 0;
 		}
 	}
@@ -210,15 +185,10 @@ public class Validador {
 				return ccliente;
 
 			} else {
-				System.out.println("O id do cliente " + strCurrentLine + " é inválido!");
-				System.out.println(" ");
-
+			
 				return null;
 			}
 		} else {
-
-			System.out.println("O id do cliente " + strCurrentLine + " é inválido!");
-			System.out.println(" ");
 
 			return null;
 		}
@@ -239,14 +209,10 @@ public class Validador {
 				return cproduto;
 				
 			} else {
-				System.out.println("O id do produto " + strCurrentLine + " é inválido");
-				System.out.println(" ");
 				
 				return null;
 			}
 		} else {
-			System.out.println("O id do produto " + strCurrentLine + " é inválido");
-			System.out.println(" ");
 			
 			return null;
 		}

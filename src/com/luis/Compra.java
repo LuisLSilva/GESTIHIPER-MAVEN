@@ -8,7 +8,20 @@ public class Compra {
 	private String idCliente;
 	private int mes;
 	
-	
+	public Compra() {
+		super();
+	}
+
+	public Compra(String idProduto, double preco, int quantidade, String promo, String idCliente, int mes) {
+		super();
+		this.idProduto = idProduto;
+		this.preco = preco;
+		this.quantidade = quantidade;
+		this.promo = promo;
+		this.idCliente = idCliente;
+		this.mes = mes;
+	}
+
 	public String getIdProduto() {
 		return idProduto;
 	}

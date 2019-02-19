@@ -1,7 +1,10 @@
 package com.luis;
 
+import java.util.Map;
+
 public class Ccliente {
 	private String idCliente;
+	private Map <String, DadosCliente> catalogoCliente;
 	
 	
 	public Ccliente() {
