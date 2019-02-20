@@ -10,6 +10,7 @@ public class Validador {
 	private static int clientSize = 5;
 	
 	List<String> comprasInvalidas;
+	
 	public Validador(){
 		super();
 		this.comprasInvalidas = new ArrayList<>();
@@ -35,30 +36,35 @@ public class Validador {
 			
 			double valPreco = ValidarPreco(lineSplitter[1]);
 			if(valPreco <= 0){
+				comprasInvalidas.add(strCurrentLine);
 				return null;
 			}
 			compra.setPreco(valPreco);
 				
 			int valQuantidade = ValidarQuantidade(lineSplitter[2]);
 			if(valQuantidade<=0){
+				comprasInvalidas.add(strCurrentLine);
 				return null;
 			}
 			compra.setQuantidade(valQuantidade);
 			
 			String valPromo = ValidarPromo(lineSplitter[3]);
 			if(valPromo == null){
+				comprasInvalidas.add(strCurrentLine);
 				return null;
 			}
 			compra.setPromo(valPromo);
 			
 			String valCliente = ValidarCliente(lineSplitter[4]);
 			if(valCliente == null){
+				comprasInvalidas.add(strCurrentLine);
 				return null;
 			}
 			compra.setIdCliente(valCliente);
 			
 			int valMes = ValidarMes(lineSplitter[5]);
 			if(valMes <=0){
+				comprasInvalidas.add(strCurrentLine);
 				return null;
 			}
 			compra.setMes(valMes);
@@ -66,7 +72,7 @@ public class Validador {
 		    return compra;
 			
 		} else {
-			System.out.println("O campo lido é inválido");
+			System.out.println("A compra "+strCurrentLine+ "é inválida");
 			System.out.println(" "); 
 			return null;
 		}
@@ -217,6 +223,10 @@ public class Validador {
 			return null;
 		}
 	}
+	
+
+	
+	
 }
 	
 	

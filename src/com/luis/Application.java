@@ -17,7 +17,7 @@ public class Application {
 		int choiceQuery;
 		Validador validador = new Validador();
 		Hipermercado hipermercado = new Hipermercado();
-		Consulta consulta = new Consulta(hipermercado);
+		Consulta consulta = new Consulta(hipermercado, validador);
 
 	   		
 		List<Hipermercado> arraylist = new ArrayList<Hipermercado>();
@@ -44,18 +44,13 @@ public class Application {
 					BufferedReader objReader = new BufferedReader(new FileReader("FichClientes.txt"));
 					while ((strCurrentLine = objReader.readLine()) != null) {
 						if(validador.validacaoCliente(strCurrentLine)!=null){
-							System.out.println("O id do cliente " + strCurrentLine + " é válido!");
-							System.out.println(" ");
 							Ccliente ccliente = validador.validacaoCliente(strCurrentLine);
 							hipermercado.addCcliente(ccliente);
 						}
-						
 					}
 					objReader.close();
 
 					arraylist.add(hipermercado);
-
-					System.out.println(arraylist.get(0).toString());
 
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -71,7 +66,6 @@ public class Application {
 					while ((strCurrentLine = objReader.readLine()) != null) {
 
 						if(validador.validacaoProduto(strCurrentLine)!=null){
-							System.out.println("O id do produto " + strCurrentLine + " é válido \n");
 							Cproduto cproduto = validador.validacaoProduto(strCurrentLine);
 							hipermercado.addCproduto(cproduto);
 						}
@@ -79,8 +73,6 @@ public class Application {
 					objReader.close();
 
 					arraylist.add(hipermercado);
-
-					System.out.println(arraylist.get(0).toString());
 
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -100,15 +92,13 @@ public class Application {
 								continue;
 							}
 							hipermercado.addCompra(compra);
-		        //    		hipermercado.hashMapCatalog(key, compra);
+		   
 						}
 					}
-					objReader.close();
-
-					arraylist.add(hipermercado);
 				
-					System.out.println(arraylist.get(0).toString());
-
+					objReader.close();
+					arraylist.add(hipermercado);
+		
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -119,8 +109,8 @@ public class Application {
 				System.out.println("Foi escolhida a opção 4: \n");
 				
 				do {
-					System.out.print("");
-					System.out.print("Escolha uma query:");
+					
+					System.out.print("\nEscolha uma query:");
 					
 					choiceQuery = sc.nextInt();
 					
@@ -130,22 +120,34 @@ public class Application {
 
 					case 1:
 						System.out.println("Foi escolhida a query 1 - Número Total de Compras por mês: \n");
-
 						consulta.totalComprasMes();
 						break;
 
-					
-					
 					case 2:
-						System.out.println("Foi escolhida a query 2 - Valor total das compras/vendas e total global\n");
-						
+						System.out.println("Foi escolhida a query 2 - Valor total das compras/vendas e total global\n");	
 						consulta.totalGlobal();
 						break;
 						
-						
-					}	
+					case 3:
+						System.out.println("Foi escolhida a query 3 - Número distintos de clientes que compraram cada mês\n");
+						consulta.clientesDistintos();
+						break;
 					
-				}while(choiceQuery!=4);	
+					case 4:	
+						System.out.println("Foi escolhida a query 4 - Total de registos de compras inválidas\n");
+						consulta.comprasInvalidas();
+						break;
+						
+					case 5:
+						System.out.println("Foi escolhida a query 5 - Lista Ordernada com os códigos dos produtos nunca comprados e o respectivo total\n");
+					    consulta.produtosNaoComprados();
+						break;
+						
+					case 6:
+						System.out.println("Foi escolhida a query 5 - Lista Ordernada com os códigos dos produtos nunca comprados e o respectivo total\n");
+					    consulta.clientesNuncaCompraram();
+					}
+				}while(choiceQuery!=7);	
 				
 						
 				break;
