@@ -8,12 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.management.Query;
-
 public class Application {
 
 	public static void main(String[] args) {
-		int choice;
+		int choice=1;
 		int choiceQuery;
 		Validador validador = new Validador();
 		Hipermercado hipermercado = new Hipermercado();
@@ -23,13 +21,13 @@ public class Application {
 		List<Hipermercado> arraylist = new ArrayList<Hipermercado>();
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("1. Carregue o ficheiro dos clientes\n2. Carregue o ficheiro dos produtos\n3. Carregue o ficheiro das compras\n4. Consulte as queries");
+		System.out.println("1. Carregue o ficheiro dos clientes\n2. Carregue o ficheiro dos produtos\n3. Carregue o ficheiro das compras\n4. Consulte as queries\n5. Terminar operação.");
 				
 		do {
 			System.out.println("");
 			System.out.print("Escolha uma opção:");
 			
-			choice = sc.nextInt();
+	//		choice = sc.nextInt();
 			
 			System.out.println("");
 
@@ -51,7 +49,10 @@ public class Application {
 					objReader.close();
 
 					arraylist.add(hipermercado);
-
+					
+					System.out.println("O Ficheiro de clientes foi carregado.");
+					choice++;
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -73,6 +74,9 @@ public class Application {
 					objReader.close();
 
 					arraylist.add(hipermercado);
+					
+					System.out.println("O Ficheiro dos produtos foi carregado.");
+					choice++;
 
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -98,6 +102,9 @@ public class Application {
 				
 					objReader.close();
 					arraylist.add(hipermercado);
+					
+					System.out.println("O Ficheiro das compras foi carregado.");
+					choice++;
 		
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -106,8 +113,16 @@ public class Application {
 				break;
 				
 			case 4:
-				System.out.println("Foi escolhida a opção 4: \n");
+				System.out.println("Foi escolhida a opção 4:Queries \n");
 				
+				System.out.println("Query 1 - Número total de compras por mês.");
+				System.out.println("Query 2 - Facturação total por mês e o total Global.");
+				System.out.println("Query 3 - Número distintos clientes que compraram em cada mês.");
+				System.out.println("Query 4 - Total de registos de compras inválidos.");
+				System.out.println("Query 5 - Lista ordenada com os códigos dos produtos nunca comprados e respetivo total.");
+				System.out.println("Query 6 - Lista Ordenada com os códigos dos clientes que nunca compraram e seu total.");
+				System.out.println("Query 7 - Dado um mês Válido, é determinado o número total de compras e o total de clientes distintos que as realizaram.");
+				System.out.println("Query 8 - Dado um código de cliente, é determinado, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou. É apresentado também o total anual faturado ao cliente.");
 				do {
 					
 					System.out.print("\nEscolha uma query:");
@@ -139,17 +154,28 @@ public class Application {
 						break;
 						
 					case 5:
-						System.out.println("Foi escolhida a query 5 - Lista Ordernada com os códigos dos produtos nunca comprados e o respectivo total\n");
+						System.out.println("Foi escolhida a query 5 - Lista Ordenada com os códigos dos produtos nunca comprados e o respectivo total\n");
 					    consulta.produtosNaoComprados();
 						break;
 						
 					case 6:
-						System.out.println("Foi escolhida a query 5 - Lista Ordernada com os códigos dos produtos nunca comprados e o respectivo total\n");
+						System.out.println("Foi escolhida a query 6 - Lista Ordenada com os códigos dos clientes que nunca compraram e seu total\n");
 					    consulta.clientesNuncaCompraram();
+					    break;
+					
+					case 7:
+						System.out.println("Foi escolhida a query 7 - Dado um mês Válido, é determinado o número total de compras e o total de clientes distintos que as realizaram.");
+						consulta.numeroComprasEclientesPorMes();
+						break;
+					
+					case 8:
+						System.out.println("Foi escolhida a query 8 - Dado um código de cliente, é determinado, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou. É apresentado também o total anual faturado ao cliente."); 
+						consulta.codigoClienteParaMes();
+						break;
 					}
-				}while(choiceQuery!=7);	
-				
-						
+			
+				}while(choiceQuery<10);	
+							
 				break;
 	
 			case 5:	
@@ -161,7 +187,7 @@ public class Application {
 				System.out.println("Não escolheu opção nenhuma");
 			}
 
-		} while (choice != 4);
+		} while (choice < 10);
 		
 	}
 }
