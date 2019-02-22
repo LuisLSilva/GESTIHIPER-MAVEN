@@ -7,8 +7,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Consulta {
@@ -19,6 +24,7 @@ public class Consulta {
 	private HashSet<String> comprasClientesDistintos = new HashSet<String>();
 	private HashSet<String> produtosDistintos = new HashSet<String>();
 	private HashSet<String> clientesDistintos = new HashSet<String>();
+	private Map<String, Integer> unsortMap = new HashMap<String, Integer>();
 	private int quantidadeTotal;
 	private Scanner scanner = new Scanner(System.in);
 	
@@ -205,10 +211,10 @@ public class Consulta {
 							quantidadeTotal += hipermercado.getListCompra().get(i).getQuantidade();
 							gastos = gastos+hipermercado.getListCompra().get(i).getPreco() * hipermercado.getListCompra().get(i).getQuantidade();
 							comprasProdutosDistintos.add(hipermercado.getListCompra().get(i).getIdProduto());	
-						}
-						else{
-						    System.out.println("O código de cliente não se encontra no registo da compra.");
-						    return;
+						
+			//			}else{
+			//			    System.out.println("O código de cliente não se encontra no registo da compra.");
+			//			    return;
 						}
 					}
 				}	
@@ -222,9 +228,221 @@ public class Consulta {
 	    	System.out.println("\nO cliente "+s+" comprou "+comprasProdutosDistintos.size()+" produto(s) distinto(s)");
 	    	System.out.println("O cliente "+s+ " tem uma faturação anual: "+gastosTotal+" euros");
 	    }else{
-	    	System.out.println("O código que inseriu não é válido!");
+	    	System.out.println("O código de cliente que inseriu não é válido!");
 	    }
 	}
+	
+	
+	public void codigoProdutoMesaMes(){
+	
+		String s;
+		double gastos = 0;
+		double gastosTotal = 0;
+		double temp = 0;
+		int quantidadeTotal = 0;
+
+		System.out.print("\nIntroduza um código do produto:");
+		s = scanner.nextLine();
+
+		System.out.println("\nDados do produto: " + s + "\n");
+
+		if (validador.validacaoProduto(s) != null) {
+
+			for (int j = 1; j < 13; j++) {
+				for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+					if (j == hipermercado.getListCompra().get(i).getMes()) {
+						if (s.equals(hipermercado.getListCompra().get(i).getIdProduto())) {
+							quantidadeTotal += hipermercado.getListCompra().get(i).getQuantidade();
+							gastos = gastos + hipermercado.getListCompra().get(i).getPreco()* hipermercado.getListCompra().get(i).getQuantidade();
+							comprasClientesDistintos.add(hipermercado.getListCompra().get(i).getIdCliente());
+
+		//				} else {
+		//					System.out.println("O código de produto não se encontra no registo da compra.");
+		//					return;
+						}
+					}
+				}
+				System.out.println("No Mes: "+j+" tem um número total de compras:"+quantidadeTotal+ " com os gastos de: "+ gastos+" euros" );
+	    		temp=gastos;
+	    		gastos=0;
+	    		gastosTotal+=temp;
+	    		quantidadeTotal=0;
+			}
+
+			System.out.println("\nO produto "+s+" foi comprado "+comprasClientesDistintos.size()+" cliente(s) distinto(s)");
+	    	System.out.println("O produto "+s+ " tem uma faturação anual: "+gastosTotal+" euros");
+		} else {
+			System.out.println("O código do produto que inseriu não é válido!");
+		}
+	}
+	
+	public void codigoProdutoNP(){
+		
+		String s;
+		int countP=0;
+		int countN=0;
+		int countTotalP=0;
+		int countTotalN=0;
+		int countTempP=0;
+		int countTempN=0;
+		double gastosP = 0;
+		double gastosN = 0;
+		double gastosTotalP = 0;
+		double gastosTotalN = 0;
+		double tempP = 0;
+		double tempN = 0;
+	    
+		System.out.print("\nIntroduza um código do produto:");
+		s = scanner.nextLine();
+
+		System.out.println("\nDados do produto: " + s + "\n");
+
+		if (validador.validacaoProduto(s) != null) {
+
+			for (int j = 1; j < 13; j++) {
+				for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+					if (j == hipermercado.getListCompra().get(i).getMes()) {
+						if (s.equals(hipermercado.getListCompra().get(i).getIdProduto())) {
+							if (hipermercado.getListCompra().get(i).getPromo().equals("N")) {
+								countN++;
+								gastosN = gastosN + hipermercado.getListCompra().get(i).getPreco()
+										* hipermercado.getListCompra().get(i).getQuantidade();
+							} else if (hipermercado.getListCompra().get(i).getPromo().equals("P")) {
+								countP++;
+								gastosP = gastosP + hipermercado.getListCompra().get(i).getPreco()
+										* hipermercado.getListCompra().get(i).getQuantidade();
+							}
+
+						}
+					}
+				}
+				System.out.println("No Mes: " + j + " tem um número total de compras sem promoções: " + countN
+						+ " com promoção: " + countP);
+				tempN = gastosN;
+				gastosTotalN += tempN;
+				countTempN = countN;
+				countTotalN += countTempN;
+
+				tempP = gastosP;
+				gastosTotalP += tempP;
+				countTempP = countP;
+				countTotalP += countTempP;
+
+				countN = 0;
+				countP = 0;
+				gastosN = 0;
+				gastosP = 0;
+			}
+
+			System.out.println("\nO produto " + s + " durante o ano esteve " + countTotalN
+					+ " sem promoção e teve uma faturação anual de: " + gastosTotalN + " euros");
+			System.out.println("O produto " + s + " durante o ano esteve " + countTotalP
+					+ " em promoção e teve uma faturação anual de: " + gastosTotalP + " euros");
+
+		} else {
+			System.out.println("O código do produto que inseriu não é válido!");
+		}
+	}
+	
+	public void clienteListaProdutos(){
+
+		String s;
+
+		System.out.print("\nIntroduza um código de cliente:");
+		s = scanner.nextLine();
+
+		System.out.println("\nDados do cliente: " + s + "\n");
+
+		if (validador.validacaoCliente(s) != null) {
+
+			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+				if (s.equals(hipermercado.getListCompra().get(i).getIdCliente())) {
+					unsortMap.put(hipermercado.getListCompra().get(i).getIdProduto(),
+							hipermercado.getListCompra().get(i).getQuantidade());
+				}
+			}
+
+			Map<String, Integer> sortedMap = sortByValue(unsortMap);
+			printMapPQ(sortedMap);
+
+		} else {
+			System.out.println("O código de cliente que inseriu não é válido!");
+		}
+
+	}
+		
+	public static Map<String, Integer> sortByValue(Map<String , Integer> unsortMap){
+		
+		List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(unsortMap.entrySet());
+		
+		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2) {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+		 
+		Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }	
+	
+		return sortedMap;
+	}
+	
+	public static <K,V> void printMapPQ(Map<K,V> map){
+		for(Map.Entry<K, V> entry: map.entrySet()){
+			System.out.println("Produto comprado: " + entry.getKey() + "  Quantidade: "+entry.getValue());
+		}
+	}	
+	
+	public static <K,V> void printMapCQ(Map<K,V> map){
+		for(Map.Entry<K, V> entry: map.entrySet()){
+			System.out.println("O Cliente que comprou: " + entry.getKey() + "  Quantidade: "+entry.getValue());
+		}
+	}	
+		
+	
+	public void conjuntoXprodutos() {
+
+		int s;
+
+		System.out.print("\nIntroduza uma quantidade:");
+		s = scanner.nextInt();
+
+		System.out.println("\nOs produtos mais vendidos:" + s + "\n");
+
+		if (s > 0) {
+
+			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+				if (s == (hipermercado.getListCompra().get(i).getQuantidade())) {
+
+					unsortMap.put(hipermercado.getListCompra().get(i).getIdCliente(),
+							hipermercado.getListCompra().get(i).getQuantidade());
+				}
+			}
+
+			printMapCQ(unsortMap);
+
+			System.out.println("\nExistem " + unsortMap.size() + " clientes que compraram " + s);
+
+		} else {
+			System.out.println("A quantidade que inseriu é inválida!");
+		}
+	}
+	
+	public void clientesDiferentesProdutos(){
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+
 	
 	
 }

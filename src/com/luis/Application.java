@@ -115,14 +115,20 @@ public class Application {
 			case 4:
 				System.out.println("Foi escolhida a opção 4:Queries \n");
 				
-				System.out.println("Query 1 - Número total de compras por mês.");
-				System.out.println("Query 2 - Facturação total por mês e o total Global.");
-				System.out.println("Query 3 - Número distintos clientes que compraram em cada mês.");
-				System.out.println("Query 4 - Total de registos de compras inválidos.");
-				System.out.println("Query 5 - Lista ordenada com os códigos dos produtos nunca comprados e respetivo total.");
-				System.out.println("Query 6 - Lista Ordenada com os códigos dos clientes que nunca compraram e seu total.");
-				System.out.println("Query 7 - Dado um mês Válido, é determinado o número total de compras e o total de clientes distintos que as realizaram.");
-				System.out.println("Query 8 - Dado um código de cliente, é determinado, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou. É apresentado também o total anual faturado ao cliente.");
+				System.out.println("Query 01 - Número total de compras por mês.");
+				System.out.println("Query 02 - Facturação total por mês e o total Global.");
+				System.out.println("Query 03 - Número distintos clientes que compraram em cada mês.");
+				System.out.println("Query 04 - Total de registos de compras inválidos.");
+				System.out.println("Query 05 - Lista ordenada com os códigos dos produtos nunca comprados e respetivo total.");
+				System.out.println("Query 06 - Lista Ordenada com os códigos dos clientes que nunca compraram e seu total.");
+				System.out.println("Query 07 - Dado um mês Válido, é determinado o número total de compras e o total de clientes distintos que as realizaram.");
+				System.out.println("Query 08 - Dado um código de cliente, é determinado, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou. É apresentado também o total anual faturado ao cliente.");
+				System.out.println("Query 09 - Dado um código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total faturado.");
+				System.out.println("Query 10 - Dado o código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado em modo N e em modo P e respetivas facturações.");
+				System.out.println("Query 11 - Dado o código de um cliente, é determinado a lista de códigos que mais comprou, e quantos, ordenada por ordem descrescente de quantidade e para quantidades iguais, por ordem alfabética dos códigos");
+				System.out.println("Query 12 - É determinado o conjunto dos produtos mais vendidos em todo o ano, indicando o número total de distintos clientes que o compraram.");
+				System.out.println("Query 13 - É determinado os clientes que compraram um maior número de diferentes produtos indicando quantos.");
+				
 				do {
 					
 					System.out.print("\nEscolha uma query:");
@@ -172,7 +178,34 @@ public class Application {
 						System.out.println("Foi escolhida a query 8 - Dado um código de cliente, é determinado, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou. É apresentado também o total anual faturado ao cliente."); 
 						consulta.codigoClienteParaMes();
 						break;
+					
+					case 9:	
+						System.out.println("Foi escolhida a query 9 - Dado um código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total faturado.");
+						consulta.codigoProdutoMesaMes();
+						break;
+						
+					case 10:
+						System.out.println("Foi escolhida a query 10 - Dado o código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado em modo N e em modo P e respetivas facturações.");
+						consulta.codigoProdutoNP();
+						break;
+					
+					
+					case 11:
+						System.out.println("Foi escolhida a query 11 - Dado o código de um cliente, é determinado a lista de códigos que mais comprou, e quantos, ordenada por ordem descrescente de quantidade e para quantidades iguais, por ordem alfabética dos códigos");
+						consulta.clienteListaProdutos();
+					    break;
+					
+					case 12:
+						System.out.println("Foi escolhida a query 12 - É determinado o conjunto dos produtos mais vendidos em todo o ano, indicando o número total de distintos clientes que o compraram.");
+					    consulta.conjuntoXprodutos();
+					    break;
+					    
+					case 13:
+						System.out.println("Foi escolhida a query 13 - É determinado os clientes que compraram um maior número de diferentes produtos indicando quantos.");
+					    consulta.clientesDiferentesProdutos();
+					    break;
 					}
+					
 			
 				}while(choiceQuery<10);	
 							
