@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Consulta {
@@ -25,8 +26,11 @@ public class Consulta {
 	private HashSet<String> produtosDistintos = new HashSet<String>();
 	private HashSet<String> clientesDistintos = new HashSet<String>();
 	private Map<String, Integer> unsortMap = new HashMap<String, Integer>();
+	
+	
 	private int quantidadeTotal;
 	private Scanner scanner = new Scanner(System.in);
+	
 	
 	
 	public Consulta(Hipermercado hipermercado, Validador validador) {
@@ -35,6 +39,7 @@ public class Consulta {
 		this.validador = validador;
 	}
 
+	//Query 01 
 	public void totalComprasMes(){
 		
 		int quantidadeTotal=0;
@@ -50,6 +55,7 @@ public class Consulta {
 		    }
 	}
 
+	//Query 02
 	public void totalGlobal() {
 		
 		 double totalMes=0;
@@ -232,7 +238,7 @@ public class Consulta {
 	    }
 	}
 	
-	
+	//Query 09
 	public void codigoProdutoMesaMes(){
 	
 		String s;
@@ -276,6 +282,7 @@ public class Consulta {
 		}
 	}
 	
+	//Query 10
 	public void codigoProdutoNP(){
 		
 		String s;
@@ -344,6 +351,7 @@ public class Consulta {
 		}
 	}
 	
+	//Query 07
 	public void clienteListaProdutos(){
 
 		String s;
@@ -357,8 +365,7 @@ public class Consulta {
 
 			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
 				if (s.equals(hipermercado.getListCompra().get(i).getIdCliente())) {
-					unsortMap.put(hipermercado.getListCompra().get(i).getIdProduto(),
-							hipermercado.getListCompra().get(i).getQuantidade());
+					unsortMap.put(hipermercado.getListCompra().get(i).getIdProduto(),hipermercado.getListCompra().get(i).getQuantidade());
 				}
 			}
 
@@ -371,38 +378,7 @@ public class Consulta {
 
 	}
 		
-	public static Map<String, Integer> sortByValue(Map<String , Integer> unsortMap){
-		
-		List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(unsortMap.entrySet());
-		
-		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-            public int compare(Map.Entry<String, Integer> o1,
-                               Map.Entry<String, Integer> o2) {
-                return (o2.getValue()).compareTo(o1.getValue());
-            }
-        });
-		 
-		Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
-        for (Map.Entry<String, Integer> entry : list) {
-            sortedMap.put(entry.getKey(), entry.getValue());
-        }	
-	
-		return sortedMap;
-	}
-	
-	public static <K,V> void printMapPQ(Map<K,V> map){
-		for(Map.Entry<K, V> entry: map.entrySet()){
-			System.out.println("Produto comprado: " + entry.getKey() + "  Quantidade: "+entry.getValue());
-		}
-	}	
-	
-	public static <K,V> void printMapCQ(Map<K,V> map){
-		for(Map.Entry<K, V> entry: map.entrySet()){
-			System.out.println("O Cliente que comprou: " + entry.getKey() + "  Quantidade: "+entry.getValue());
-		}
-	}	
-		
-	
+	//Query 08 - 
 	public void conjuntoXprodutos() {
 
 		int s;
@@ -416,34 +392,139 @@ public class Consulta {
 
 			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
 				if (s == (hipermercado.getListCompra().get(i).getQuantidade())) {
-
-					unsortMap.put(hipermercado.getListCompra().get(i).getIdCliente(),
-							hipermercado.getListCompra().get(i).getQuantidade());
+					
+					unsortMap.put(hipermercado.getListCompra().get(i).getIdCliente(), hipermercado.getListCompra().get(i).getQuantidade());
 				}
 			}
 
 			printMapCQ(unsortMap);
 
-			System.out.println("\nExistem " + unsortMap.size() + " clientes que compraram " + s);
+			System.out.println("\nExistem " + unsortMap.size() + " clientes que compraram " + s +"produtos");
 
+	
+					
 		} else {
 			System.out.println("A quantidade que inseriu é inválida!");
 		}
 	}
 	
+	
+	
+	//Query 09 - 
 	public void clientesDiferentesProdutos(){
+	
+	
+	 	Map <String, String> cdp = new HashMap<String, String>();
 		
+		for(int i=0; i<hipermercado.getListCompra().size(); i++){
+			cdp.put(hipermercado.getListCompra().get(i).getIdProduto(), hipermercado.getListCompra().get(i).getIdCliente());
+		    
+		}
 		
+		printMapPC(cdp);
 		
-		
-		
-		
-		
-		
+		for(int i=0; i<cdp.size(); i++){
+			String key=null;
+			int count=0;
+	        for(int j=0;j<cdp.size();j++) {
+	            for(int k =j+1;k<cdp.size();k++) {
+	                if(cdp.get(key)==cdp.get(key)) {
+	                    count++;
+	                }
+	            }
+	            if(count==1)
+	               System.out.println(cdp.get(key));
+	            count = 0;
+	        }
+		}
 	}
 	
-
 	
+	
+	
+	// Query 10
+	public void produtoClientesQueMaisCompraram() {
+
+		HashMap<Integer, HashMap<String, Double>> a = new HashMap<Integer, HashMap<String, Double>>();
+		HashMap<String, Double> b = new HashMap<String, Double>();
+		
+		String s;
+
+		System.out.print("\nIntroduza um código do produto:");
+		s = scanner.nextLine();
+
+		System.out.println("\nDados do produto: " + s + "\n");
+		
+		if (validador.validacaoProduto(s) != null) {
+
+			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+				if (s.equals(hipermercado.getListCompra().get(i).getIdProduto())) {
+					//Inner Key
+					b.put(hipermercado.getListCompra().get(i).getIdCliente(),hipermercado.getListCompra().get(i).getPreco());
+					//Outter Key
+					a.put(hipermercado.getListCompra().get(i).getQuantidade(), b);
+				}
+				
+			}
+			
+			printMapNested(a);
+
+		} else {
+			System.out.println("O código do produto que inseriu não é válido!");
+		}
+	}
+		
+		//Ordena por valor descendente, o conteúdo do HashMap
+		public static Map<String, Integer> sortByValue(Map<String , Integer> unsortMap){
+			
+			List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(unsortMap.entrySet());
+			
+			Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+	            public int compare(Map.Entry<String, Integer> o1,
+	                               Map.Entry<String, Integer> o2) {
+	                return (o2.getValue()).compareTo(o1.getValue());
+	            }
+	        });
+			 
+			Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
+	        for (Map.Entry<String, Integer> entry : list) {
+	            sortedMap.put(entry.getKey(), entry.getValue());
+	        }	
+		
+			return sortedMap;
+		}
+		
+		
+		//Imprime o Produto do HashMap
+		public static <K,V> void printMapPQ(Map<K,V> map){
+			for(Map.Entry<K, V> entry: map.entrySet()){
+				System.out.println("Produto comprado: " + entry.getKey() + "  Quantidade: "+entry.getValue());
+			}
+		}	
+		
+		//Imprime o Cliente do HashMap
+		public static <K,V> void printMapCQ(Map<K,V> map){
+			for(Map.Entry<K, V> entry: map.entrySet()){
+				System.out.println("O Cliente que comprou: " + entry.getKey() + "  Quantidade: "+entry.getValue());
+			}
+		}	
+		
+		// Imprime o Cliente do HashMap
+		public static <K, V> void printMapPC(Map<K, V> map) {
+			for (Map.Entry<K, V> entry : map.entrySet()) {
+				System.out.println("O Produto foi comprado: " + entry.getKey() + " pelo o cliente: " + entry.getValue());
+			}
+		}
+
+		// Imprime o Nested HashMap
+		public static <K, V> void printMapNested(Map<Integer, HashMap<String,Double>> map) {
+			for(Map.Entry<Integer, HashMap<String,Double>> t : map.entrySet()){
+			     Integer key = t.getKey();
+			     for (Map.Entry<String,Double> e : t.getValue().entrySet())
+			       System.out.println("Cliente:" + e.getKey() + " Quantidade:" + key + " Valor Gasto:" +e.getValue()*key+" euros");
+			     
+			   }
+		}
 	
 }
 	
