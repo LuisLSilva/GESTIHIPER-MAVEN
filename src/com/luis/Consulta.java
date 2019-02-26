@@ -1,8 +1,6 @@
 package com.luis;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,8 +12,10 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
+
 
 public class Consulta {
 
@@ -76,6 +76,7 @@ public class Consulta {
 		 	System.out.println("\nA faturação Global: "+totalGlobal+" euros");
 	}
 
+	//Query 03
 	public void clientesDistintos() {
 	
 		for (int j = 1; j < 13; j++) {
@@ -94,6 +95,7 @@ public class Consulta {
 		}
 	}
 
+	//Query 04
 	public void comprasInvalidas() {
 	
 		System.out.println("Existem " +validador.comprasInvalidas.size()+ " compras inválidas\nConsulte o ficheiro ComprasInvalidas.txt");
@@ -111,8 +113,8 @@ public class Consulta {
 				e.printStackTrace();
 			}   
 		}
-
-	
+//Queries Interactivas--------------------------------------------------------------------------------------------------------
+	//Query 01
 	public void produtosNaoComprados() {
 
 		List<String> codProdutoNC = new ArrayList<String>();
@@ -141,11 +143,12 @@ public class Consulta {
 		System.out.println("\n"+"Existem "+codProdutoNC.size()+" produtos que não foram vendidos");
 	}
 
+	//Query 02
 	public void clientesNuncaCompraram() {
 		
 		List<String> codClienteNC = new ArrayList<String>();
 		
-		
+
 		for (Ccliente i : hipermercado.getListCcliente()) {
 			clientesDistintos.add(i.getIdCliente());
 		}
@@ -172,6 +175,7 @@ public class Consulta {
 		System.out.println("\n"+"Existem "+codClienteNC.size()+" compraram mas não lista no Ficheiro de Clientes");
 	}
 	
+	//Query 03
 	public void numeroComprasEclientesPorMes() {
 
 		int j;
@@ -194,6 +198,7 @@ public class Consulta {
 		System.out.println("O total de clientes que realizaram compras: " + comprasClientesDistintos.size());		
 	}
 	    
+	//Query 04
 	public void codigoClienteParaMes(){    
 	    		
 	    String s;
@@ -238,7 +243,7 @@ public class Consulta {
 	    }
 	}
 	
-	//Query 09
+	//Query 05
 	public void codigoProdutoMesaMes(){
 	
 		String s;
@@ -282,7 +287,7 @@ public class Consulta {
 		}
 	}
 	
-	//Query 10
+	//Query 06
 	public void codigoProdutoNP(){
 		
 		String s;
@@ -410,33 +415,28 @@ public class Consulta {
 	
 	
 	
-	//Query 09 - 
-	public void clientesDiferentesProdutos(){
-	
-	
-	 	Map <String, String> cdp = new HashMap<String, String>();
-		
-		for(int i=0; i<hipermercado.getListCompra().size(); i++){
-			cdp.put(hipermercado.getListCompra().get(i).getIdProduto(), hipermercado.getListCompra().get(i).getIdCliente());
-		    
+	// Query 09 -
+	public void clientesDiferentesProdutos() {
+
+		Map<String, String> cdp = new HashMap<String, String>();
+		Set<String> set = cdp.keySet();
+
+		Map<String, String> ts = new TreeMap<String, String>(cdp);
+
+		for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+			cdp.put(hipermercado.getListCompra().get(i).getIdProduto(),
+					hipermercado.getListCompra().get(i).getIdCliente());
+
 		}
+	//	printMapPC(cdp);
+
+
+
 		
-		printMapPC(cdp);
-		
-		for(int i=0; i<cdp.size(); i++){
-			String key=null;
-			int count=0;
-	        for(int j=0;j<cdp.size();j++) {
-	            for(int k =j+1;k<cdp.size();k++) {
-	                if(cdp.get(key)==cdp.get(key)) {
-	                    count++;
-	                }
-	            }
-	            if(count==1)
-	               System.out.println(cdp.get(key));
-	            count = 0;
-	        }
+		for (String strKey : ts.keySet()) {
+			System.out.println("Key : " + strKey + "\t\t" + "Value : " + cdp.get(strKey));
 		}
+
 	}
 	
 	

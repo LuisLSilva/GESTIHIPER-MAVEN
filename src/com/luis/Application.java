@@ -44,12 +44,14 @@ public class Application {
 					while ((strCurrentLine = objReader.readLine()) != null) {
 						if(validador.validacaoCliente(strCurrentLine)!=null){
 							Ccliente ccliente = validador.validacaoCliente(strCurrentLine);
+							ccliente.put(ccliente);
 							hipermercado.addCcliente(ccliente);
+							hipermercado.setCatalogoClientes(ccliente);
 						}
 					}
 					objReader.close();
 
-					arraylist.add(hipermercado);
+		//			arraylist.add(hipermercado);
 					
 					System.out.println("O Ficheiro de clientes foi carregado.");
 					choice++;
@@ -69,12 +71,14 @@ public class Application {
 
 						if(validador.validacaoProduto(strCurrentLine)!=null){
 							Cproduto cproduto = validador.validacaoProduto(strCurrentLine);
+							cproduto.put(cproduto);
 							hipermercado.addCproduto(cproduto);
+							hipermercado.setCatalogoProdutos(cproduto);
 						}
 					}
 					objReader.close();
 
-					arraylist.add(hipermercado);
+		//			arraylist.add(hipermercado);
 					
 					System.out.println("O Ficheiro dos produtos foi carregado.");
 					choice++;
@@ -101,7 +105,7 @@ public class Application {
 						}
 					}
 					objReader.close();
-					arraylist.add(hipermercado);
+		//			arraylist.add(hipermercado);
 					
 					System.out.println("O Ficheiro das compras foi carregado.");
 					choice=5;

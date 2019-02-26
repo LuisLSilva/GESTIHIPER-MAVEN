@@ -1,14 +1,15 @@
 package com.luis;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Ccliente {
+	private Map<String, DadosProduto> catalogoClientes;
 	private String idCliente;
-	private Map <String, DadosCliente> catalogoCliente;
-	
-	
+
 	public Ccliente() {
 		super();
+		this.catalogoClientes = new HashMap<String, DadosProduto>();
 	}
 	
 	public Ccliente(String idCliente) {
@@ -16,6 +17,10 @@ public class Ccliente {
 		this.idCliente = idCliente;
 	}
 
+	public void put(Ccliente ccliente){
+		catalogoClientes.put(ccliente.getIdCliente(), null);
+	}
+	
 	public String getIdCliente() {
 		return idCliente;
 	}
@@ -29,5 +34,10 @@ public class Ccliente {
 		return "Cclientes [idClientes=" + idCliente + "]";
 	}
 
+	
+	
+	
+	
+	
 }
 
