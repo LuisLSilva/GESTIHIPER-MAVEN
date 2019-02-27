@@ -1,5 +1,6 @@
 package com.luis;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -11,13 +12,28 @@ public class DadosProduto {
 	private Set<String> clientesDistintos;
 	private double totalFaturado;
 	
+	
+	//Para mim
+	private String idProduto;
+	
+	//Feito Totalmente por mim
+	private int mes;
+	
 	public DadosProduto() {
 		super();
 		this.mensal = new HashMap<Integer,DadosMesProduto>();
 		this.codCliente = new HashMap<String, DadosClienteProduto>();
 		
 	}
+	
+	public int getMes() {
+		return mes;
+	}
 
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
+	
 	public Map<Integer, DadosMesProduto> getMensal() {
 		return mensal;
 	}
@@ -38,8 +54,12 @@ public class DadosProduto {
 		return numeroCompras;
 	}
 
-	public void setNumeroCompras(int numeroCompras) {
-		this.numeroCompras = numeroCompras;
+	public void setNumeroCompras(int numeroCompras, boolean a) {
+		if(a){
+			this.numeroCompras += numeroCompras;
+		}else{
+			this.numeroCompras = numeroCompras;
+		}
 	}
 
 	public Set<String> getClientesDistintos() {
@@ -54,11 +74,44 @@ public class DadosProduto {
 		return totalFaturado;
 	}
 
-	public void setTotalFaturado(double totalFaturado) {
-		this.totalFaturado = totalFaturado;
+	public void setTotalFaturado(double totalFaturado, boolean a) {
+		if(a){
+			this.totalFaturado += totalFaturado;
+		}else{
+			this.totalFaturado = totalFaturado;
+		}
 	}
+
+	public String getIdProduto() {
+		return idProduto;
+	}
+
+	public void setIdProduto(String idProduto) {
+		this.idProduto = idProduto;
+	}
+
+	@Override
+	public String toString() {
+		return "DadosProduto [idProduto="+ idProduto + ", numeroCompras=" + numeroCompras + ", totalFaturado=" + new DecimalFormat("0.00").format(totalFaturado) + ", mês=" + mes+ "]"; 
+	}
+
 	
-	
-	
+	public void addCompraMensal(DadosProduto dadosProduto){
+			DadosMesProduto dadosMP = mensal.get(dadosProduto.mes);
+			
+			if(dadosMP == null) {
+				dadosMP = new DadosMesProduto();
+				dadosMP.setTotalCompras(dadosProduto.getNumeroCompras());
+				
+				
+				
+			}
+		
+		
+		
+		
+	}
+		
+			
 	
 }

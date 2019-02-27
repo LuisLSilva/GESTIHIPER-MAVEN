@@ -23,7 +23,6 @@ public class Hipermercado {
 		catalogoProdutos.addCompra(compra);
 	}
 
-
 	public List<Ccliente> getListCcliente() {
 		return listCcliente;
 	}
