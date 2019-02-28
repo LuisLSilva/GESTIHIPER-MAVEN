@@ -53,6 +53,12 @@ public class DadosMesProduto {
 	public void setComprasModoP(int comprasModoP) {
 		this.comprasModoP = comprasModoP;
 	}
+
+	@Override
+	public String toString() {
+		return "DadosMesProduto [totalCompras=" + totalCompras + ", faturacao=" + faturacao + ", clientesDistintos="
+				+ clientesDistintos + ", comprasModoN=" + comprasModoN + ", comprasModoP=" + comprasModoP + "]";
+	}
 	
 	
 	

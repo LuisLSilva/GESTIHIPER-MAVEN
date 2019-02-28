@@ -98,20 +98,20 @@ public class Consulta {
 	//Query 04
 	public void comprasInvalidas() {
 	
-		System.out.println("Existem " +validador.comprasInvalidas.size()+ " compras inválidas\nConsulte o ficheiro ComprasInvalidas.txt");
-		
-			 try {
-				 BufferedWriter objWriter = new BufferedWriter(new FileWriter("ComprasInvalidas.txt"));
-				 String newLine = System.getProperty("line.separator");
+//		System.out.println("Existem " +validador.getComprasInvalidas.size()+ " compras inválidas\nConsulte o ficheiro ComprasInvalidas.txt");
+//		
+//			 try {
+//				 BufferedWriter objWriter = new BufferedWriter(new FileWriter("ComprasInvalidas.txt"));
+//				 String newLine = System.getProperty("line.separator");
+//				 
+//				 for(int i=0; i<validador.comprasInvalidas.size(); i++){ 
+//					 objWriter.write(validador.comprasInvalidas.get(i)+" "+newLine);
+//				 }
+//				 objWriter.close();
 				 
-				 for(int i=0; i<validador.comprasInvalidas.size(); i++){ 
-					 objWriter.write(validador.comprasInvalidas.get(i)+" "+newLine);
-				 }
-				 objWriter.close();
-				 
-			} catch (IOException e) {
-				e.printStackTrace();
-			}   
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}   
 		}
 //Queries Interactivas--------------------------------------------------------------------------------------------------------
 	//Query 01
@@ -257,7 +257,7 @@ public class Consulta {
 
 		System.out.println("\nDados do produto: " + s + "\n");
 
-		if (validador.validacaoProduto(s) != null) {
+//		if (validador.validacaoProduto(s) != null) {
 
 			for (int j = 1; j < 13; j++) {
 				for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
@@ -282,9 +282,9 @@ public class Consulta {
 
 			System.out.println("\nO produto "+s+" foi comprado "+comprasClientesDistintos.size()+" cliente(s) distinto(s)");
 	    	System.out.println("O produto "+s+ " tem uma faturação anual: "+gastosTotal+" euros");
-		} else {
+	//	} else {
 			System.out.println("O código do produto que inseriu não é válido!");
-		}
+	//	}
 	}
 	
 	//Query 06
@@ -309,7 +309,7 @@ public class Consulta {
 
 		System.out.println("\nDados do produto: " + s + "\n");
 
-		if (validador.validacaoProduto(s) != null) {
+	//	if (validador.validacaoProduto(s) != null) {
 
 			for (int j = 1; j < 13; j++) {
 				for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
@@ -351,9 +351,9 @@ public class Consulta {
 			System.out.println("O produto " + s + " durante o ano esteve " + countTotalP
 					+ " em promoção e teve uma faturação anual de: " + gastosTotalP + " euros");
 
-		} else {
+	//	} else {
 			System.out.println("O código do produto que inseriu não é válido!");
-		}
+	//	}
 	}
 	
 	//Query 07
@@ -455,7 +455,7 @@ public class Consulta {
 
 		System.out.println("\nDados do produto: " + s + "\n");
 		
-		if (validador.validacaoProduto(s) != null) {
+	//	if (validador.validacaoProduto(s) != null) {
 
 			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
 				if (s.equals(hipermercado.getListCompra().get(i).getIdProduto())) {
@@ -469,9 +469,9 @@ public class Consulta {
 			
 			printMapNested(a);
 
-		} else {
+	//	} else {
 			System.out.println("O código do produto que inseriu não é válido!");
-		}
+	//	}
 	}
 		
 		//Ordena por valor descendente, o conteúdo do HashMap

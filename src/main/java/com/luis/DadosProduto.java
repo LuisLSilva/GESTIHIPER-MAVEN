@@ -54,12 +54,8 @@ public class DadosProduto {
 		return numeroCompras;
 	}
 
-	public void setNumeroCompras(int numeroCompras, boolean a) {
-		if(a){
-			this.numeroCompras += numeroCompras;
-		}else{
-			this.numeroCompras = numeroCompras;
-		}
+	public void setNumeroCompras(int numeroCompras) {
+	    this.numeroCompras = numeroCompras;
 	}
 
 	public Set<String> getClientesDistintos() {
@@ -74,12 +70,8 @@ public class DadosProduto {
 		return totalFaturado;
 	}
 
-	public void setTotalFaturado(double totalFaturado, boolean a) {
-		if(a){
-			this.totalFaturado += totalFaturado;
-		}else{
-			this.totalFaturado = totalFaturado;
-		}
+	public void setTotalFaturado(double totalFaturado) {
+		this.totalFaturado = totalFaturado;
 	}
 
 	public String getIdProduto() {
@@ -97,18 +89,21 @@ public class DadosProduto {
 	}
 
 	
-	public void addCompraMensal(DadosProduto dadosProduto){
-			DadosMesProduto dadosMP = mensal.get(dadosProduto.mes);
+	public void addCompraMensal(DadosProduto dados){
+			DadosMesProduto dadosMP = mensal.get(dados.mes);
+		
 			
 			if(dadosMP == null) {
 				dadosMP = new DadosMesProduto();
-				dadosMP.setTotalCompras(dadosProduto.getNumeroCompras());
-			//	dadosMP.setComprasModoN();	
+				dadosMP.setTotalCompras(dados.getNumeroCompras());
+				
 			}
 			
+			mensal.put(dados.getMes(), dadosMP);
 			
 			
-			mensal.put(dadosProduto.getMes(), dadosMP);
+			
+			
 			printMapAA(mensal);
 		
 		
@@ -118,7 +113,6 @@ public class DadosProduto {
 		for (Map.Entry<K, V> entry : map.entrySet()) {
 				System.out.println("KEY: " + entry.getKey() + "   VALUE: " + entry.getValue());
 		}
-		System.out.println(" ");
 	}
 		
 			
