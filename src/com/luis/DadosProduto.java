@@ -90,6 +90,7 @@ public class DadosProduto {
 		this.idProduto = idProduto;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "DadosProduto [idProduto="+ idProduto + ", numeroCompras=" + numeroCompras + ", totalFaturado=" + new DecimalFormat("0.00").format(totalFaturado) + ", mês=" + mes+ "]"; 
@@ -102,14 +103,22 @@ public class DadosProduto {
 			if(dadosMP == null) {
 				dadosMP = new DadosMesProduto();
 				dadosMP.setTotalCompras(dadosProduto.getNumeroCompras());
-				
-				
-				
+			//	dadosMP.setComprasModoN();	
 			}
+			
+			
+			
+			mensal.put(dadosProduto.getMes(), dadosMP);
+			printMapAA(mensal);
 		
 		
-		
-		
+	}
+	
+	public static <K, V> void printMapAA(Map<K, V> map) {
+		for (Map.Entry<K, V> entry : map.entrySet()) {
+				System.out.println("KEY: " + entry.getKey() + "   VALUE: " + entry.getValue());
+		}
+		System.out.println(" ");
 	}
 		
 			

@@ -71,7 +71,7 @@ public class Application {
 
 						if(validador.validacaoProduto(strCurrentLine)!=null){
 							Cproduto cproduto = validador.validacaoProduto(strCurrentLine);
-				     //		cproduto.put(cproduto);
+				    		cproduto.putCprodutos(cproduto);
 							hipermercado.addCproduto(cproduto);
 							hipermercado.setCatalogoProdutos(cproduto);
 						}
@@ -101,6 +101,7 @@ public class Application {
 								continue;
 							}
 							hipermercado.addCompra(compra);
+						
 					
 						}
 					}

@@ -20,9 +20,10 @@ public class Hipermercado {
 
 	public void addCompra(Compra compra){
 		listCompra.add(compra);
-		catalogoProdutos.addCompra(compra);
+		catalogoProdutos.addCompraProduto(compra);
 	}
 
+	
 	public List<Ccliente> getListCcliente() {
 		return listCcliente;
 	}

@@ -37,13 +37,15 @@ public class Cproduto {
 	}
 
 	// Put para o Ficheiro de Produto
-	public void put(Cproduto cproduto) {
+	public void putCprodutos(Cproduto cproduto) {
 		catalogoProdutos.put(cproduto.getIdProduto(), null);
+	//	printMapAA(catalogoProdutos);
 	}
 
-	public void addCompra(Compra compra) {
+	public void addCompraProduto(Compra compra) {
+		//Caso já exista 'values' no HashMap de Cprodutos
 		DadosProduto dados = catalogoProdutos.get(compra.getIdProduto());
-		
+
 		if(dados == null) {
 			dados = new DadosProduto();
 			dados.setTotalFaturado(compra.getPreco()*compra.getQuantidade(),false);
@@ -63,13 +65,15 @@ public class Cproduto {
 			
 		//System.out.println(dados.toString());
 			
-		printMapAA(catalogoProdutos);
+	//	printMapAA(catalogoProdutos);
 		
-		if(dados != null){
-           mensal.addCompraMensal(dados);
+		if(dados!=null) {
+			mensal.addCompraMensal(dados);
 		}
 		
 	}
+	
+	
 
 
 
