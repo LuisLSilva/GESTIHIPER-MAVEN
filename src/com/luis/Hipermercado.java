@@ -16,13 +16,16 @@ public class Hipermercado {
 	
 	public Hipermercado() {
 		super();
+		catalogoClientes = new Ccliente();
+		catalogoProdutos = new Cproduto();
+		
 	}
 
 	public void addCompra(Compra compra){
 		listCompra.add(compra);
 		catalogoProdutos.addCompraProduto(compra);
+	
 	}
-
 	
 	public List<Ccliente> getListCcliente() {
 		return listCcliente;

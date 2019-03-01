@@ -9,11 +9,11 @@ public class Validador {
 	private static int productSize = 6;
 	private static int clientSize = 5;
 	
-	List<String> comprasInvalidas;
+	private List<String> comprasInvalidas;
 	
 	public Validador(){
 		super();
-		this.comprasInvalidas = new ArrayList<>();
+		this.comprasInvalidas = new ArrayList<String>();
 	}
 	
 	public Compra validacao(String strCurrentLine){
@@ -200,28 +200,21 @@ public class Validador {
 		}
 	}
 	
-	public Cproduto validacaoProduto(String strCurrentLine){
-		
-		Cproduto cproduto = new Cproduto();
-		
-		if (strCurrentLine.length() == productSize) {
-
-			String sub1 = strCurrentLine.substring(0, 2);
-			String sub2 = strCurrentLine.substring(2);
-
-			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-			
-				cproduto.setIdProduto(strCurrentLine);
-				return cproduto;
+	public boolean validacaoProduto(String strCurrentLine){
 				
-			} else {
-				
-				return null;
-			}
-		} else {
+		if (strCurrentLine.length() != productSize)
+			return false;
+		
+		String sub1 = strCurrentLine.substring(0, 2);
+		String sub2 = strCurrentLine.substring(2);
+		if (!sub1.matches("[A-Z]+"))
+			return false;
+		
+		if (!sub2.matches("[0-9]+")) 
+			return false;
+		
+		return true;
 			
-			return null;
-		}
 	}
 	
 

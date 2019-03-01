@@ -1,17 +1,19 @@
 package com.luis;
 
+import java.text.DecimalFormat;
+import java.util.HashSet;
 import java.util.Set;
 
 public class DadosMesProduto {
 	private int totalCompras;
 	private double faturacao;
 	private Set<String> clientesDistintos;
-	private int comprasModoN;
-	private int comprasModoP;
-	
+	private String comprasModo;
+	private DecimalFormat formatter = new DecimalFormat("#0.00");
 	
 	public DadosMesProduto() {
 		super();
+		clientesDistintos = new HashSet<String>();
 	}
 	
 	public int getTotalCompras() {
@@ -37,21 +39,19 @@ public class DadosMesProduto {
 	public void setClientesDistintos(Set<String> clientesDistintos) {
 		this.clientesDistintos = clientesDistintos;
 	}
-	
-	public int getComprasModoN() {
-		return comprasModoN;
+	 
+	public String getComprasModo() {
+		return comprasModo;
 	}
-	
-	public void setComprasModoN(int comprasModoN) {
-		this.comprasModoN = comprasModoN;
+
+	public void setComprasModo(String comprasModo) {
+		this.comprasModo = comprasModo;
 	}
-	
-	public int getComprasModoP() {
-		return comprasModoP;
-	}
-	
-	public void setComprasModoP(int comprasModoP) {
-		this.comprasModoP = comprasModoP;
+
+	@Override
+	public String toString() {
+		return "DadosMesProduto [totalCompras=" + totalCompras + ", faturacao=" + formatter.format(faturacao) + ", clientesDistintos="
+				+ clientesDistintos + ", comprasModo=" + comprasModo+ "]";
 	}
 	
 	

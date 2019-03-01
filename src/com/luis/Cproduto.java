@@ -1,18 +1,18 @@
 package com.luis;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Cproduto {
-	private Map<String, DadosProduto> catalogoProdutos;
+	private Map<String, DadosProduto> gavetaProdutos;
 	private String idProduto;
-	
-	private DadosProduto mensal;
-	
+
 	
 	public Cproduto() {
 		super();
-		this.catalogoProdutos = new HashMap<String, DadosProduto>();
+		this.gavetaProdutos = new HashMap<String, DadosProduto>();
 	}
 
 	public String getIdProduto() {
@@ -23,66 +23,73 @@ public class Cproduto {
 		this.idProduto = idProduto;
 	}
 
-	public Map<String, DadosProduto> getCatalogoProdutos() {
-		return catalogoProdutos;
+	public Map<String, DadosProduto> getGavetaProdutos() {
+		return gavetaProdutos;
 	}
 
-	public void setCatalogoProdutos(Map<String, DadosProduto> catalogoProdutos) {
-		this.catalogoProdutos = catalogoProdutos;
+	public void setGavetaProdutos(Map<String, DadosProduto> gavetaProdutos) {
+		this.gavetaProdutos = gavetaProdutos;
 	}
 
-	@Override
-	public String toString() {
-		return "Cproduto [idProduto=" + idProduto + "]";
-	}
-
-	// Put para o Ficheiro de Produto
-	public void putCprodutos(Cproduto cproduto) {
-		catalogoProdutos.put(cproduto.getIdProduto(), null);
-	//	printMapAA(catalogoProdutos);
-	}
-
+	
 	public void addCompraProduto(Compra compra) {
 		//Caso já exista 'values' no HashMap de Cprodutos
-		DadosProduto dados = catalogoProdutos.get(compra.getIdProduto());
+		DadosProduto dadosP = gavetaProdutos.get(compra.getIdProduto());
 
-		if(dados == null) {
-			dados = new DadosProduto();
-			dados.setTotalFaturado(compra.getPreco()*compra.getQuantidade(),false);
-			dados.setNumeroCompras(compra.getQuantidade(), false);
-			dados.setIdProduto(compra.getIdProduto());
-			dados.setMes(compra.getMes());
+		if(dadosP == null) {
+			dadosP = new DadosProduto();
+			dadosP.setTotalFaturado(compra.getPreco()*compra.getQuantidade());
+			dadosP.setNumeroCompras(compra.getQuantidade());
+			dadosP.setIdProduto(compra.getIdProduto());
+			
+			//printMapAA(dadosP.getMensal());
+			dadosP.addCompraMensal(compra);
+
+			gavetaProdutos.put(compra.getIdProduto(), dadosP);
+			return;
 		}
 		
+		//Já existem dados neste ponto
+		dadosP.addCompraMensal(compra);
+		dadosP.getClientesDistintos().add(compra.getIdCliente());
+		 
+		atualizaNumCompras(compra.getIdProduto(), dadosP, compra);
+		atualizaFaturacao(compra.getIdProduto(), dadosP, compra);
 	
-		if(catalogoProdutos.containsKey(compra.getIdProduto())){
-			dados.setNumeroCompras(compra.getQuantidade(), true);	
-			dados.setTotalFaturado(compra.getPreco()*compra.getQuantidade(),true);
-			
-		}
-		
-		catalogoProdutos.put(compra.getIdProduto(), dados);
-			
-		//System.out.println(dados.toString());
-			
-	//	printMapAA(catalogoProdutos);
-		
-		if(dados!=null) {
-			mensal.addCompraMensal(dados);
-		}
-		
 	}
 	
 	
-
-
-
+	private void atualizaNumCompras(String idProduto, DadosProduto dadosP, Compra compra) {
+		 int numLista = dadosP.getNumeroCompras();
+		 int numLido = compra.getQuantidade();
+		 int numAct=numLista+numLido;
+		 dadosP.setNumeroCompras(numAct);
+		 
+		 gavetaProdutos.put(idProduto, dadosP);
+		 return;
+	}
+	
+	private void atualizaFaturacao(String idProduto, DadosProduto dadosP, Compra compra){
+		double fatList = dadosP.getTotalFaturado(); 		 
+		double fatLido = compra.getQuantidade()*compra.getPreco();
+		double fatAct = fatLido+fatList;
+		
+		dadosP.setTotalFaturado(fatAct);
+		
+		gavetaProdutos.put(compra.getIdProduto(), dadosP);
+		return;
+	}
+	
+	@Override
+	public String toString() {
+		return "Cproduto [gavetaProdutos=" + gavetaProdutos.toString() + ", idProduto=" + idProduto + "]";
+	}
 
 	public static <K, V> void printMapAA(Map<K, V> map) {
 		for (Map.Entry<K, V> entry : map.entrySet()) {
 				System.out.println("KEY: " + entry.getKey() + "   VALUE: " + entry.getValue());
 		}
-		System.out.println(" ");
+
 	}
 
 	

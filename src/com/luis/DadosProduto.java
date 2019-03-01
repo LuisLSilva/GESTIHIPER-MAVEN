@@ -2,6 +2,7 @@ package com.luis;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,24 +17,15 @@ public class DadosProduto {
 	//Para mim
 	private String idProduto;
 	
-	//Feito Totalmente por mim
-	private int mes;
 	
 	public DadosProduto() {
 		super();
 		this.mensal = new HashMap<Integer,DadosMesProduto>();
 		this.codCliente = new HashMap<String, DadosClienteProduto>();
+		this.clientesDistintos = new HashSet<>();
 		
 	}
-	
-	public int getMes() {
-		return mes;
-	}
-
-	public void setMes(int mes) {
-		this.mes = mes;
-	}
-	
+		
 	public Map<Integer, DadosMesProduto> getMensal() {
 		return mensal;
 	}
@@ -54,12 +46,8 @@ public class DadosProduto {
 		return numeroCompras;
 	}
 
-	public void setNumeroCompras(int numeroCompras, boolean a) {
-		if(a){
-			this.numeroCompras += numeroCompras;
-		}else{
-			this.numeroCompras = numeroCompras;
-		}
+	public void setNumeroCompras(int numeroCompras) {
+	    this.numeroCompras = numeroCompras;
 	}
 
 	public Set<String> getClientesDistintos() {
@@ -74,12 +62,8 @@ public class DadosProduto {
 		return totalFaturado;
 	}
 
-	public void setTotalFaturado(double totalFaturado, boolean a) {
-		if(a){
-			this.totalFaturado += totalFaturado;
-		}else{
-			this.totalFaturado = totalFaturado;
-		}
+	public void setTotalFaturado(double totalFaturado) {
+		this.totalFaturado = totalFaturado;
 	}
 
 	public String getIdProduto() {
@@ -91,35 +75,66 @@ public class DadosProduto {
 	}
 
 	
-	@Override
-	public String toString() {
-		return "DadosProduto [idProduto="+ idProduto + ", numeroCompras=" + numeroCompras + ", totalFaturado=" + new DecimalFormat("0.00").format(totalFaturado) + ", mês=" + mes+ "]"; 
+	public void addCompraMensal(Compra compra) {
+		DadosMesProduto dadosMP = mensal.get(compra.getMes());
+	
+		if (dadosMP == null) {
+			dadosMP = new DadosMesProduto();
+			dadosMP.setTotalCompras(compra.getQuantidade());
+			dadosMP.setFaturacao(compra.getPreco());
+			dadosMP.setComprasModo(compra.getPromo());
+			
+			dadosMP.getClientesDistintos().add(compra.getIdCliente());
+			
+			mensal.put(compra.getMes(), dadosMP);
+			
+			//printMapAB(dadosP.getMensal());
+			return;
+		}
+		
+		dadosMP.getClientesDistintos().add(compra.getIdCliente());
+		atualizaNumComprasMensal(compra.getMes(), dadosMP, compra);
+		atualizaFaturacaoMensal(compra.getMes(), dadosMP, compra);
+		
+		//System.out.println(this.getMensal().toString());
 	}
 
-	
-	public void addCompraMensal(DadosProduto dadosProduto){
-			DadosMesProduto dadosMP = mensal.get(dadosProduto.mes);
-			
-			if(dadosMP == null) {
-				dadosMP = new DadosMesProduto();
-				dadosMP.setTotalCompras(dadosProduto.getNumeroCompras());
-			//	dadosMP.setComprasModoN();	
-			}
-			
-			
-			
-			mensal.put(dadosProduto.getMes(), dadosMP);
-			printMapAA(mensal);
-		
-		
+	private void atualizaNumComprasMensal(int mes, DadosMesProduto dadosMP, Compra compra) {
+		 int numLista = dadosMP.getTotalCompras();
+		 int numLido = compra.getQuantidade();
+		 int numAct=numLista+numLido;
+		 
+		 dadosMP.setTotalCompras(numAct);
+		 
+		 mensal.put(compra.getMes(), dadosMP);
+		 return;
 	}
 	
+	private void atualizaFaturacaoMensal(int mes, DadosMesProduto dadosMP, Compra compra){
+		double fatLido = dadosMP.getTotalCompras()*compra.getPreco();
+		dadosMP.setFaturacao(fatLido);
+		
+	//	gavetaProdutos.put(compra.getIdProduto(), dadosP);
+		return;
+	}
+	
+	
+
 	public static <K, V> void printMapAA(Map<K, V> map) {
 		for (Map.Entry<K, V> entry : map.entrySet()) {
 				System.out.println("KEY: " + entry.getKey() + "   VALUE: " + entry.getValue());
 		}
-		System.out.println(" ");
 	}
+	
+
+	
+	@Override
+	public String toString() {
+		PrettyPrintingMap<Integer, DadosMesProduto> s = new PrettyPrintingMap<>(this.getMensal());
+		return s.toString();
+	}
+	
+
 		
 			
 	

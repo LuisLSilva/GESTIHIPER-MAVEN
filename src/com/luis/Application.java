@@ -69,17 +69,15 @@ public class Application {
 					BufferedReader objReader = new BufferedReader(new FileReader("FichProdutos.txt"));
 					while ((strCurrentLine = objReader.readLine()) != null) {
 
-						if(validador.validacaoProduto(strCurrentLine)!=null){
-							Cproduto cproduto = validador.validacaoProduto(strCurrentLine);
-				    		cproduto.putCprodutos(cproduto);
-							hipermercado.addCproduto(cproduto);
-							hipermercado.setCatalogoProdutos(cproduto);
+						if (validador.validacaoProduto(strCurrentLine)) {
+							hipermercado.getCatalogoProdutos().getGavetaProdutos().put(strCurrentLine, null);	
 						}
 					}
+					Cproduto.printMapAA(hipermercado.getCatalogoProdutos().getGavetaProdutos());
 					objReader.close();
 
-		//			arraylist.add(hipermercado);
-					
+					// arraylist.add(hipermercado);
+
 					System.out.println("O Ficheiro dos produtos foi carregado.");
 					choice++;
 
@@ -102,9 +100,12 @@ public class Application {
 							}
 							hipermercado.addCompra(compra);
 						
-					
 						}
 					}
+					System.out.print("\n");
+					Cproduto.printMapAA(hipermercado.getCatalogoProdutos().getGavetaProdutos());
+			//		System.out.println(new PrettyPrintingMap<>(hipermercado.getCatalogoProdutos().getGavetaProdutos()));
+
 					objReader.close();
 		//			arraylist.add(hipermercado);
 					
