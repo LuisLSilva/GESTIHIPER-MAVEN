@@ -290,71 +290,71 @@ public class Consulta {
 	//Query 06
 	public void codigoProdutoNP(){
 		
-		String s;
-		int countP=0;
-		int countN=0;
-		int countTotalP=0;
-		int countTotalN=0;
-		int countTempP=0;
-		int countTempN=0;
-		double gastosP = 0;
-		double gastosN = 0;
-		double gastosTotalP = 0;
-		double gastosTotalN = 0;
-		double tempP = 0;
-		double tempN = 0;
-	    
-		System.out.print("\nIntroduza um código do produto:");
-		s = scanner.nextLine();
-
-		System.out.println("\nDados do produto: " + s + "\n");
-
-	//	if (validador.validacaoProduto(s) != null) {
-
-			for (int j = 1; j < 13; j++) {
-				for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
-					if (j == hipermercado.getListCompra().get(i).getMes()) {
-						if (s.equals(hipermercado.getListCompra().get(i).getIdProduto())) {
-							if (hipermercado.getListCompra().get(i).getPromo().equals("N")) {
-								countN++;
-								gastosN = gastosN + hipermercado.getListCompra().get(i).getPreco()
-										* hipermercado.getListCompra().get(i).getQuantidade();
-							} else if (hipermercado.getListCompra().get(i).getPromo().equals("P")) {
-								countP++;
-								gastosP = gastosP + hipermercado.getListCompra().get(i).getPreco()
-										* hipermercado.getListCompra().get(i).getQuantidade();
-							}
-
-						}
-					}
-				}
-				System.out.println("No Mes: " + j + " tem um número total de compras sem promoções: " + countN
-						+ " com promoção: " + countP);
-				tempN = gastosN;
-				gastosTotalN += tempN;
-				countTempN = countN;
-				countTotalN += countTempN;
-
-				tempP = gastosP;
-				gastosTotalP += tempP;
-				countTempP = countP;
-				countTotalP += countTempP;
-
-				countN = 0;
-				countP = 0;
-				gastosN = 0;
-				gastosP = 0;
-			}
-
-			System.out.println("\nO produto " + s + " durante o ano esteve " + countTotalN
-					+ " sem promoção e teve uma faturação anual de: " + gastosTotalN + " euros");
-			System.out.println("O produto " + s + " durante o ano esteve " + countTotalP
-					+ " em promoção e teve uma faturação anual de: " + gastosTotalP + " euros");
-
-	//	} else {
-			System.out.println("O código do produto que inseriu não é válido!");
-	//	}
-	}
+//		String s;
+//		int countP=0;
+//		int countN=0;
+//		int countTotalP=0;
+//		int countTotalN=0;
+//		int countTempP=0;
+//		int countTempN=0;
+//		double gastosP = 0;
+//		double gastosN = 0;
+//		double gastosTotalP = 0;
+//		double gastosTotalN = 0;
+//		double tempP = 0;
+//		double tempN = 0;
+//	    
+//		System.out.print("\nIntroduza um código do produto:");
+//		s = scanner.nextLine();
+//
+//		System.out.println("\nDados do produto: " + s + "\n");
+//
+//	//	if (validador.validacaoProduto(s) != null) {
+//
+//			for (int j = 1; j < 13; j++) {
+//				for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+//					if (j == hipermercado.getListCompra().get(i).getMes()) {
+//						if (s.equals(hipermercado.getListCompra().get(i).getIdProduto())) {
+//							if (hipermercado.getListCompra().get(i).getPromo().equals("N")) {
+//								countN++;
+//								gastosN = gastosN + hipermercado.getListCompra().get(i).getPreco()
+//										* hipermercado.getListCompra().get(i).getQuantidade();
+//							} else if (hipermercado.getListCompra().get(i).getPromo().equals("P")) {
+//								countP++;
+//								gastosP = gastosP + hipermercado.getListCompra().get(i).getPreco()
+//										* hipermercado.getListCompra().get(i).getQuantidade();
+//							}
+//
+//						}
+//					}
+//				}
+//				System.out.println("No Mes: " + j + " tem um número total de compras sem promoções: " + countN
+//						+ " com promoção: " + countP);
+//				tempN = gastosN;
+//				gastosTotalN += tempN;
+//				countTempN = countN;
+//				countTotalN += countTempN;
+//
+//				tempP = gastosP;
+//				gastosTotalP += tempP;
+//				countTempP = countP;
+//				countTotalP += countTempP;
+//
+//				countN = 0;
+//				countP = 0;
+//				gastosN = 0;
+//				gastosP = 0;
+//			}
+//
+//			System.out.println("\nO produto " + s + " durante o ano esteve " + countTotalN
+//					+ " sem promoção e teve uma faturação anual de: " + gastosTotalN + " euros");
+//			System.out.println("O produto " + s + " durante o ano esteve " + countTotalP
+//					+ " em promoção e teve uma faturação anual de: " + gastosTotalP + " euros");
+//
+//	//	} else {
+//			System.out.println("O código do produto que inseriu não é válido!");
+//	//	}
+	}	
 	
 	//Query 07
 	public void clienteListaProdutos(){

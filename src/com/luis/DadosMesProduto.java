@@ -8,7 +8,9 @@ public class DadosMesProduto {
 	private int totalCompras;
 	private double faturacao;
 	private Set<String> clientesDistintos;
-	private String comprasModo;
+	private int comprasModoP;
+	private int comprasModoN;
+	
 	private DecimalFormat formatter = new DecimalFormat("#0.00");
 	
 	public DadosMesProduto() {
@@ -40,18 +42,26 @@ public class DadosMesProduto {
 		this.clientesDistintos = clientesDistintos;
 	}
 	 
-	public String getComprasModo() {
-		return comprasModo;
+	public int getComprasModoP() {
+		return comprasModoP;
 	}
 
-	public void setComprasModo(String comprasModo) {
-		this.comprasModo = comprasModo;
+	public void setComprasModoP(int comprasModoP) {
+		this.comprasModoP = comprasModoP;
+	}
+
+	public int getComprasModoN() {
+		return comprasModoN;
+	}
+
+	public void setComprasModoN(int comprasModoN) {
+		this.comprasModoN = comprasModoN;
 	}
 
 	@Override
 	public String toString() {
 		return "DadosMesProduto [totalCompras=" + totalCompras + ", faturacao=" + formatter.format(faturacao) + ", clientesDistintos="
-				+ clientesDistintos + ", comprasModo=" + comprasModo+ "]";
+				+ clientesDistintos + ", comprasModoP=" + comprasModoP+ ", comprasModoN=" + comprasModoN+"]";
 	}
 	
 	

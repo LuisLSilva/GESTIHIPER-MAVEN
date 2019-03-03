@@ -48,12 +48,11 @@ public class Validador {
 			}
 			compra.setQuantidade(valQuantidade);
 			
-			String valPromo = ValidarPromo(lineSplitter[3]);
+			String valPromo = ValidarPromo(lineSplitter[3], compra);
 			if(valPromo == null){
 				comprasInvalidas.add(strCurrentLine);
 				return null;
 			}
-			compra.setPromo(valPromo);
 			
 			String valCliente = ValidarCliente(lineSplitter[4]);
 			if(valCliente == null){
@@ -127,16 +126,22 @@ public class Validador {
 		}	
 	}
 	
-	public String ValidarPromo(String string) {
+	public String ValidarPromo(String string, Compra compra) {
 
-		if(string.length()==1 && (string.equals("N") || string.equals("P"))){
-		
-			return string;                            
+		if(string.length()==1){
+			if(string.equals("P")){
+			  int promoP=1;
+			  compra.setModoP(promoP);
+			  return string;
+			  
+			}else if(string.equals("N")) {
+		      int promoN=1;
+		      compra.setModoN(promoN);
+		      return string;
+			}
+		}
 			
-		}else{
-			
-			return null;
-		}		
+		return null;
 	}
 
 	public String ValidarProduto(String produto) {

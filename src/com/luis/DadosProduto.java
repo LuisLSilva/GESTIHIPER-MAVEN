@@ -81,8 +81,10 @@ public class DadosProduto {
 		if (dadosMP == null) {
 			dadosMP = new DadosMesProduto();
 			dadosMP.setTotalCompras(compra.getQuantidade());
-			dadosMP.setFaturacao(compra.getPreco());
-			dadosMP.setComprasModo(compra.getPromo());
+			dadosMP.setFaturacao(compra.getPreco()*compra.getQuantidade());
+	        
+			dadosMP.setComprasModoP(compra.getModoP());
+		    dadosMP.setComprasModoN(compra.getModoN());
 			
 			dadosMP.getClientesDistintos().add(compra.getIdCliente());
 			
@@ -95,7 +97,7 @@ public class DadosProduto {
 		dadosMP.getClientesDistintos().add(compra.getIdCliente());
 		atualizaNumComprasMensal(compra.getMes(), dadosMP, compra);
 		atualizaFaturacaoMensal(compra.getMes(), dadosMP, compra);
-		
+		tipoCompra(compra, dadosMP);
 		//System.out.println(this.getMensal().toString());
 	}
 
@@ -118,6 +120,14 @@ public class DadosProduto {
 		return;
 	}
 	
+	private void tipoCompra(Compra compra, DadosMesProduto dadosMP) {
+		int compraTotalP= compra.getModoP()+dadosMP.getComprasModoP();
+		int compraTotalN= compra.getModoN()+dadosMP.getComprasModoP();
+		
+		dadosMP.setComprasModoP(compraTotalP);
+		dadosMP.setComprasModoN(compraTotalN);
+		
+	}
 	
 
 	public static <K, V> void printMapAA(Map<K, V> map) {
