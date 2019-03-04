@@ -1,4 +1,4 @@
-package com.luis;
+package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -50,7 +50,7 @@ public class Consulta {
 			    		quantidadeTotal=quantidadeTotal+ hipermercado.getListCompra().get(i).getQuantidade();
 			    	}
 		    	}
-		    	System.out.println("O mês:"+j+" quantidade:"+ quantidadeTotal);
+		    	System.out.println("O mï¿½s:"+j+" quantidade:"+ quantidadeTotal);
 		     	quantidadeTotal = 0;
 		    }
 	}
@@ -67,13 +67,13 @@ public class Consulta {
 		 		         totalMes = totalMes+hipermercado.getListCompra().get(i).getPreco() * hipermercado.getListCompra().get(i).getQuantidade();
 		 			}
 		 		}
-		 		System.out.println("O mês:"+j+" totalidade do mes:"+totalMes+" euros");
+		 		System.out.println("O mï¿½s:"+j+" totalidade do mes:"+totalMes+" euros");
 		 		double temp = totalMes;
 		        totalMes=0;
 		        totalGlobal+=temp;
 		 	}
 		 	
-		 	System.out.println("\nA faturação Global: "+totalGlobal+" euros");
+		 	System.out.println("\nA faturaï¿½ï¿½o Global: "+totalGlobal+" euros");
 	}
 
 	//Query 03
@@ -98,7 +98,7 @@ public class Consulta {
 	//Query 04
 	public void comprasInvalidas() {
 	
-//		System.out.println("Existem " +validador.getComprasInvalidas.size()+ " compras inválidas\nConsulte o ficheiro ComprasInvalidas.txt");
+//		System.out.println("Existem " +validador.getComprasInvalidas.size()+ " compras invï¿½lidas\nConsulte o ficheiro ComprasInvalidas.txt");
 //		
 //			 try {
 //				 BufferedWriter objWriter = new BufferedWriter(new FileWriter("ComprasInvalidas.txt"));
@@ -140,7 +140,7 @@ public class Consulta {
 		for (int i=0; i<codProdutoNC.size(); i++){
 			System.out.println(codProdutoNC.get(i));
 		}
-		System.out.println("\n"+"Existem "+codProdutoNC.size()+" produtos que não foram vendidos");
+		System.out.println("\n"+"Existem "+codProdutoNC.size()+" produtos que nï¿½o foram vendidos");
 	}
 
 	//Query 02
@@ -172,7 +172,7 @@ public class Consulta {
 		for (int i=0; i<codClienteNC.size(); i++){
 			System.out.println(codClienteNC.get(i));
 		}
-		System.out.println("\n"+"Existem "+codClienteNC.size()+" compraram mas não lista no Ficheiro de Clientes");
+		System.out.println("\n"+"Existem "+codClienteNC.size()+" compraram mas nï¿½o lista no Ficheiro de Clientes");
 	}
 	
 	//Query 03
@@ -180,7 +180,7 @@ public class Consulta {
 
 		int j;
 
-		System.out.print("\nEscolha um mês de 1 a 12:");
+		System.out.print("\nEscolha um mï¿½s de 1 a 12:");
 		j = scanner.nextInt();
 		if (j > 0 && j < 13) {
 			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
@@ -189,10 +189,10 @@ public class Consulta {
 					quantidadeTotal = quantidadeTotal + hipermercado.getListCompra().get(i).getQuantidade();
 				}
 			}
-			System.out.println("\nNo mês " + j + " o número de compras feitas foram: " + quantidadeTotal);
+			System.out.println("\nNo mï¿½s " + j + " o nï¿½mero de compras feitas foram: " + quantidadeTotal);
 			quantidadeTotal = 0;
 		} else {
-			System.out.println("O número do mês inserido, deverá ser de 1 a 12");
+			System.out.println("O nï¿½mero do mï¿½s inserido, deverï¿½ ser de 1 a 12");
 		}
 		
 		System.out.println("O total de clientes que realizaram compras: " + comprasClientesDistintos.size());		
@@ -208,7 +208,7 @@ public class Consulta {
 	    int quantidadeTotal=0;
 	    
 	    
-	    System.out.print("\nIntroduza um código de cliente:");
+	    System.out.print("\nIntroduza um cï¿½digo de cliente:");
 	    s=scanner.nextLine();	
 	    
 	    System.out.println("\nDados do cliente: "+s+"\n");
@@ -224,12 +224,12 @@ public class Consulta {
 							comprasProdutosDistintos.add(hipermercado.getListCompra().get(i).getIdProduto());	
 						
 			//			}else{
-			//			    System.out.println("O código de cliente não se encontra no registo da compra.");
+			//			    System.out.println("O cï¿½digo de cliente nï¿½o se encontra no registo da compra.");
 			//			    return;
 						}
 					}
 				}	
-	    		System.out.println("No Mes: "+j+" tem um número total de compras:"+quantidadeTotal+ " com os gastos de: "+ gastos+" euros" );
+	    		System.out.println("No Mes: "+j+" tem um nï¿½mero total de compras:"+quantidadeTotal+ " com os gastos de: "+ gastos+" euros" );
 	    		temp=gastos;
 	    		gastos=0;
 	    		gastosTotal+=temp;
@@ -237,9 +237,9 @@ public class Consulta {
 	    	} 
 	    	
 	    	System.out.println("\nO cliente "+s+" comprou "+comprasProdutosDistintos.size()+" produto(s) distinto(s)");
-	    	System.out.println("O cliente "+s+ " tem uma faturação anual: "+gastosTotal+" euros");
+	    	System.out.println("O cliente "+s+ " tem uma faturaï¿½ï¿½o anual: "+gastosTotal+" euros");
 	    }else{
-	    	System.out.println("O código de cliente que inseriu não é válido!");
+	    	System.out.println("O cï¿½digo de cliente que inseriu nï¿½o ï¿½ vï¿½lido!");
 	    }
 	}
 	
@@ -252,7 +252,7 @@ public class Consulta {
 		double temp = 0;
 		int quantidadeTotal = 0;
 
-		System.out.print("\nIntroduza um código do produto:");
+		System.out.print("\nIntroduza um cï¿½digo do produto:");
 		s = scanner.nextLine();
 
 		System.out.println("\nDados do produto: " + s + "\n");
@@ -268,12 +268,12 @@ public class Consulta {
 							comprasClientesDistintos.add(hipermercado.getListCompra().get(i).getIdCliente());
 
 		//				} else {
-		//					System.out.println("O código de produto não se encontra no registo da compra.");
+		//					System.out.println("O cï¿½digo de produto nï¿½o se encontra no registo da compra.");
 		//					return;
 						}
 					}
 				}
-				System.out.println("No Mes: "+j+" tem um número total de compras:"+quantidadeTotal+ " com os gastos de: "+ gastos+" euros" );
+				System.out.println("No Mes: "+j+" tem um nï¿½mero total de compras:"+quantidadeTotal+ " com os gastos de: "+ gastos+" euros" );
 	    		temp=gastos;
 	    		gastos=0;
 	    		gastosTotal+=temp;
@@ -281,9 +281,9 @@ public class Consulta {
 			}
 
 			System.out.println("\nO produto "+s+" foi comprado "+comprasClientesDistintos.size()+" cliente(s) distinto(s)");
-	    	System.out.println("O produto "+s+ " tem uma faturação anual: "+gastosTotal+" euros");
+	    	System.out.println("O produto "+s+ " tem uma faturaï¿½ï¿½o anual: "+gastosTotal+" euros");
 	//	} else {
-			System.out.println("O código do produto que inseriu não é válido!");
+			System.out.println("O cï¿½digo do produto que inseriu nï¿½o ï¿½ vï¿½lido!");
 	//	}
 	}
 	
@@ -304,7 +304,7 @@ public class Consulta {
 //		double tempP = 0;
 //		double tempN = 0;
 //	    
-//		System.out.print("\nIntroduza um código do produto:");
+//		System.out.print("\nIntroduza um cï¿½digo do produto:");
 //		s = scanner.nextLine();
 //
 //		System.out.println("\nDados do produto: " + s + "\n");
@@ -328,8 +328,8 @@ public class Consulta {
 //						}
 //					}
 //				}
-//				System.out.println("No Mes: " + j + " tem um número total de compras sem promoções: " + countN
-//						+ " com promoção: " + countP);
+//				System.out.println("No Mes: " + j + " tem um nï¿½mero total de compras sem promoï¿½ï¿½es: " + countN
+//						+ " com promoï¿½ï¿½o: " + countP);
 //				tempN = gastosN;
 //				gastosTotalN += tempN;
 //				countTempN = countN;
@@ -347,12 +347,12 @@ public class Consulta {
 //			}
 //
 //			System.out.println("\nO produto " + s + " durante o ano esteve " + countTotalN
-//					+ " sem promoção e teve uma faturação anual de: " + gastosTotalN + " euros");
+//					+ " sem promoï¿½ï¿½o e teve uma faturaï¿½ï¿½o anual de: " + gastosTotalN + " euros");
 //			System.out.println("O produto " + s + " durante o ano esteve " + countTotalP
-//					+ " em promoção e teve uma faturação anual de: " + gastosTotalP + " euros");
+//					+ " em promoï¿½ï¿½o e teve uma faturaï¿½ï¿½o anual de: " + gastosTotalP + " euros");
 //
 //	//	} else {
-//			System.out.println("O código do produto que inseriu não é válido!");
+//			System.out.println("O cï¿½digo do produto que inseriu nï¿½o ï¿½ vï¿½lido!");
 //	//	}
 	}	
 	
@@ -361,7 +361,7 @@ public class Consulta {
 
 		String s;
 
-		System.out.print("\nIntroduza um código de cliente:");
+		System.out.print("\nIntroduza um cï¿½digo de cliente:");
 		s = scanner.nextLine();
 
 		System.out.println("\nDados do cliente: " + s + "\n");
@@ -378,7 +378,7 @@ public class Consulta {
 			printMapPQ(sortedMap);
 
 		} else {
-			System.out.println("O código de cliente que inseriu não é válido!");
+			System.out.println("O cï¿½digo de cliente que inseriu nï¿½o ï¿½ vï¿½lido!");
 		}
 
 	}
@@ -409,7 +409,7 @@ public class Consulta {
 	
 					
 		} else {
-			System.out.println("A quantidade que inseriu é inválida!");
+			System.out.println("A quantidade que inseriu ï¿½ invï¿½lida!");
 		}
 	}
 	
@@ -450,7 +450,7 @@ public class Consulta {
 		
 		String s;
 
-		System.out.print("\nIntroduza um código do produto:");
+		System.out.print("\nIntroduza um cï¿½digo do produto:");
 		s = scanner.nextLine();
 
 		System.out.println("\nDados do produto: " + s + "\n");
@@ -470,11 +470,11 @@ public class Consulta {
 			printMapNested(a);
 
 	//	} else {
-			System.out.println("O código do produto que inseriu não é válido!");
+			System.out.println("O cï¿½digo do produto que inseriu nï¿½o ï¿½ vï¿½lido!");
 	//	}
 	}
 		
-		//Ordena por valor descendente, o conteúdo do HashMap
+		//Ordena por valor descendente, o conteï¿½do do HashMap
 		public static Map<String, Integer> sortByValue(Map<String , Integer> unsortMap){
 			
 			List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(unsortMap.entrySet());

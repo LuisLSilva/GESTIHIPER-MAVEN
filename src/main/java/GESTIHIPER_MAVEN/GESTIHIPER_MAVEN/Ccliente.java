@@ -1,4 +1,4 @@
-package com.luis;
+package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 import java.util.HashMap;
 import java.util.Map;

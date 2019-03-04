@@ -1,4 +1,4 @@
-package com.luis;
+package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class DadosProduto {
 		super();
 		this.mensal = new HashMap<Integer,DadosMesProduto>();
 		this.codCliente = new HashMap<String, DadosClienteProduto>();
-		this.clientesDistintos = new HashSet<>();
+		this.clientesDistintos = new HashSet<String>();
 		
 	}
 		
@@ -140,7 +140,7 @@ public class DadosProduto {
 	
 	@Override
 	public String toString() {
-		PrettyPrintingMap<Integer, DadosMesProduto> s = new PrettyPrintingMap<>(this.getMensal());
+		PrettyPrintingMap<Integer, DadosMesProduto> s = new PrettyPrintingMap<Integer, DadosMesProduto>(this.getMensal());
 		return s.toString();
 	}
 	

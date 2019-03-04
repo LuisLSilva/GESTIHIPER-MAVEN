@@ -1,4 +1,4 @@
-package com.luis;
+package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,7 +33,7 @@ public class Cproduto {
 
 	
 	public void addCompraProduto(Compra compra) {
-		//Caso já exista 'values' no HashMap de Cprodutos
+		//Caso jï¿½ exista 'values' no HashMap de Cprodutos
 		DadosProduto dadosP = gavetaProdutos.get(compra.getIdProduto());
 
 		if(dadosP == null) {
@@ -49,7 +49,7 @@ public class Cproduto {
 			return;
 		}
 		
-		//Já existem dados neste ponto
+		//Jï¿½ existem dados neste ponto
 		dadosP.addCompraMensal(compra);
 		dadosP.getClientesDistintos().add(compra.getIdCliente());
 		 

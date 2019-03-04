@@ -1,4 +1,4 @@
-package com.luis;
+package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 public class Contabilidade {
 	private Cproduto produto;

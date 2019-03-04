@@ -1,4 +1,4 @@
-package com.luis;
+package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +71,7 @@ public class Validador {
 		    return compra;
 			
 		} else {
-			System.out.println("A compra "+strCurrentLine+ "é inválida");
+			System.out.println("A compra "+strCurrentLine+ "ï¿½ invï¿½lida");
 			System.out.println(" "); 
 			return null;
 		}
