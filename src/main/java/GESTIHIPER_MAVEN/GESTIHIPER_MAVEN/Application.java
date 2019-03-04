@@ -212,7 +212,8 @@ public class Application {
 						
 						case 5:	
 							System.out.println("Foi escolhida a query 05 - Dado um código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado, por quantos clientes diferentesD e o total faturado.");
-							consultaT.codigoProdutoMesaMes();
+//							consultaT.codigoProdutoMesaMes();
+							hipermercado.codigoProdutoMesaMes();
 							break;
 							
 						case 6:

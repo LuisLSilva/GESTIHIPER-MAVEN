@@ -1,6 +1,7 @@
 package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -101,7 +102,7 @@ public class Hipermercado {
 		for(Entry<String, DadosProduto> entry: tMap.entrySet()){
 			if(entry.getValue()== null){
 				System.out.println("ID do Produto: " + entry.getKey());
-				
+				cnt++;
 			}	
 		}
 		System.out.println("\nO número total de produtos nunca comprados: "+cnt);
@@ -122,37 +123,67 @@ public class Hipermercado {
 		System.out.println("\nO número de clientes que nunca compraram: "+cnt);
 	}
 	
-	//Query 3 - Consulta Interactiva
+	// Query 3 - Consulta Interactiva
 	public void numeroComprasEclientesPorMes() {
-		
+
 		System.out.print("Insira um mês de 1 a 12: ");
 		Scanner sc = new Scanner(System.in);
-		int mes=sc.nextInt();
-		
-		for(Entry<String, DadosProduto> entry: catalogoProdutos.getGavetaProdutos().entrySet()){
-				if(entry.getValue()!=null){
-					if(entry.getValue().getMensal().containsKey(mes)){
-						System.out.println("Produto comprado: " +entry.getKey()+"  Quantidade: "+entry.getValue().getNumeroCompras() + " Clientes Distintos: "+ entry.getValue().getClientesDistintos());
+		int mes = sc.nextInt();
+
+		for (Entry<String, DadosProduto> entry : getCatalogoProdutos().getGavetaProdutos().entrySet()) {
+			if (entry.getValue() != null) {
+				if (entry.getValue().getMensal().containsKey(mes)) {
+					System.out.println("Produto comprado: " + entry.getKey() + ", Quantidade: "
+							+ entry.getValue().getMensal().get(mes).getTotalCompras() + ", Clientes Distintos: "
+							+ entry.getValue().getMensal().get(mes).getClientesDistintos());
+				}
+			}
+		}
+	}
+	
+	// Query 5 - Consulta Interactiva
+	public void codigoProdutoMesaMes() {
+
+		System.out.print("Introduza um código de um produto existente:");
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+
+		for (Entry<String, DadosProduto> entry : getCatalogoProdutos().getGavetaProdutos().entrySet()) {
+			if (entry.getValue() != null) {
+				if (entry.getValue().getIdProduto().equals(input)) {
+					for (Entry<Integer, DadosMesProduto> entry2 : entry.getValue().getMensal().entrySet()) {
+						System.out.println("No mês: " + entry2.getKey() + ", Total Número de Compras: "
+								+ entry2.getValue().getTotalCompras() + ",  Clientes Distintos: "
+								+ entry2.getValue().getClientesDistintos() + ", Total Faturado: "
+								+ entry2.getValue().getFaturacao());
 					}
 				}
+			}
 		}
-		
 	}
-
+	
 	//Query 6 - Consulta Interactiva
 	public void codigoProdutoNP() {
 		
 		System.out.print("Introduza um código de um produto existente:");
 		Scanner sc = new Scanner(System.in);
-		String input=sc.nextLine();
-		
-			for(Entry<String, DadosProduto> entryMes: catalogoProdutos.getGavetaProdutos().entrySet()){
-				if(entryMes.equals(input)){
-					System.out.println(entryMes.getKey() + "   "+ entryMes.getValue().getMensal().entrySet());
+		String input = sc.nextLine();
+
+		for (Entry<String, DadosProduto> entry : getCatalogoProdutos().getGavetaProdutos().entrySet()) {
+			if (entry.getValue() != null) {
+				if (entry.getValue().getIdProduto().equals(input)) {
+					for (Entry<Integer, DadosMesProduto> entry2 : entry.getValue().getMensal().entrySet()) {
+						System.out.println("No mês: " + entry2.getKey() + ", Total Número de Compras em modo Promoção: "
+								+ entry2.getValue().getComprasModoP() + ", Total Número de Compras em Modo Normal: "
+								+ entry2.getValue().getComprasModoN() + ", Total Faturado: "
+								+ entry2.getValue().getFaturacao());
+					}
 				}
-					
 			}
+		}
 	}
+
+
 	
 	
 	
