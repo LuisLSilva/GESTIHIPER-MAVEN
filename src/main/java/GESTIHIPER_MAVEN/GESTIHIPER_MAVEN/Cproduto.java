@@ -33,7 +33,7 @@ public class Cproduto {
 
 	
 	public void addCompraProduto(Compra compra) {
-		//Caso j� exista 'values' no HashMap de Cprodutos
+		//Caso já exista 'values' no HashMap de Cproduto
 		DadosProduto dadosP = gavetaProdutos.get(compra.getIdProduto());
 
 		if(dadosP == null) {
@@ -49,7 +49,7 @@ public class Cproduto {
 			return;
 		}
 		
-		//J� existem dados neste ponto
+		//Já existem dados neste ponto
 		dadosP.addCompraMensal(compra);
 		dadosP.getClientesDistintos().add(compra.getIdCliente());
 		 

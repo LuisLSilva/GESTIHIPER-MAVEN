@@ -181,50 +181,43 @@ public class Validador {
 		}
 	}
 	
-	public Ccliente validacaoCliente(String strCurrentLine){
+	public boolean validacaoCliente(String strCurrentLine){
 		
-		Ccliente ccliente = new Ccliente();
-
-		if (strCurrentLine.length() == clientSize) {
-
-			String sub1 = strCurrentLine.substring(0, 2);
-			String sub2 = strCurrentLine.substring(2);
-
-			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-				
-				ccliente.setIdCliente(strCurrentLine);
-				return ccliente;
-
-			} else {
-			
-				return null;
-			}
-		} else {
-
-			return null;
+		if(strCurrentLine.length() != clientSize){
+			return false;
 		}
+		
+		String sub1 = strCurrentLine.substring(0, 2);
+		String sub2 = strCurrentLine.substring(2);
+		
+		if (!sub1.matches("[A-Z]+")){
+			return false;
+		}
+		if (!sub2.matches("[0-9]+")){ 
+			return false;
+		}
+		
+		return true;	
 	}
 	
 	public boolean validacaoProduto(String strCurrentLine){
 				
-		if (strCurrentLine.length() != productSize)
+		if (strCurrentLine.length() != productSize){
 			return false;
-		
+		}
 		String sub1 = strCurrentLine.substring(0, 2);
 		String sub2 = strCurrentLine.substring(2);
-		if (!sub1.matches("[A-Z]+"))
-			return false;
 		
-		if (!sub2.matches("[0-9]+")) 
+		if (!sub1.matches("[A-Z]+")){
 			return false;
+		}
 		
-		return true;
-			
+		if (!sub2.matches("[0-9]+")){ 
+			return false;
+		}
+		
+		return true;	
 	}
-	
-
-	
-	
 }
 	
 	

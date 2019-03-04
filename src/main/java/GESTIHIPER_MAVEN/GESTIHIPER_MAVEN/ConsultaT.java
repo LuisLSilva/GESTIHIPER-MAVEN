@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 
-public class Consulta {
+public class ConsultaT {
 
 	private Hipermercado hipermercado;
 	private Validador validador;
@@ -32,8 +32,7 @@ public class Consulta {
 	private Scanner scanner = new Scanner(System.in);
 	
 	
-	
-	public Consulta(Hipermercado hipermercado, Validador validador) {
+	public ConsultaT(Hipermercado hipermercado, Validador validador) {
 		super();
 		this.hipermercado = hipermercado;
 		this.validador = validador;
@@ -199,49 +198,49 @@ public class Consulta {
 	}
 	    
 	//Query 04
-	public void codigoClienteParaMes(){    
+//	public void codigoClienteParaMes(){    
 	    		
-	    String s;
-	    double gastos=0;
-	    double gastosTotal=0;
-	    double temp=0;
-	    int quantidadeTotal=0;
-	    
-	    
-	    System.out.print("\nIntroduza um c�digo de cliente:");
-	    s=scanner.nextLine();	
-	    
-	    System.out.println("\nDados do cliente: "+s+"\n");
-	    
-	    if(validador.validacaoCliente(s)!=null){
-	    	
-	    	for(int j=1; j<13; j++){
-	    		for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
-					if (j == hipermercado.getListCompra().get(i).getMes()) {
-						if(s.equals(hipermercado.getListCompra().get(i).getIdCliente())){
-							quantidadeTotal += hipermercado.getListCompra().get(i).getQuantidade();
-							gastos = gastos+hipermercado.getListCompra().get(i).getPreco() * hipermercado.getListCompra().get(i).getQuantidade();
-							comprasProdutosDistintos.add(hipermercado.getListCompra().get(i).getIdProduto());	
-						
-			//			}else{
-			//			    System.out.println("O c�digo de cliente n�o se encontra no registo da compra.");
-			//			    return;
-						}
-					}
-				}	
-	    		System.out.println("No Mes: "+j+" tem um n�mero total de compras:"+quantidadeTotal+ " com os gastos de: "+ gastos+" euros" );
-	    		temp=gastos;
-	    		gastos=0;
-	    		gastosTotal+=temp;
-	    		quantidadeTotal=0;
-	    	} 
-	    	
-	    	System.out.println("\nO cliente "+s+" comprou "+comprasProdutosDistintos.size()+" produto(s) distinto(s)");
-	    	System.out.println("O cliente "+s+ " tem uma fatura��o anual: "+gastosTotal+" euros");
-	    }else{
-	    	System.out.println("O c�digo de cliente que inseriu n�o � v�lido!");
-	    }
-	}
+//	    String s;
+//	    double gastos=0;
+//	    double gastosTotal=0;
+//	    double temp=0;
+//	    int quantidadeTotal=0;
+//	    
+//	    
+//	    System.out.print("\nIntroduza um c�digo de cliente:");
+//	    s=scanner.nextLine();	
+//	    
+//	    System.out.println("\nDados do cliente: "+s+"\n");
+//	    
+//	    if(validador.validacaoCliente(s)!=null){
+//	    	
+//	    	for(int j=1; j<13; j++){
+//	    		for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+//					if (j == hipermercado.getListCompra().get(i).getMes()) {
+//						if(s.equals(hipermercado.getListCompra().get(i).getIdCliente())){
+//							quantidadeTotal += hipermercado.getListCompra().get(i).getQuantidade();
+//							gastos = gastos+hipermercado.getListCompra().get(i).getPreco() * hipermercado.getListCompra().get(i).getQuantidade();
+//							comprasProdutosDistintos.add(hipermercado.getListCompra().get(i).getIdProduto());	
+//						
+//			//			}else{
+//			//			    System.out.println("O c�digo de cliente n�o se encontra no registo da compra.");
+//			//			    return;
+//						}
+//					}
+//				}	
+//	    		System.out.println("No Mes: "+j+" tem um n�mero total de compras:"+quantidadeTotal+ " com os gastos de: "+ gastos+" euros" );
+//	    		temp=gastos;
+//	    		gastos=0;
+//	    		gastosTotal+=temp;
+//	    		quantidadeTotal=0;
+//	    	} 
+//	    	
+//	    	System.out.println("\nO cliente "+s+" comprou "+comprasProdutosDistintos.size()+" produto(s) distinto(s)");
+//	    	System.out.println("O cliente "+s+ " tem uma fatura��o anual: "+gastosTotal+" euros");
+//	    }else{
+//	    	System.out.println("O c�digo de cliente que inseriu n�o � v�lido!");
+//	    }
+//	}
 	
 	//Query 05
 	public void codigoProdutoMesaMes(){
@@ -357,32 +356,32 @@ public class Consulta {
 	}	
 	
 	//Query 07
-	public void clienteListaProdutos(){
-
-		String s;
-
-		System.out.print("\nIntroduza um c�digo de cliente:");
-		s = scanner.nextLine();
-
-		System.out.println("\nDados do cliente: " + s + "\n");
-
-		if (validador.validacaoCliente(s) != null) {
-
-			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
-				if (s.equals(hipermercado.getListCompra().get(i).getIdCliente())) {
-					unsortMap.put(hipermercado.getListCompra().get(i).getIdProduto(),hipermercado.getListCompra().get(i).getQuantidade());
-				}
-			}
-
-			Map<String, Integer> sortedMap = sortByValue(unsortMap);
-			printMapPQ(sortedMap);
-
-		} else {
-			System.out.println("O c�digo de cliente que inseriu n�o � v�lido!");
-		}
-
-	}
-		
+//	public void clienteListaProdutos(){
+//
+//		String s;
+//
+//		System.out.print("\nIntroduza um c�digo de cliente:");
+//		s = scanner.nextLine();
+//
+//		System.out.println("\nDados do cliente: " + s + "\n");
+//
+//		if (validador.validacaoCliente(s) != null) {
+//
+//			for (int i = 0; i < hipermercado.getListCompra().size(); i++) {
+//				if (s.equals(hipermercado.getListCompra().get(i).getIdCliente())) {
+//					unsortMap.put(hipermercado.getListCompra().get(i).getIdProduto(),hipermercado.getListCompra().get(i).getQuantidade());
+//				}
+//			}
+//
+//			Map<String, Integer> sortedMap = sortByValue(unsortMap);
+//			printMapPQ(sortedMap);
+//
+//		} else {
+//			System.out.println("O c�digo de cliente que inseriu n�o � v�lido!");
+//		}
+//
+//	}
+//		
 	//Query 08 - 
 	public void conjuntoXprodutos() {
 

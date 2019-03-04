@@ -16,6 +16,8 @@ public class DadosMesProduto {
 	public DadosMesProduto() {
 		super();
 		clientesDistintos = new HashSet<String>();
+		formatter = new DecimalFormat("#0.00");
+		
 	}
 	
 	public int getTotalCompras() {

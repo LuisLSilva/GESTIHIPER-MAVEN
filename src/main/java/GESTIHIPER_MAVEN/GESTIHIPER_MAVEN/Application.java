@@ -14,10 +14,12 @@ public class Application {
 		int choice=1;
 		int queryEst;
 		int queryInt;
+		
 		Validador validador = new Validador();
 		Hipermercado hipermercado = new Hipermercado();
-		Consulta consulta = new Consulta(hipermercado, validador);
+		ConsultaT consultaT = new ConsultaT(hipermercado, validador); //Queries feitas á trolha
 
+		Compra compra = null;
 	   		
 		List<Hipermercado> arraylist = new ArrayList<Hipermercado>();
 		Scanner sc = new Scanner(System.in);
@@ -26,9 +28,9 @@ public class Application {
 				
 		do {
 			System.out.println("");
-			System.out.print("Escolha uma op��o:");
+			System.out.print("Escolha uma opção:");
 			
-	//		choice = sc.nextInt();
+//			choice = sc.nextInt();
 			
 			System.out.println("");
 
@@ -37,25 +39,23 @@ public class Application {
 			switch (choice) {
 
 			case 1:
-				System.out.println("Foi escolhida a op��o 1: \n");
-		
+				System.out.println("Foi escolhida a opção 1: \n");
+
 				try {
 					BufferedReader objReader = new BufferedReader(new FileReader("FichClientes.txt"));
 					while ((strCurrentLine = objReader.readLine()) != null) {
-						if(validador.validacaoCliente(strCurrentLine)!=null){
-							Ccliente ccliente = validador.validacaoCliente(strCurrentLine);
-							ccliente.put(ccliente);
-							hipermercado.addCcliente(ccliente);
-							hipermercado.setCatalogoClientes(ccliente);
+						if (validador.validacaoCliente(strCurrentLine)) {
+							hipermercado.getCatalogoClientes().getGavetaClientes().put(strCurrentLine, null);
 						}
 					}
+//					Ccliente.printMapAA(hipermercado.getCatalogoClientes().getGavetaClientes());
 					objReader.close();
 
-		//			arraylist.add(hipermercado);
-					
-					System.out.println("O Ficheiro de clientes foi carregado.");
+//					 arraylist.add(hipermercado);
+
+					System.out.println("\nO Ficheiro de clientes foi carregado.");
 					choice++;
-					
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -63,7 +63,7 @@ public class Application {
 				break;
 
 			case 2:
-				System.out.println("Foi escolhida a op��o 2: \n");
+				System.out.println("Foi escolhida a opção 2: \n");
 		
 				try {
 					BufferedReader objReader = new BufferedReader(new FileReader("FichProdutos.txt"));
@@ -73,10 +73,10 @@ public class Application {
 							hipermercado.getCatalogoProdutos().getGavetaProdutos().put(strCurrentLine, null);	
 						}
 					}
-					Cproduto.printMapAA(hipermercado.getCatalogoProdutos().getGavetaProdutos());
+//					Cproduto.printMapAA(hipermercado.getCatalogoProdutos().getGavetaProdutos());
 					objReader.close();
 
-					// arraylist.add(hipermercado);
+//					 arraylist.add(hipermercado);
 
 					System.out.println("O Ficheiro dos produtos foi carregado.");
 					choice++;
@@ -87,14 +87,15 @@ public class Application {
 
 				break;
 			case 3:
-				System.out.println("Foi escolhida a op��o 3: \n");
+				System.out.println("Foi escolhida a opção 3: \n");
 	
 				try {
 					BufferedReader objReader = new BufferedReader(new FileReader("Compras.txt"));
 					while ((strCurrentLine = objReader.readLine()) != null) {
 
 						if (validador.validacao(strCurrentLine) != null) {
-							Compra compra = validador.validacao(strCurrentLine);
+							compra = validador.validacao(strCurrentLine);
+							
 							if(compra == null){
 								continue;
 							}
@@ -103,28 +104,27 @@ public class Application {
 						}
 					}
 					System.out.print("\n");
-					Cproduto.printMapAA(hipermercado.getCatalogoProdutos().getGavetaProdutos());
-			//		System.out.println(new PrettyPrintingMap<>(hipermercado.getCatalogoProdutos().getGavetaProdutos()));
+//					Cproduto.printMapAA(hipermercado.getCatalogoProdutos().getGavetaProdutos());
+//					System.out.println(new PrettyPrintingMap<>(hipermercado.getCatalogoProdutos().getGavetaProdutos()));
 
 					objReader.close();
-		//			arraylist.add(hipermercado);
+//					arraylist.add(hipermercado);
 					
 					System.out.println("O Ficheiro das compras foi carregado.");
 					choice=5;
-		
+							
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
 				break;
 				
 			case 4:
-				System.out.println("Foi escolhida a op��o 4:Queries \n");
+				System.out.println("Foi escolhida a opção 4:Queries \n");
 				
-				System.out.println("Query 01 - N�mero total de compras por m�s.");
-				System.out.println("Query 02 - Factura��o total por m�s e o total Global.");
-				System.out.println("Query 03 - N�mero distintos clientes que compraram em cada m�s.");
-				System.out.println("Query 04 - Total de registos de compras inv�lidos.");
+				System.out.println("Query 01 - Número total de compras por mês.");
+				System.out.println("Query 02 - Facturação total por mês e o total Global.");
+				System.out.println("Query 03 - Número distintos clientes que compraram em cada mês.");
+				System.out.println("Query 04 - Total de registos de compras inválidos.");
 				
 				
 				do {
@@ -138,117 +138,119 @@ public class Application {
 					switch (queryEst) {
 
 					case 1:
-						System.out.println("Foi escolhida a query 01 - N�mero Total de Compras por m�s: \n");
-						consulta.totalComprasMes();
+						System.out.println("Foi escolhida a query 01 - Número total de compras por mês: \n");
+						consultaT.totalComprasMes();
+						
 						break;
 
 					case 2:
-						System.out.println("Foi escolhida a query 02 - Valor total das compras/vendas e total global\n");	
-						consulta.totalGlobal();
+						System.out.println("Foi escolhida a query 02 - Facturação total por mês e o total Global: \n");	
+						consultaT.totalGlobal();
 						break;
 						
 					case 3:
-						System.out.println("Foi escolhida a query 03 - N�mero distintos de clientes que compraram cada m�s\n");
-						consulta.clientesDistintos();
+						System.out.println("Foi escolhida a query 03 - Número distintos clientes que compraram em cada mês: \n");
+						consultaT.clientesDistintos();
 						break;
 					
 					case 4:	
-						System.out.println("Foi escolhida a query 04 - Total de registos de compras inv�lidas\n");
-						consulta.comprasInvalidas();
+						System.out.println("Foi escolhida a query 04 - Total de registos de compras inválidos \n");
+						consultaT.comprasInvalidas();
 						break;
 						
 					
 					default:
-						System.out.println("\nEscolha uma query de 1 a 15!");
+						System.out.println("\nEscolha uma query de 1 a 4!");
 					}
 				}while(queryEst<5);	
 							
 				break;
 				
 			case 5:	
-				
-				System.out.println("Query 01 - Lista ordenada com os c�digos dos produtos nunca comprados e respetivo total.");
-				System.out.println("Query 02 - Lista Ordenada com os c�digos dos clientes que nunca compraram e seu total.");
-				System.out.println("Query 03 - Dado um m�s V�lido, � determinado o n�mero total de compras e o total de clientes distintos que as realizaram.");
-				System.out.println("Query 04 - Dado um c�digo de cliente, � determinado, para cada m�s, quantas compras fez, quantos produtos distintos comprou e quanto gastou. � apresentado tamb�m o total anual faturado ao cliente.");
-				System.out.println("Query 05 - Dado um c�digo de um produto existente, � determinado, m�s a m�s, quantas vezes foi comprado, por quantos clientes diferentes e o total faturado.");
-				System.out.println("Query 06 - Dado o c�digo de um produto existente, � determinado, m�s a m�s, quantas vezes foi comprado em modo N e em modo P e respetivas factura��es.");
-				System.out.println("Query 07 - Dado o c�digo de um cliente, � determinado a lista de c�digos que mais comprou, e quantos, ordenada por ordem descrescente de quantidade e para quantidades iguais, por ordem alfab�tica dos c�digos");
-				System.out.println("Query 08 - � determinado o conjunto dos produtos mais vendidos em todo o ano, indicando o n�mero total de distintos clientes que o compraram.");
-				System.out.println("Query 09 - � determinado os clientes que compraram um maior n�mero de diferentes produtos indicando quantos.");
-				System.out.println("Query 10 - Dado o c�digo de um produto, � determinado o conjunto dos X clientes que mais o compraram e qual o valor gasto."); 
+				System.out.println("Consultas Interactivas: ");
+				System.out.println("Query 01 - Lista ordenada com os códigos dos produtos nunca comprados e respetivo total.");
+				System.out.println("Query 02 - Lista Ordenada com os códigos dos clientes que nunca compraram e seu total.");
+				System.out.println("Query 03 - Dado um mês válido, é determinado o número total de compras e o total de clientes distintos que as realizaram.");
+				System.out.println("Query 04 - Dado um código de cliente, é determinado, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou. É apresentado também o total anual faturado ao cliente.");
+				System.out.println("Query 05 - Dado um código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado, por quantos clientes diferentesD e o total faturado.");
+				System.out.println("Query 06 - Dado o código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado em modo N e modo P e respectivas facturações.");
+				System.out.println("Query 07 - Dado o código de um cliente, é determinado a lista de códigos que mais comprou, e quantos, por ordem descrescente de quantidade e para quantidades iguais, por ordem alfabética dos códigos.");
+				System.out.println("Query 08 - É determinado o conjunto dos produtos mais vendidos em todo o ano, indicando o número total de distintos clientes que o compraram.");
+				System.out.println("Query 09 - É determinado os clientes que compraram um maior número de diferentes produtos indicando quantos.");
+				System.out.println("Query 10 - Dado o código de um produto, é determinado o conjunto dos X clientes que mais compraram e qual valor gasto."); 
 				
 				do {
 
 					System.out.print("\nEscolha uma query:");
-
 					queryInt = sc.nextInt();
-
 					System.out.println("");
 
 					switch (queryInt) {
 
 						case 1:
-							System.out.println("Foi escolhida a query 01 - Lista Ordenada com os c�digos dos produtos nunca comprados e o respectivo total\n");
-						    consulta.produtosNaoComprados();
+							System.out.println("Foi escolhida a query 01 - Lista Ordenada com os códigos dos produtos nunca comprados e o respectivo total\n");
+//						    consultaT.produtosNaoComprados();
+						    hipermercado.produtosNaoComprados();
 							break;
 							
 						case 2:
-							System.out.println("Foi escolhida a query 02 - Lista Ordenada com os c�digos dos clientes que nunca compraram e seu total\n");
-						    consulta.clientesNuncaCompraram();
+							System.out.println("Foi escolhida a query 02 - Lista Ordenada com os códigos dos clientes que nunca compraram e seu total\n");
+//						    consultaT.clientesNuncaCompraram();
+						    hipermercado.clientesNuncaCompraram();
 						    break;
 						
 						case 3:
-							System.out.println("Foi escolhida a query 03 - Dado um m�s V�lido, � determinado o n�mero total de compras e o total de clientes distintos que as realizaram.");
-							consulta.numeroComprasEclientesPorMes();
+							System.out.println("Foi escolhida a query 03 - Dado um mês válido, é determinado o número total de compras e o total de clientes distintos que as realizaram.");
+//							consultaT.numeroComprasEclientesPorMes();
+							hipermercado.numeroComprasEclientesPorMes();
 							break;
 						
 						case 4:
-							System.out.println("Foi escolhida a query 04 - Dado um c�digo de cliente, � determinado, para cada m�s, quantas compras fez, quantos produtos distintos comprou e quanto gastou. � apresentado tamb�m o total anual faturado ao cliente."); 
-							consulta.codigoClienteParaMes();
+							System.out.println("Foi escolhida a Query 04 - Dado um código de cliente, é determinado, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou. É apresentado também o total anual faturado ao cliente."); 
+//							consultaT.codigoClienteParaMes();
 							break;
 						
 						case 5:	
-							System.out.println("Foi escolhida a query 05 - Dado um c�digo de um produto existente, � determinado, m�s a m�s, quantas vezes foi comprado, por quantos clientes diferentes e o total faturado.");
-							consulta.codigoProdutoMesaMes();
+							System.out.println("Foi escolhida a query 05 - Dado um código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado, por quantos clientes diferentesD e o total faturado.");
+							consultaT.codigoProdutoMesaMes();
 							break;
 							
 						case 6:
-							System.out.println("Foi escolhida a query 06 - Dado o c�digo de um produto existente, � determinado, m�s a m�s, quantas vezes foi comprado em modo N e em modo P e respetivas factura��es.");
-							consulta.codigoProdutoNP();
+							System.out.println("Foi escolhida a query 06 - Dado o código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado em modo N e modo P e respectivas facturações.");
+							consultaT.codigoProdutoNP();
+							hipermercado.codigoProdutoNP();
 							break;
 						
-						
 						case 7:
-							System.out.println("Foi escolhida a query 07 - Dado o c�digo de um cliente, � determinado a lista de c�digos que mais comprou, e quantos, ordenada por ordem descrescente de quantidade e para quantidades iguais, por ordem alfab�tica dos c�digos");
-							consulta.clienteListaProdutos();
+							System.out.println("Foi escolhida a query 07 - Dado o código de um cliente, é determinado a lista de códigos que mais comprou, e quantos, por ordem descrescente de quantidade e para quantidades iguais, por ordem alfabética dos códigos.");
+//							consultaT.clienteListaProdutos();
 						    break;
 						
 						case 8:
-							System.out.println("Foi escolhida a query 08 - � determinado o conjunto dos produtos mais vendidos em todo o ano, indicando o n�mero total de distintos clientes que o compraram.");
-						    consulta.conjuntoXprodutos();
+							System.out.println("Foi escolhida a query 08 - É determinado o conjunto dos produtos mais vendidos em todo o ano, indicando o número total de distintos clientes que o compraram.");
+						    consultaT.conjuntoXprodutos();
 						    break;
 						    
 						case 9:
-							System.out.println("Foi escolhida a query 09 - � determinado os clientes que compraram um maior n�mero de diferentes produtos indicando quantos.");
-						    consulta.clientesDiferentesProdutos();
+							System.out.println("Foi escolhida a query 09 - É determinado os clientes que compraram um maior número de diferentes produtos indicando quantos.");
+						    consultaT.clientesDiferentesProdutos();
 						    break;
 						    
 						case 10:
-							System.out.println("Foi escolhida a query 10 - Dado o c�digo de um produto, � determinado o conjunto dos X clientes que mais o compraram e qual o valor gasto."); 
-						    consulta.produtoClientesQueMaisCompraram();
+							System.out.println("Foi escolhida a query 10 - Dado o código de um produto, é determinado o conjunto dos X clientes que mais compraram e qual valor gasto."); 
+						    consultaT.produtoClientesQueMaisCompraram();
 							break;
 						
 					}
 				} while (queryInt < 11);
 
 			case 6:	
-				System.out.println("Opera��o terminada");
+				System.out.println("Operação terminada");
 				sc.close();
 				System.exit(0);
 					
 			default:
-				System.out.println("N�o escolheu op��o nenhuma");
+				System.out.println("Não escolheu opção nenhuma.");
 			}
 
 		} while (choice < 10);

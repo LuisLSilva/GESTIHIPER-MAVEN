@@ -76,6 +76,8 @@ public class DadosProduto {
 
 	
 	public void addCompraMensal(Compra compra) {
+		
+		
 		DadosMesProduto dadosMP = mensal.get(compra.getMes());
 	
 		if (dadosMP == null) {
@@ -98,6 +100,8 @@ public class DadosProduto {
 		atualizaNumComprasMensal(compra.getMes(), dadosMP, compra);
 		atualizaFaturacaoMensal(compra.getMes(), dadosMP, compra);
 		tipoCompra(compra, dadosMP);
+		
+	
 		//System.out.println(this.getMensal().toString());
 	}
 
@@ -120,6 +124,7 @@ public class DadosProduto {
 		return;
 	}
 	
+
 	private void tipoCompra(Compra compra, DadosMesProduto dadosMP) {
 		int compraTotalP= compra.getModoP()+dadosMP.getComprasModoP();
 		int compraTotalN= compra.getModoN()+dadosMP.getComprasModoP();
@@ -129,15 +134,12 @@ public class DadosProduto {
 		
 	}
 	
-
 	public static <K, V> void printMapAA(Map<K, V> map) {
 		for (Map.Entry<K, V> entry : map.entrySet()) {
 				System.out.println("KEY: " + entry.getKey() + "   VALUE: " + entry.getValue());
 		}
 	}
-	
-
-	
+		
 	@Override
 	public String toString() {
 		PrettyPrintingMap<Integer, DadosMesProduto> s = new PrettyPrintingMap<Integer, DadosMesProduto>(this.getMensal());
