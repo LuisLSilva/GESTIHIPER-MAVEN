@@ -46,11 +46,18 @@ public class Ccliente {
 			dadosC = new DadosCliente();
 			dadosC.setNumeroCompras(compra.getQuantidade());
 			dadosC.setValorGasto(compra.getPreco()*compra.getQuantidade());
+			dadosC.setIdCliente(compra.getIdCliente());
+		
+			dadosC.addCompraMensal(compra);
 			
 			gavetaClientes.put(compra.getIdCliente(), dadosC);
 			return;
 		}
 			
+		//Já existem dados neste ponto
+		dadosC.addCompraMensal(compra);
+		dadosC.getProdutosDistintos().add(compra.getIdProduto());
+		
 		gavetaClientes.put(compra.getIdCliente(), dadosC);
 		
 //		dadosC.printMapAA(gavetaClientes);

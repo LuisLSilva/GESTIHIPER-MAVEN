@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class DadosProduto {
 	private Map <Integer, DadosMesProduto> mensal;
-	private Map <String, DadosClienteProduto> codCliente;
+	
 	private int numeroCompras;
 	private Set<String> clientesDistintos;
 	private double totalFaturado;
@@ -21,7 +21,6 @@ public class DadosProduto {
 	public DadosProduto() {
 		super();
 		this.mensal = new HashMap<Integer,DadosMesProduto>();
-		this.codCliente = new HashMap<String, DadosClienteProduto>();
 		this.clientesDistintos = new HashSet<String>();
 		
 	}
@@ -32,14 +31,6 @@ public class DadosProduto {
 
 	public void setMensal(Map<Integer, DadosMesProduto> mensal) {
 		this.mensal = mensal;
-	}
-
-	public Map<String, DadosClienteProduto> getCodCliente() {
-		return codCliente;
-	}
-
-	public void setCodCliente(Map<String, DadosClienteProduto> codCliente) {
-		this.codCliente = codCliente;
 	}
 
 	public int getNumeroCompras() {
@@ -74,12 +65,10 @@ public class DadosProduto {
 		this.idProduto = idProduto;
 	}
 
-	
 	public void addCompraMensal(Compra compra) {
 		
-		
 		DadosMesProduto dadosMP = mensal.get(compra.getMes());
-	
+
 		if (dadosMP == null) {
 			dadosMP = new DadosMesProduto();
 			dadosMP.setTotalCompras(compra.getQuantidade());

@@ -16,7 +16,7 @@ public class Application {
 		int queryInt;
 		
 		Validador validador = new Validador();
-		Hipermercado hipermercado = new Hipermercado();
+		Hipermercado hipermercado = new Hipermercado(validador);
 		ConsultaT consultaT = new ConsultaT(hipermercado, validador); //Queries feitas á trolha
 
 		Compra compra = null;
@@ -208,6 +208,7 @@ public class Application {
 						case 4:
 							System.out.println("Foi escolhida a Query 04 - Dado um código de cliente, é determinado, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou. É apresentado também o total anual faturado ao cliente."); 
 //							consultaT.codigoClienteParaMes();
+							hipermercado.codigoClienteParaMes();
 							break;
 						
 						case 5:	
@@ -218,18 +219,20 @@ public class Application {
 							
 						case 6:
 							System.out.println("Foi escolhida a query 06 - Dado o código de um produto existente, é determinado, mês a mês, quantas vezes foi comprado em modo N e modo P e respectivas facturações.");
-							consultaT.codigoProdutoNP();
+//							consultaT.codigoProdutoNP();
 							hipermercado.codigoProdutoNP();
 							break;
 						
 						case 7:
 							System.out.println("Foi escolhida a query 07 - Dado o código de um cliente, é determinado a lista de códigos que mais comprou, e quantos, por ordem descrescente de quantidade e para quantidades iguais, por ordem alfabética dos códigos.");
 //							consultaT.clienteListaProdutos();
+							hipermercado.clienteListaProdutos();
 						    break;
 						
 						case 8:
 							System.out.println("Foi escolhida a query 08 - É determinado o conjunto dos produtos mais vendidos em todo o ano, indicando o número total de distintos clientes que o compraram.");
-						    consultaT.conjuntoXprodutos();
+//						    consultaT.conjuntoXprodutos();
+						    hipermercado.conjuntoXprodutos();
 						    break;
 						    
 						case 9:

@@ -17,11 +17,13 @@ public class Hipermercado {
 	
 	private Ccliente catalogoClientes;
 	private Cproduto catalogoProdutos;
+	private Validador validador;
 	
-	public Hipermercado() {
+	public Hipermercado(Validador validador) {
 		super();
 		catalogoClientes = new Ccliente();
 		catalogoProdutos = new Cproduto();
+	    this.validador = new Validador();	
 	}
 
 	public void addCompra(Compra compra){
@@ -129,13 +131,35 @@ public class Hipermercado {
 		System.out.print("Insira um mês de 1 a 12: ");
 		Scanner sc = new Scanner(System.in);
 		int mes = sc.nextInt();
-
+		
+		
+//TODO: BUG FIX -> VALIDADOR		
 		for (Entry<String, DadosProduto> entry : getCatalogoProdutos().getGavetaProdutos().entrySet()) {
 			if (entry.getValue() != null) {
 				if (entry.getValue().getMensal().containsKey(mes)) {
 					System.out.println("Produto comprado: " + entry.getKey() + ", Quantidade: "
 							+ entry.getValue().getMensal().get(mes).getTotalCompras() + ", Clientes Distintos: "
 							+ entry.getValue().getMensal().get(mes).getClientesDistintos());
+				}
+			}
+		}
+	}
+	
+	// Query 4 - Consulta Interactiva
+	public void codigoClienteParaMes() {
+		
+		System.out.print("Introduza o código de um cliente:");
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+
+		System.out.println("\nO cliente "+input+":");
+		for (Entry<String, DadosCliente> entry : getCatalogoClientes().getGavetaClientes().entrySet()) {
+			if (entry.getValue() != null) {
+				if (entry.getValue().getIdCliente().equals(input)) {
+					for (Entry<Integer, DadosMesCliente> entry2 : entry.getValue().getMensalCliente().entrySet()) {
+						System.out.println("No Mês:"+entry2.getKey() + ", fez um total número de compras:" + entry2.getValue().getTotalCompras() + ", adquiriu os seguintes produtos:"
+								+ entry2.getValue().getProdutosDistintos() + " e gastou na totalidade:" + entry2.getValue().getFaturacao()+" euros");
+					}
 				}
 			}
 		}
@@ -152,10 +176,10 @@ public class Hipermercado {
 			if (entry.getValue() != null) {
 				if (entry.getValue().getIdProduto().equals(input)) {
 					for (Entry<Integer, DadosMesProduto> entry2 : entry.getValue().getMensal().entrySet()) {
-						System.out.println("No mês: " + entry2.getKey() + ", Total Número de Compras: "
+						System.out.println("No Mês: " + entry2.getKey() + ", Total Número de Compras: "
 								+ entry2.getValue().getTotalCompras() + ",  Clientes Distintos: "
 								+ entry2.getValue().getClientesDistintos() + ", Total Faturado: "
-								+ entry2.getValue().getFaturacao());
+								+ entry2.getValue().getFaturacao()+" euros.");
 					}
 				}
 			}
@@ -182,6 +206,48 @@ public class Hipermercado {
 			}
 		}
 	}
+
+	
+//TODO -> BUG FIX -> A quantidade não atualiza pois ainda falta os métodos	
+	//Query 7 - Consulta Interactiva
+	public void clienteListaProdutos() {
+		
+		System.out.print("Introduza um código de um cliente:");
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+
+		System.out.println("\nO cliente "+input+" comprou os seguintes produtos:");
+		for (Entry<String, DadosCliente> entry : getCatalogoClientes().getGavetaClientes().entrySet()) {
+			if (entry.getValue() != null) {
+				if (entry.getValue().getIdCliente().equals(input)) {
+					for (Entry<String, DadosClienteProduto> entry2 : entry.getValue().getQuantidadeProdutoPorCliente().entrySet()){
+						System.out.println("O produto:"+entry2.getKey() + ",  Quantidade:" + entry2.getValue().getQuantidade());
+					}
+				}
+			}
+		}	
+	}
+
+	public void conjuntoXprodutos() {
+		
+		System.out.println("\nOs produtos mais vendidos em todo ano são:");
+		for (Entry<String, DadosCliente> entry : getCatalogoClientes().getGavetaClientes().entrySet()) {
+			if (entry.getValue() != null) {
+					for (Entry<String, DadosClienteProduto> entry2 : entry.getValue().getQuantidadeProdutoPorCliente().entrySet()){
+						System.out.println("O produto:"+entry2.getKey() + ",  Quantidade:" + entry2.getValue().getQuantidade());
+					}
+			}
+			
+		}	
+		
+		
+		
+		
+		
+		
+	}
+
+
 
 
 	
