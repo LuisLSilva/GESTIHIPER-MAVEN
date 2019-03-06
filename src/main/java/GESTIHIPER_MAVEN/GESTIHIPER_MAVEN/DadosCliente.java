@@ -130,6 +130,11 @@ public class DadosCliente {
 	//	gavetaProdutos.put(compra.getIdProduto(), dadosP);
 		return;
 	}
+
+	public int compareTo(DadosCliente dadosCliente) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 	

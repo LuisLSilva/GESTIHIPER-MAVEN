@@ -1,12 +1,19 @@
 package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.SortedSet;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 
 public class Hipermercado {
@@ -18,6 +25,8 @@ public class Hipermercado {
 	private Ccliente catalogoClientes;
 	private Cproduto catalogoProdutos;
 	private Validador validador;
+	
+	
 	
 	public Hipermercado(Validador validador) {
 		super();
@@ -209,62 +218,92 @@ public class Hipermercado {
 
 	
 //TODO -> BUG FIX -> A quantidade não atualiza pois ainda falta os métodos	
-	//Query 7 - Consulta Interactiva
+	// Query 7 - Consulta Interactiva
 	public void clienteListaProdutos() {
-		
 		System.out.print("Introduza um código de um cliente:");
 		Scanner sc = new Scanner(System.in);
 		String input = sc.nextLine();
 
-		System.out.println("\nO cliente "+input+" comprou os seguintes produtos:");
-		for (Entry<String, DadosCliente> entry : getCatalogoClientes().getGavetaClientes().entrySet()) {
-			if (entry.getValue() != null) {
-				if (entry.getValue().getIdCliente().equals(input)) {
-					for (Entry<String, DadosClienteProduto> entry2 : entry.getValue().getQuantidadeProdutoPorCliente().entrySet()){
-						System.out.println("O produto:"+entry2.getKey() + ",  Quantidade:" + entry2.getValue().getQuantidade());
-					}
-				}
-			}
-		}	
+		System.out.println("\nO cliente " + input + " comprou os seguintes produtos:");
+		DadosCliente dadosClienteInput = this.getCatalogoClientes().getGavetaClientes().get(input);
+		if (dadosClienteInput == null)
+			return;
+
+		Map<String, DadosClienteProduto> tMap = new TreeMap<String, DadosClienteProduto>(dadosClienteInput.getQuantidadeProdutoPorCliente());
+		if (tMap == null)
+			return;
+
+		Map<String, DadosClienteProduto> sortedMap = sortByValue(tMap);
+		printMapPQ(sortedMap);
 	}
 
+	public static <K,V> void printMapPQ(Map<K,V> map){
+		for(Map.Entry<K, V> entry: map.entrySet()){
+			System.out.println("Produto comprado: " + entry.getKey() + " "+entry.getValue());
+		}
+	}	
+
+	// Ordena por valor descendente, o conte�do do HashMap
+	public static Map<String, DadosClienteProduto> sortByValue(Map<String, DadosClienteProduto> unsortMap) {
+
+		List<Map.Entry<String, DadosClienteProduto>> list = new LinkedList<Map.Entry<String, DadosClienteProduto>>(
+				unsortMap.entrySet());
+
+		Collections.sort(list, new Comparator<Map.Entry<String, DadosClienteProduto>>() {
+
+			public int compare(Map.Entry<String, DadosClienteProduto> o1, Map.Entry<String, DadosClienteProduto> o2) {
+				return o2.getValue().getQuantidade().compareTo(o1.getValue().getQuantidade());
+			}
+		});
+
+		Map<String, DadosClienteProduto> sortedMap = new LinkedHashMap<String, DadosClienteProduto>();
+		for (Map.Entry<String, DadosClienteProduto> entry : list) {
+			sortedMap.put(entry.getKey(), entry.getValue());
+		}
+
+		return sortedMap;
+	}
+			
 	public void conjuntoXprodutos() {
 		
-		System.out.println("\nOs produtos mais vendidos em todo ano são:");
-		for (Entry<String, DadosCliente> entry : getCatalogoClientes().getGavetaClientes().entrySet()) {
+		
+//		System.out.print("Introduza um código de um produto existente:");
+//		Scanner sc = new Scanner(System.in);
+//		int input = sc.nextInt();
+
+		for (Entry<String, DadosProduto> entry : getCatalogoProdutos().getGavetaProdutos().entrySet()) {
 			if (entry.getValue() != null) {
-					for (Entry<String, DadosClienteProduto> entry2 : entry.getValue().getQuantidadeProdutoPorCliente().entrySet()){
-						System.out.println("O produto:"+entry2.getKey() + ",  Quantidade:" + entry2.getValue().getQuantidade());
-					}
-			}
+				for(Entry<Integer, DadosMesProduto> entry2: entry.getValue().getMensal().entrySet()){
+				//     System.out.println("P:"+entry.getKey()+", C"+entry.getValue().getNumeroCompras()+", CL"+entry2.getValue().getClientesDistintos());
+				     Map<Integer, DadosMesProduto> sortedMap = sortByValue2(entry.getValue().getMensal());
+					 printMapPQ(sortedMap);
+				}
 			
-		}	
-		
-		
-		
-		
-		
-		
+			
+			}
+		}
 	}
+	
+	public static Map<Integer, DadosMesProduto> sortByValue2(Map<Integer, DadosMesProduto> unsortMap) {
 
+		List<Map.Entry<Integer, DadosMesProduto>> list = new LinkedList<Map.Entry<Integer, DadosMesProduto>>(
+				unsortMap.entrySet());
 
+		Collections.sort(list, new Comparator<Map.Entry<Integer, DadosMesProduto>>() {
 
+			public int compare(Map.Entry<Integer, DadosMesProduto> o1, Map.Entry<Integer, DadosMesProduto> o2) {
+				return o2.getValue().getTotalCompras().compareTo(o1.getValue().getTotalCompras());
+			}
+		});
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		Map<Integer, DadosMesProduto> sortedMap = new LinkedHashMap<Integer, DadosMesProduto>();
+		for (Map.Entry<Integer, DadosMesProduto> entry : list) {
+			sortedMap.put(entry.getKey(), entry.getValue());
+		}
+
+		return sortedMap;
+	}
+		
+			
 	
 }

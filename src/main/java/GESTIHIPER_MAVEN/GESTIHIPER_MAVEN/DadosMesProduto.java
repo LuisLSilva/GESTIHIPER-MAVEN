@@ -5,30 +5,32 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class DadosMesProduto {
-	private int totalCompras;
+	private Integer totalCompras;
 	private double faturacao;
 	private Set<String> clientesDistintos;
 	private int comprasModoP;
 	private int comprasModoN;
-	
-	private DecimalFormat formatter = new DecimalFormat("#0.00");
-	
+
 	public DadosMesProduto() {
 		super();
 		clientesDistintos = new HashSet<String>();
-		formatter = new DecimalFormat("#0.00");
-		
 	}
 	
-	public int getTotalCompras() {
+	public Integer getTotalCompras() {
 		return totalCompras;
 	}
 	
-	public void setTotalCompras(int totalCompras) {
+	public void setTotalCompras(Integer totalCompras) {
 		this.totalCompras = totalCompras;
 	}
 	
+	public String getFaturacaoPretty() {
+		DecimalFormat formatter = new DecimalFormat("#0.00");
+		return formatter.format(faturacao);
+	}
+	
 	public double getFaturacao() {
+		
 		return faturacao;
 	}
 	
@@ -62,7 +64,7 @@ public class DadosMesProduto {
 
 	@Override
 	public String toString() {
-		return "DadosMesProduto [totalCompras=" + totalCompras + ", faturacao=" + formatter.format(faturacao) + ", clientesDistintos="
+		return "DadosMesProduto [totalCompras=" + totalCompras + ", faturacao=" + this.getFaturacaoPretty() + ", clientesDistintos="
 				+ clientesDistintos + ", comprasModoP=" + comprasModoP+ ", comprasModoN=" + comprasModoN+"]";
 	}
 	

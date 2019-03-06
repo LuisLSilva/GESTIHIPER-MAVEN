@@ -7,12 +7,19 @@ public class DadosClienteProduto {
 		super();
 	}
 
-	public int getQuantidade() {
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-		
+
+	@Override
+	public String toString() {
+		return ", Quantidade:"+quantidade;
+	}
+
+	
+	
 }
