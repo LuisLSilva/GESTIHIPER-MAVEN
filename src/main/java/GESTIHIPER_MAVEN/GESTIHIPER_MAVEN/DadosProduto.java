@@ -8,20 +8,28 @@ import java.util.Set;
 
 public class DadosProduto {
 	private Map <Integer, DadosMesProduto> mensal;
-	
-	private int numeroCompras;
+	private Map <Integer, DadosVendasProduto> vendasProduto;
+	private Integer numeroCompras;
 	private Set<String> clientesDistintos;
 	private double totalFaturado;
-	
 	
 	//Para mim
 	private String idProduto;
 	
 	
+	public Map<Integer, DadosVendasProduto> getVendasProduto() {
+		return vendasProduto;
+	}
+
+	public void setVendasProduto(Map<Integer, DadosVendasProduto> vendasProduto) {
+		this.vendasProduto = vendasProduto;
+	}
+
 	public DadosProduto() {
 		super();
 		this.mensal = new HashMap<Integer,DadosMesProduto>();
 		this.clientesDistintos = new HashSet<String>();
+		this.vendasProduto = new HashMap<Integer, DadosVendasProduto>();
 		
 	}
 		
@@ -33,12 +41,13 @@ public class DadosProduto {
 		this.mensal = mensal;
 	}
 
-	public int getNumeroCompras() {
+	
+	public Integer getNumeroCompras() {
 		return numeroCompras;
 	}
 
-	public void setNumeroCompras(int numeroCompras) {
-	    this.numeroCompras = numeroCompras;
+	public void setNumeroCompras(Integer numeroCompras) {
+		this.numeroCompras = numeroCompras;
 	}
 
 	public Set<String> getClientesDistintos() {
@@ -67,8 +76,19 @@ public class DadosProduto {
 
 	public void addCompraMensal(Compra compra) {
 		
+		DadosVendasProduto dadosVP = vendasProduto.get(compra.getQuantidade());
 		DadosMesProduto dadosMP = mensal.get(compra.getMes());
-
+		
+		if(dadosVP == null){
+			dadosVP = new DadosVendasProduto();
+			dadosVP.setVendas(compra.getQuantidade());
+			dadosVP.setIdProduto(compra.getIdProduto());
+//			dadosVP.getClientesDistintos().add(compra.getIdCliente());
+		
+			vendasProduto.put(compra.getQuantidade(), dadosVP);
+		
+		}
+		
 		if (dadosMP == null) {
 			dadosMP = new DadosMesProduto();
 			dadosMP.setTotalCompras(compra.getQuantidade());
@@ -85,6 +105,7 @@ public class DadosProduto {
 			return;
 		}
 		
+//		dadosVP.getClientesDistintos().add(compra.getIdCliente());
 		dadosMP.getClientesDistintos().add(compra.getIdCliente());
 		atualizaNumComprasMensal(compra.getMes(), dadosMP, compra);
 		atualizaFaturacaoMensal(compra.getMes(), dadosMP, compra);

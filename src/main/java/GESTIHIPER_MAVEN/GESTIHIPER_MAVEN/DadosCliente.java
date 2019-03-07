@@ -9,7 +9,7 @@ public class DadosCliente {
 	private Map <Integer, DadosMesCliente> mensalCliente;
 	private Map <String, DadosClienteProduto> quantidadeProdutoPorCliente;
 	private double valorGasto;
-	private int numeroCompras;
+	private Integer numeroCompras;
 	private Set<String> produtosDistintos;
 	private Set<String> clientesDistintos;
 	
@@ -39,11 +39,11 @@ public class DadosCliente {
 		this.valorGasto = valorGasto;
 	}
 	
-	public int getNumeroCompras() {
+	public Integer getNumeroCompras() {
 		return numeroCompras;
 	}
 	
-	public void setNumeroCompras(int numeroCompras) {
+	public void setNumeroCompras(Integer numeroCompras) {
 		this.numeroCompras = numeroCompras;
 	}
 	

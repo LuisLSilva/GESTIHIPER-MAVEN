@@ -37,7 +37,7 @@ public class Ccliente {
 		this.gavetaClientes = gavetaClientes;
 	}
 
-//TODO: Concluir mais tarde a parte do cliente
+
 	public void addCompraCliente(Compra compra){
 		//Caso já exista 'values' no HashMap de Ccliente
 		DadosCliente dadosC = gavetaClientes.get(compra.getIdCliente());
@@ -49,6 +49,8 @@ public class Ccliente {
 			dadosC.setIdCliente(compra.getIdCliente());
 		
 			dadosC.addCompraMensal(compra);
+			dadosC.getProdutosDistintos().add(compra.getIdProduto());
+			
 			
 			gavetaClientes.put(compra.getIdCliente(), dadosC);
 			return;

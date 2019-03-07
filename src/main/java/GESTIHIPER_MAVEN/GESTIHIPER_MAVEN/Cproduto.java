@@ -44,6 +44,9 @@ public class Cproduto {
 			
 			//printMapAA(dadosP.getMensal());
 			dadosP.addCompraMensal(compra);
+			
+			dadosP.getClientesDistintos().add(compra.getIdCliente());
+			
 
 			gavetaProdutos.put(compra.getIdProduto(), dadosP);
 			return;

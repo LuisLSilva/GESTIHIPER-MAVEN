@@ -237,12 +237,14 @@ public class Application {
 						    
 						case 9:
 							System.out.println("Foi escolhida a query 09 - É determinado os clientes que compraram um maior número de diferentes produtos indicando quantos.");
-						    consultaT.clientesDiferentesProdutos();
+//						    consultaT.clientesDiferentesProdutos();
+						    hipermercado.clientesDiferentesProdutos();
 						    break;
 						    
 						case 10:
 							System.out.println("Foi escolhida a query 10 - Dado o código de um produto, é determinado o conjunto dos X clientes que mais compraram e qual valor gasto."); 
-						    consultaT.produtoClientesQueMaisCompraram();
+//						    consultaT.produtoClientesQueMaisCompraram();
+						    hipermercado.produtoClientesQueMaisCompraram();
 							break;
 						
 					}
