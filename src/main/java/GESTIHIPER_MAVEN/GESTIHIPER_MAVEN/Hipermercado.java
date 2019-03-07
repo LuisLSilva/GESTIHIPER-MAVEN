@@ -270,16 +270,23 @@ public class Hipermercado {
 //		System.out.print("Introduza um código de um produto existente:");
 //		Scanner sc = new Scanner(System.in);
 //		int input = sc.nextInt();
-
-		for (Entry<String, DadosProduto> entry : getCatalogoProdutos().getGavetaProdutos().entrySet()) {
+		
+//		for(Entry<String, DadosProduto> entry: getCatalogoProdutos().getGavetaProdutos().entrySet()) {
+//			if(entry.getValue()!= null) {
+//				for(Entry<Integer, DadosMesProduto> entry2: entry.getValue().getMensal().entrySet()) {
+//				   System.out.print(entry2.getValue().getClientesDistintos());
+//				}
+//			}
+//			
+//		}
+		
+		for (Entry<String, DadosCliente> entry : getCatalogoClientes().getGavetaClientes().entrySet()) {
 			if (entry.getValue() != null) {
-				for(Entry<Integer, DadosMesProduto> entry2: entry.getValue().getMensal().entrySet()){
+				for(Entry<String, DadosClienteProduto> entry2: entry.getValue().getQuantidadeProdutoPorCliente().entrySet()){
 				//     System.out.println("P:"+entry.getKey()+", C"+entry.getValue().getNumeroCompras()+", CL"+entry2.getValue().getClientesDistintos());
-				     Map<Integer, DadosMesProduto> sortedMap = sortByValue2(entry.getValue().getMensal());
-					 printMapPQ(sortedMap);
-				}
-			
-			
+				//     Map<Integer, DadosMesProduto> sortedMap = sortByValue2(entry.getValue().getMensal());
+					   System.out.println("Produtos Vendidos:"+ entry2.getValue().getProdutosDistintos()+", Quantidade:"+entry2.getValue().getQuantidade()+", Clientes:"+entry2.getValue().getClientesDistintos());
+				}	
 			}
 		}
 	}

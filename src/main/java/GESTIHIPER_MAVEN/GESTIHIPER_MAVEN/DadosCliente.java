@@ -11,6 +11,7 @@ public class DadosCliente {
 	private double valorGasto;
 	private int numeroCompras;
 	private Set<String> produtosDistintos;
+	private Set<String> clientesDistintos;
 	
 	private String idCliente;
 	
@@ -19,6 +20,7 @@ public class DadosCliente {
 		this.mensalCliente = new HashMap<Integer,DadosMesCliente>();
 		this.produtosDistintos = new HashSet<String>();
 		this.quantidadeProdutoPorCliente = new HashMap<String , DadosClienteProduto>();
+		this.clientesDistintos = new HashSet<String>();
 	}
 
 	public Map<String, DadosClienteProduto> getQuantidadeProdutoPorCliente() {
@@ -91,7 +93,8 @@ public class DadosCliente {
 		if(dadosCP == null){
 			dadosCP = new DadosClienteProduto();
 			dadosCP.setQuantidade(compra.getQuantidade());
-			
+			dadosCP.getClientesDistintos().add(compra.getIdCliente());
+			dadosCP.getProdutosDistintos().add(compra.getIdProduto());
 			quantidadeProdutoPorCliente.put(compra.getIdProduto(), dadosCP);
 		}
 		
@@ -101,17 +104,28 @@ public class DadosCliente {
 		   dadosMC.setTotalCompras(compra.getQuantidade());	
 			
 		   dadosMC.getProdutosDistintos().add(compra.getIdProduto());
+		  
 		   mensalCliente.put(compra.getMes(), dadosMC);
 			
 		   return;
 		}
 		
      	dadosMC.getProdutosDistintos().add(compra.getIdProduto());
+     	dadosCP.getProdutosDistintos().add(compra.getIdProduto());
+     	dadosCP.getClientesDistintos().add(compra.getIdCliente());
     	atualizaNumComprasMensal(compra.getMes(), dadosMC, compra);
     	atualizaFaturacaoMensal(compra.getMes(), dadosMC, compra);
 		mensalCliente.put(compra.getMes(), dadosMC);
 	}
 	
+	public Set<String> getClientesDistintos() {
+		return clientesDistintos;
+	}
+
+	public void setClientesDistintos(Set<String> clientesDistintos) {
+		this.clientesDistintos = clientesDistintos;
+	}
+
 	private void atualizaNumComprasMensal(int mes, DadosMesCliente dadosMC, Compra compra) {
 		 int numLista = dadosMC.getTotalCompras();
 		 int numLido = compra.getQuantidade();

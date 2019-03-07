@@ -52,6 +52,7 @@ public class Cproduto {
 		//Já existem dados neste ponto
 		dadosP.addCompraMensal(compra);
 		dadosP.getClientesDistintos().add(compra.getIdCliente());
+	
 		 
 		atualizaNumCompras(compra.getIdProduto(), dadosP, compra);
 		atualizaFaturacao(compra.getIdProduto(), dadosP, compra);

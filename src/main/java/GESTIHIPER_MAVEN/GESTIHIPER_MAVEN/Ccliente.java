@@ -57,6 +57,8 @@ public class Ccliente {
 		//Já existem dados neste ponto
 		dadosC.addCompraMensal(compra);
 		dadosC.getProdutosDistintos().add(compra.getIdProduto());
+		dadosC.getClientesDistintos().add(compra.getIdCliente());
+		
 		
 		gavetaClientes.put(compra.getIdCliente(), dadosC);
 		
