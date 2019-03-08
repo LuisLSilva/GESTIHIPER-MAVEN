@@ -1,6 +1,5 @@
 package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,10 +11,7 @@ public class DadosProduto {
 	private Integer numeroCompras;
 	private Set<String> clientesDistintos;
 	private double totalFaturado;
-	
-	//Para mim
 	private String idProduto;
-	
 	
 	public Map<Integer, DadosVendasProduto> getVendasProduto() {
 		return vendasProduto;
@@ -30,7 +26,6 @@ public class DadosProduto {
 		this.mensal = new HashMap<Integer,DadosMesProduto>();
 		this.clientesDistintos = new HashSet<String>();
 		this.vendasProduto = new HashMap<Integer, DadosVendasProduto>();
-		
 	}
 		
 	public Map<Integer, DadosMesProduto> getMensal() {
@@ -41,7 +36,6 @@ public class DadosProduto {
 		this.mensal = mensal;
 	}
 
-	
 	public Integer getNumeroCompras() {
 		return numeroCompras;
 	}
@@ -83,36 +77,26 @@ public class DadosProduto {
 			dadosVP = new DadosVendasProduto();
 			dadosVP.setVendas(compra.getQuantidade());
 			dadosVP.setIdProduto(compra.getIdProduto());
-//			dadosVP.getClientesDistintos().add(compra.getIdCliente());
-		
+
 			vendasProduto.put(compra.getQuantidade(), dadosVP);
-		
 		}
 		
 		if (dadosMP == null) {
 			dadosMP = new DadosMesProduto();
 			dadosMP.setTotalCompras(compra.getQuantidade());
 			dadosMP.setFaturacao(compra.getPreco()*compra.getQuantidade());
-	        
 			dadosMP.setComprasModoP(compra.getModoP());
-		    dadosMP.setComprasModoN(compra.getModoN());
-			
+		    dadosMP.setComprasModoN(compra.getModoN());	
 			dadosMP.getClientesDistintos().add(compra.getIdCliente());
 			
 			mensal.put(compra.getMes(), dadosMP);
 			
-			//printMapAB(dadosP.getMensal());
 			return;
 		}
-		
-//		dadosVP.getClientesDistintos().add(compra.getIdCliente());
 		dadosMP.getClientesDistintos().add(compra.getIdCliente());
 		atualizaNumComprasMensal(compra.getMes(), dadosMP, compra);
 		atualizaFaturacaoMensal(compra.getMes(), dadosMP, compra);
 		tipoCompra(compra, dadosMP);
-		
-	
-		//System.out.println(this.getMensal().toString());
 	}
 
 	private void atualizaNumComprasMensal(int mes, DadosMesProduto dadosMP, Compra compra) {
@@ -130,18 +114,15 @@ public class DadosProduto {
 		double fatLido = dadosMP.getTotalCompras()*compra.getPreco();
 		dadosMP.setFaturacao(fatLido);
 		
-	//	gavetaProdutos.put(compra.getIdProduto(), dadosP);
 		return;
 	}
 	
-
 	private void tipoCompra(Compra compra, DadosMesProduto dadosMP) {
 		int compraTotalP= compra.getModoP()+dadosMP.getComprasModoP();
 		int compraTotalN= compra.getModoN()+dadosMP.getComprasModoP();
 		
 		dadosMP.setComprasModoP(compraTotalP);
-		dadosMP.setComprasModoN(compraTotalN);
-		
+		dadosMP.setComprasModoN(compraTotalN);	
 	}
 	
 	public static <K, V> void printMapAA(Map<K, V> map) {
@@ -155,9 +136,4 @@ public class DadosProduto {
 		PrettyPrintingMap<Integer, DadosMesProduto> s = new PrettyPrintingMap<Integer, DadosMesProduto>(this.getMensal());
 		return s.toString();
 	}
-	
-
-		
-			
-	
 }

@@ -12,7 +12,6 @@ public class DadosCliente {
 	private Integer numeroCompras;
 	private Set<String> produtosDistintos;
 	private Set<String> clientesDistintos;
-	
 	private String idCliente;
 	
 	public DadosCliente() {
@@ -71,14 +70,6 @@ public class DadosCliente {
 		this.idCliente = idCliente;
 	}
 
-	@Override
-	public String toString() {
-		return "DadosCliente [valorGasto=" + valorGasto + ", numeroCompras=" + numeroCompras + ", produtosDistintos="
-				+ produtosDistintos + "]";
-	}
-
-	
-
 	public <K, V> void printMapAA(Map<K, V> map) {
 		for (Map.Entry<K, V> entry : map.entrySet()) {
 				System.out.println("KEY: " + entry.getKey() + "   VALUE: " + entry.getValue());
@@ -102,7 +93,6 @@ public class DadosCliente {
 		   dadosMC = new DadosMesCliente();
 		   dadosMC.setFaturacao(compra.getQuantidade()*compra.getPreco());
 		   dadosMC.setTotalCompras(compra.getQuantidade());	
-			
 		   dadosMC.getProdutosDistintos().add(compra.getIdProduto());
 		  
 		   mensalCliente.put(compra.getMes(), dadosMC);
@@ -130,7 +120,6 @@ public class DadosCliente {
 		 int numLista = dadosMC.getTotalCompras();
 		 int numLido = compra.getQuantidade();
 		 int numAct=numLista+numLido;
-		 
 		 dadosMC.setTotalCompras(numAct);
 		 
 		 mensalCliente.put(compra.getMes(), dadosMC);
@@ -141,19 +130,6 @@ public class DadosCliente {
 		double fatLido = dadosMC.getTotalCompras()*compra.getPreco();
 		dadosMC.setFaturacao(fatLido);
 		
-	//	gavetaProdutos.put(compra.getIdProduto(), dadosP);
 		return;
 	}
-
-	public int compareTo(DadosCliente dadosCliente) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	
-	
-	
-	
-	
-	
 }

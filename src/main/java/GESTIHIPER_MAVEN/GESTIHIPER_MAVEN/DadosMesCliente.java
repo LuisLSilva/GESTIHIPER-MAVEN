@@ -8,7 +8,6 @@ public class DadosMesCliente {
 		private double faturacao;
 		private Set<String> produtosDistintos;
 	
-		
 		public DadosMesCliente() {
 			super();
 			produtosDistintos = new HashSet<String>();
@@ -37,10 +36,4 @@ public class DadosMesCliente {
 		public void setProdutosDistintos(Set<String> produtosDistintos) {
 			this.produtosDistintos = produtosDistintos;
 		}
-	    
-		
-	
-	
-	
-	
 }

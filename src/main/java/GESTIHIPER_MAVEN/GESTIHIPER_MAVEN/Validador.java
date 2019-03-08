@@ -8,7 +8,6 @@ public class Validador {
 	private static int fields = 6;
 	private static int productSize = 6;
 	private static int clientSize = 5;
-	
 	private List<String> comprasInvalidas;
 	
 	public Validador(){
@@ -16,6 +15,14 @@ public class Validador {
 		this.comprasInvalidas = new ArrayList<String>();
 	}
 	
+	public List<String> getComprasInvalidas() {
+		return comprasInvalidas;
+	}
+
+	public void setComprasInvalidas(List<String> comprasInvalidas) {
+		this.comprasInvalidas = comprasInvalidas;
+	}
+
 	public Compra validacao(String strCurrentLine){
 		
 		if(strCurrentLine == null)
@@ -85,15 +92,11 @@ public class Validador {
 			String sub2 = string.substring(2);
 
 			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-			
 				return string;
-
 			} else {
-		
 				return null;
 			}
 		} else {
-
 			return null;
 		}
 	}
@@ -103,11 +106,8 @@ public class Validador {
 		double preco = Double.valueOf(string);
 		
 		if (preco>0) {
-			
 			return preco;
-
 		} else {
-			
 			return 0;
 		}
 	}
@@ -117,11 +117,9 @@ public class Validador {
 		int quantidade = Integer.valueOf(string);
 		
 		if(quantidade>0){
-			
 			return quantidade;	
 		}	
 		else{
-	 		
 			return 0;
 		}	
 	}
@@ -140,7 +138,6 @@ public class Validador {
 		      return string;
 			}
 		}
-			
 		return null;
 	}
 
@@ -155,15 +152,11 @@ public class Validador {
 			String sub2 = produto.substring(2);
 
 			if (sub1.matches("[A-Z]+") && sub2.matches("[0-9]+")) {
-				
 				return produto;
-				
 			} else {
-			
 				return null;
 			}
 		} else {
-			
 			return null;
 		}
 	}
@@ -172,11 +165,9 @@ public class Validador {
 
 		int mes = Integer.valueOf(string);
 
-		if (mes > 0 && mes <= 12) {
-			
+		if (mes > 0 && mes <= 12) {	
 			return mes;
 		} else {
-		
 			return 0;
 		}
 	}
@@ -215,14 +206,7 @@ public class Validador {
 		if (!sub2.matches("[0-9]+")){ 
 			return false;
 		}
-		
 		return true;	
 	}
 }
 	
-	
-	
-	
-	
-
-

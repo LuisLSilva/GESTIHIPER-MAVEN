@@ -85,9 +85,5 @@ public class Compra {
 		return "Compra [idProduto=" + idProduto + ", preco=" + preco + ", quantidade=" + quantidade + ", idCliente="
 				+ idCliente + ", mes=" + mes + ", modoP=" + modoP + ", modoN=" + modoN + "]";
 	}
-
-	
-	
-	
 }
 	

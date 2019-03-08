@@ -42,7 +42,4 @@ public class DadosClienteProduto {
 	public String toString() {
 		return ", Quantidade:"+quantidade;
 	}
-
-	
-	
 }

@@ -37,7 +37,6 @@ public class Ccliente {
 		this.gavetaClientes = gavetaClientes;
 	}
 
-
 	public void addCompraCliente(Compra compra){
 		//Caso já exista 'values' no HashMap de Ccliente
 		DadosCliente dadosC = gavetaClientes.get(compra.getIdCliente());
@@ -47,10 +46,8 @@ public class Ccliente {
 			dadosC.setNumeroCompras(compra.getQuantidade());
 			dadosC.setValorGasto(compra.getPreco()*compra.getQuantidade());
 			dadosC.setIdCliente(compra.getIdCliente());
-		
 			dadosC.addCompraMensal(compra);
 			dadosC.getProdutosDistintos().add(compra.getIdProduto());
-			
 			
 			gavetaClientes.put(compra.getIdCliente(), dadosC);
 			return;
@@ -60,11 +57,8 @@ public class Ccliente {
 		dadosC.addCompraMensal(compra);
 		dadosC.getProdutosDistintos().add(compra.getIdProduto());
 		dadosC.getClientesDistintos().add(compra.getIdCliente());
-		
-		
+
 		gavetaClientes.put(compra.getIdCliente(), dadosC);
-		
-//		dadosC.printMapAA(gavetaClientes);
 	}
 	
 	public static <K, V> void printMapAA(Map<K, V> map) {

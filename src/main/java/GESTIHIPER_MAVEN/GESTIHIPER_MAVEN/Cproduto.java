@@ -1,15 +1,12 @@
 package GESTIHIPER_MAVEN.GESTIHIPER_MAVEN;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Cproduto {
 	private Map<String, DadosProduto> gavetaProdutos;
 	private String idProduto;
-
-	
+  
 	public Cproduto() {
 		super();
 		this.gavetaProdutos = new HashMap<String, DadosProduto>();
@@ -41,13 +38,9 @@ public class Cproduto {
 			dadosP.setTotalFaturado(compra.getPreco()*compra.getQuantidade());
 			dadosP.setNumeroCompras(compra.getQuantidade());
 			dadosP.setIdProduto(compra.getIdProduto());
-			
-			//printMapAA(dadosP.getMensal());
 			dadosP.addCompraMensal(compra);
-			
 			dadosP.getClientesDistintos().add(compra.getIdCliente());
-			
-
+		
 			gavetaProdutos.put(compra.getIdProduto(), dadosP);
 			return;
 		}
@@ -56,13 +49,10 @@ public class Cproduto {
 		dadosP.addCompraMensal(compra);
 		dadosP.getClientesDistintos().add(compra.getIdCliente());
 	
-		 
 		atualizaNumCompras(compra.getIdProduto(), dadosP, compra);
 		atualizaFaturacao(compra.getIdProduto(), dadosP, compra);
-	
 	}
-	
-	
+
 	private void atualizaNumCompras(String idProduto, DadosProduto dadosP, Compra compra) {
 		 int numLista = dadosP.getNumeroCompras();
 		 int numLido = compra.getQuantidade();
@@ -93,9 +83,5 @@ public class Cproduto {
 		for (Map.Entry<K, V> entry : map.entrySet()) {
 				System.out.println("KEY: " + entry.getKey() + "   VALUE: " + entry.getValue());
 		}
-
 	}
-
-	
-	
 }

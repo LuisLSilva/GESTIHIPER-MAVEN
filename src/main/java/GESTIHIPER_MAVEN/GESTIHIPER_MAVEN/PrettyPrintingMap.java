@@ -22,10 +22,8 @@ public class PrettyPrintingMap<K, V> {
             sb.append('"');
             if (iter.hasNext()) {
                 sb.append(',').append(' ');
-           //     sb.append("\n");
             }
         }
         return sb.toString();
-
     }
 }

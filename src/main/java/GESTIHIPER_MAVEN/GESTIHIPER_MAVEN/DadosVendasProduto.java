@@ -8,8 +8,6 @@ public class DadosVendasProduto {
 	private Set<String> clientesDistintos;
 	private String idProduto;
 	
-	
-	
 	public DadosVendasProduto() {
 		super();
 		this.clientesDistintos = new HashSet<String>();
@@ -23,7 +21,6 @@ public class DadosVendasProduto {
 		this.idProduto = idProduto;
 	}
 
-	
 	public int getVendas() {
 		return vendas;
 	}
@@ -32,11 +29,11 @@ public class DadosVendasProduto {
 		this.vendas = vendas;
 	}
 	
-	public Set getClientesDistintos() {
+	public Set<String> getClientesDistintos() {
 		return clientesDistintos;
 	}
 	
-	public void setClientesDistintos(Set clientesDistintos) {
+	public void setClientesDistintos(Set<String> clientesDistintos) {
 		this.clientesDistintos = clientesDistintos;
 	}
 
@@ -44,9 +41,4 @@ public class DadosVendasProduto {
 	public String toString() {
 		return "DadosVendasProduto [vendas=" + vendas + ", clientesDistintos=" + clientesDistintos + "]";
 	}
-	
-	
-	
-	
-
 }

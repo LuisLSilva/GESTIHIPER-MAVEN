@@ -30,7 +30,6 @@ public class DadosMesProduto {
 	}
 	
 	public double getFaturacao() {
-		
 		return faturacao;
 	}
 	
@@ -67,10 +66,4 @@ public class DadosMesProduto {
 		return "DadosMesProduto [totalCompras=" + totalCompras + ", faturacao=" + this.getFaturacaoPretty() + ", clientesDistintos="
 				+ clientesDistintos + ", comprasModoP=" + comprasModoP+ ", comprasModoN=" + comprasModoN+"]";
 	}
-	
-	
-	
-	
-	
-	
 }
